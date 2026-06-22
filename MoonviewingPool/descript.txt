@@ -1,0 +1,98 @@
+charset,UTF-8
+type,balloon
+use_self_alpha,1
+use_input_alpha,1
+//overlay_outside_balloon,1
+
+
+//——— Basic information ———
+name,Moonviewing Pool
+craftman,WhatAPhantasia
+craftmanw,WhatAPhantasia
+craftmanurl,https://whataphantasia.github.io/projects/ukagaka/
+homeurl,https://raw.githubusercontent.com/WhatAPhantasia/SILENTREFRAIN_bb/refs/heads/main/MoonviewingPool/
+
+
+//——— Display area ———
+origin.x,0
+origin.y,0
+
+validrect.left,68
+validrect.top,44
+validrect.right,-39
+validrect.bottom,-44
+
+wordwrappoint.x,-28
+
+//——— Font ———
+font.name,Calibri
+font.height,14
+
+font.color.r,0
+font.color.g,0
+font.color.b,0
+
+anchor.font.color.r,015
+anchor.font.color.g,084
+anchor.font.color.b,138
+
+cursor.font.color.r,015
+cursor.font.color.g,084
+cursor.font.color.b,138
+
+cursor.style,underline
+
+disable.font.color.r,146
+disable.font.color.g,135
+disable.font.color.b,178
+
+
+//——— Arrows ———
+arrow0.x,35
+arrow0.y,58
+
+arrow1.x,35
+arrow1.y,-78
+
+
+//——— Online marker ———
+onlinemarker.x,0
+onlinemarker.y,0
+
+onlinemarker.interval,100
+
+
+//——— SSTP ———
+sstpmarker.x,48
+sstpmarker.y,-36
+
+sstpmessage.font.name,Calibri
+sstpmessage.font.height,11
+
+sstpmessage.x,62
+sstpmessage.xr,-100
+sstpmessage.y,-37
+
+sstpmessage.font.color.r,37
+sstpmessage.font.color.g,54
+sstpmessage.font.color.b,68
+
+
+//——— Number ———
+number.font.name,Calibri
+number.font.height,11
+
+number.xr,180
+number.y,-26
+
+number.font.color.r,37
+number.font.color.g,54
+number.font.color.b,68
+
+
+//——— Input box ———
+communicatebox.x,24
+communicatebox.y,19
+
+communicatebox.width,246
+communicatebox.height,18

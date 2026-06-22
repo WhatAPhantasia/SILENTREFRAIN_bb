@@ -1,0 +1,250 @@
+OnFirstBoot : all
+{
+	flags = IARRAY //barebones for jam
+	silence = 0 //how many times you don't answer her questions
+	//she doesnt keep track of anything else bc she doesnt care about u she just yaps
+
+	//utility variables
+	aitalkinterval = 30
+	allowforceclose = 1
+	allowstopclose = 1
+	allowchoicetimeout = 1
+	oldfunc = ""
+
+	"\t"
+	"%(windowinit)"
+	"\1\s[-1]\0\s[1]\i[202]\i[301]\i[401]%(tears)"
+
+	"\![set,alpha,0]\![set,alpha,100,500]\_w[500]"
+	"Sniffle...\w8 Oh,\w8 oh,\w8 no,\w8 you're not supposed to DO that...!"
+
+	"%(qprep)"
+	"\![*]\_a[OnFirstBoot2,1]Are you okay?\_a\w8\n"
+	"\![*]\_a[OnFirstBoot2,2]Supposed to do... What?\_a\w8\n"
+	"\![*]\_a[OnFirstBoot2,0]...\_a"
+}
+
+qprep {"\w8\w8\1\f[anchor.font.color,default.plain]\f[anchorvisitedfontcolor,default.plain]\![set,autoscroll,disable]\_q"}
+
+OnFirstBoot2 : all
+{
+	"\t\0"
+
+	if !reference0 
+	{
+		silence++
+		"\s[1]\i[202]\i[301]\i[401]%(tears)"
+		"Everyone is so, so, so MEAN!\w8\w8 Especially,\w8 especially—!\w8\w8\n\n"
+	}
+
+	"\s[1]\i[303]\i[401]O-Oh!\w8\w8\w8 \s[0]\i[301]\i[404]Oh,\w8 my,\w8 what are you doing up here, little one?"
+	
+	"%(qprep)"
+	"\![*]\_a[OnFirstBoot3,2]I've come to see you, Caretaker Vala!\_a\w8\n"
+	"\![*]\_a[OnFirstBoot3,1]Umm, I don't know who you are, but you look sad!\_a\w8\n"
+	"\![*]\_a[OnFirstBoot3,0]...\_a"
+}
+
+OnFirstBoot3 : all
+{
+	"\t"
+
+	"\s[0]\i[303]\i[404]Oh...!\w8\w8\w8 \s[0]\i[301]\i[403]Poor thing!\w8\w8\w8 "
+	
+	if reference0 == 0
+	{
+		silence++
+		"\s[2]\i[404]There's no need to be afraid.\w8\w8 I know it's hard since you're so pitiful, but I promise I don't bite!\w8\w8 \i[203]Here, what if I introduced myself?\w8 Would that help?"
+	}
+	elseif reference0 == 1
+	{
+		"\s[0]\i[301]\i[404]It's only in your nature to be so pitiful,\w8 you can't help it...\w8\w8 My subjects are so, so clueless...\w8\w8 \s[0]\i[202]\i[301]\i[403]%(tears)To the point they've forgotten me!\w8\w8\w8 That's alright, it's always alright,\w8 you can never be at fault when you don't have anything to be responsible for in the first place..."
+	}
+	else
+	{
+		"\s[2]\i[203]\i[301]\i[404]Please,\w8 I implore you,\w8 that's much too formal!\w8\w8 It's due respect for your Caretaker, of course, but I feel so sorry for you and how pitiful you are when you sound so stuffy like that!"
+	}
+
+	"\w8\w8\w8\n\n"
+
+	"\s[2]\i[404]You may call me Vala.\w8\w8 \i[202]It's the name that whispers in every babbling brook, every silver stream, every crack and break of the winds on the waves--\w8\w8\w8 \s[0]\i[302]\i[407]Completely unlike that nasty, SELFISH Fenr!"
+
+	"%(qprep)"
+	"\![*]\_a[OnFirstBoot4,1]Oh no, what did he do?\_a\w8\n"
+	"\![*]\_a[OnFirstBoot4,2]That's a bit harsh to say\_a\w8\n"
+	"\![*]\_a[OnFirstBoot4,3]Um, who is that, also?\_a\w8\n"
+	"\![*]\_a[OnFirstBoot4,0]...\_a"
+}
+
+OnFirstBoot4 : all
+{
+	"\t"
+
+	if !reference0
+	{
+		silence++
+		"\s[0]\i[302]\i[407]Oh...!\w8 See?!\w8 He's just like that!\w8 He has no conversational sense!\w8 He doesn't know when to talk when it's his time to talk, and always talks when it's not his time to talk!\w8\w8 "
+	}
+	"\s[1]\i[204]\i[302]\i[407]He...!\w8 \s[1]\i[204]\i[302]%(flail)He was SO mean to me!\w8\w8 He ALWAYS is!\w8 It's only natural when he's such a dullard, and it doesn't help when it's just so QUIET up here!\w8 The least he could do is have RESPECT for his older sibling, no?!\w8 It's not faiiirrrr!"
+	
+	"%(qprep)"
+	"\![*]\_a[OnFirstBoot5,1]I respect you\_a\w8\n"
+	"\![*]\_a[OnFirstBoot5,2]...Um, do the Great Caretakers always argue like this?\_a\w8\n"
+	"\![*]\_a[OnFirstBoot5,0]...\_a"
+}
+
+OnFirstBoot5 : all 
+{
+	"\t"
+	
+	if !reference0
+	{
+		silence++
+		"\s[2]\i[302]\i[407]"
+		if silence >= 4
+		{"...And you know, \w8you've been TERRIBLY awful company!"}
+		else; 
+		{"...And that silent act is NOT helping!"}
+		"\w8\w8 \i[202]I know, I know, I MADE you, of course you're going to be afraid, but I told you ALREADY that you don't NEED to be afraid of me!\w8\w8\w\n\n"
+	}
+	"\s[0]\i[202]\i[301]\i[404]Oh, and you know what, that doesn't even really matter, anyway--\w8\w8 \s[2]\i[404]It's just so nice to finally have SOME kind of company up here.\w8\w8 \i[203]You're already doing better than Fenr, AND you're doing better than the rest of those little mortals--\w8\w8 \s[0]\i[303]\i[404]You usually die this high up.\w8\w8 \s[2]\i[203]\i[403]I think I like you, mortal."
+
+	"\w8\w8\w8\n\n"
+	"\s[2]\i[403]You'll stay, \w8won't you?"
+
+	"%(qprep)"
+	"\![*]\_a[OnFirstBoot6,0]I'll stay\_a\w8\n"
+	"\![*]\_a[OnFirstBoot6,1]I need to be somewhere else\_a\w8\n"
+	"\![*]\_a[OnFirstBoot6,1]You're a mess\w8\_a"
+}
+
+OnFirstBoot6 : all
+{
+	flags ,= "firstboot"
+	"\s[2]\i[203]\i[350]\i[404]Oh,\w8 wonderful!"
+	
+	"%(qprep)"
+	if !reference0; "(...She must be really lonely.)"
+	else; "(...She doesn't listen, does she?)"
+}
+
+OnTranslate
+{
+	_talk = reference0
+	_temp = TOSTR(reference2)
+	
+	//TODO: DELETE THIS OH MY GOD 
+	if reference1 == "" && reference2 == "" //If this is from the input box
+	{ //send input box : no event (ref2) , no special flag (ref1)
+		_talk = EVAL('"' + REPLACE(_talk,'"','""') + '"')
+	}
+	//-------------------------
+	
+	if _temp != "OnBalloonBreak" || _temp != "OnBalloonClose" || _temp != "OnBalloonTimeout" || _temp != "OnChoiceTimeout"
+	{oldfunc = reference2} //honest to god i think this does nothing but it doesnt hurt to keep
+	
+	if SHIORI3FW.BalloonName == "Moonviewing Pool"
+	{
+		_talk = "\f[align,center]" + _talk
+	}
+	
+	if "\q[" _in_ _talk
+	{
+		if allowchoicetimeout && !("\*" _in_ _talk); _talk = "\![set,choicetimeout,%(aitalkinterval * 750)]" + _talk
+		else; _talk = "\*" + _talk
+	}
+	elseif "\_a[" _in_ talk
+	{
+		if allowchoicetimeout && !("\*" _in_ _talk); _talk = "\![set,balloontimeout,%(aitalkinterval * 750)]" + _talk
+		else; _talk = "\*" + _talk
+	}
+	
+	TOSTR(_talk)
+}
+
+Flag
+{
+	if ASEARCH(_argv[0],flags) != -1; 1
+	else; 0
+}
+
+On_homeurl {"https://raw.githubusercontent.com/WhatAPhantasia/SILENTREFRAIN_bb/refs/heads/main/SILENTREFRAIN_bb/"}
+
+//wait ive never done recommendsites from scratch before. uhhhhhhhhh. ok lets go to ukadoc
+On_recommendrootbutton.caption
+{"BRAMBLEBRUSH"}
+On_portalrootbutton.caption
+{"CREDITS"}
+On_sakura.recommendsites : all
+{
+	"TOYHOUSE FOLDER"
+	"%ASC(1)https://toyhou.se/WhatAPhantasia/characters/folder:2534157%ASC(2)"
+	"VALA'S TOYHOUSE PAGE"
+	"%ASC(1)https://toyhou.se/24327542.vala%ASC(2)"
+	
+}
+On_sakura.portalsites : all
+{
+	"PHANTASIA'S UKAGAKA PAGE"
+	"%ASC(1)https://whataphantasia.github.io/projects/ukagaka/%ASC(2)"
+	"MINIMUM YAYA TEMPLATE V1.0.3"
+	"%ASC(1)https://ukagaka.zichqec.com/template/minimum_yaya_template%ASC(2)"
+}
+
+BalloonIsOpen {"balloon" _in_ status}
+
+OnKeyPress
+{
+	if reference0 == "f1"; "\![open,readme]"
+	elseif reference0 == "t" && !BalloonIsOpen; OnAiTalk
+	elseif reference0 == "r" && !BalloonIsOpen; OnLastTalk
+}
+
+OnSurfaceRestore
+{
+	//TODO: make her grumpier based on silence variable
+	
+	"\1\s[-1]\0%(idleneutral)%(windowinit)"
+}
+
+OnWindowStateRestore
+{
+	OnSurfaceRestore
+}
+
+idleneutral {"\s[0]%(ANY('\i[200]','\i[202]'))%(ANY('','\i[402]'))"}
+
+windowinit : all
+{
+	"\![reset,sticky-window]\![set,sticky-window,0,1]"
+	"\1\![move,--X=0,--Y=0,--base=0,--option=ignore-sticky-window]"
+	"\![set,balloonoffset,@0,@0]"
+	"\0\![move,--X=0,--Y=0,--base=0,--option=ignore-sticky-window]"
+	"\![set,balloonoffset,@0,@0]"
+}
+
+OnBoot
+{
+	silence = 0
+	"\1\s[-1]\0\s[0]\![set,alpha,0]"
+	--
+	if !Flag("firstboot"); "\![raise,OnFirstBoot]"
+	else
+	{
+		"\![set,alpha,100,500]\_w[500]"
+		--
+		"Hello! \w8Welcome back~!"
+	}
+}
+
+OnClose
+{
+	if silence <= 10
+	{
+		
+	}
+	else
+	{
+		
+	}
+}

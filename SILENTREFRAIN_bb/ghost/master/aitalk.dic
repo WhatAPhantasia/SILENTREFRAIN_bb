@@ -1,0 +1,83 @@
+OnAiTalk
+{
+	if CHAIN.IDName == ""
+	{LastTalk = PromptQuestion}
+	else
+	{LastTalk = ChainTalk}
+
+	LastTalk
+}
+
+OnLastTalk {LastTalk}
+
+//all of vala's dialogue is questions.
+//therefore, lasttalk shouldnt be the root of the question tree, if the question was already answered. make sure to set lasttalk for answers, make sure chaintalk works properly..
+
+PromptQuestion : nonoverlap_pool
+{
+
+}
+
+OnDressupChanged
+{
+	"\1\s[-1]\0%(idleneutral)"
+	--
+	if Flag("firstboot")
+	{
+		
+	}
+}
+
+//-------
+
+//SHELL SHORTCUTS
+tears {"\![anim,stop,351]\i[352]"}
+flail {"\![anim,stop,405]\i[406]"}
+// uses spectres calls cuz theyre already super good. not sure if ill use them but uhhh yeah
+s.embarrassed {"\s[0]\i[350]\i[401]"}
+s.surprised {"\s[0]\i[303]\i[403]"}
+s.anxious {"\s[0]\i[200]\i[301]\i[401]"}
+s.discouraged {"\s[0]\i[200]\i[301]\i[403]"}
+s.smile {"\s[2]\i[404]"}
+s.relieved {"\s[2]\i[202]"}
+s.angry {"\s[1]\i[302]\i[407]"}
+s.sweat {"\s[2]\i[203]\i[301]\i[402]"}
+s.indignant {"\s[1]\i[302]\i[350]\i[403]"}
+s.thinking {"\s[0]\i[403]"}
+s.unamused {"\s[0]\i[200]"}
+
+//HANDLE BALLOON BREAK, TIMEOUT, AND CLOSE
+ExtractNumber
+{
+	_expression = "\d+"
+	void RE_SEARCH(_argv[0],_expression)
+	RE_GETSTR[0]
+}
+
+OnBalloonBreak {"\![raise,OnNextFunc,%(oldfunc)]"}
+OnBalloonClose {"\![raise,OnNextFunc,%(oldfunc)]"}
+OnBalloonTimeout {"\![raise,OnNextFunc,%(oldfunc)]"}
+OnChoiceTimeout {"\![raise,OnNextFunc,%(oldfunc)]"}
+
+OnNextFunc
+{
+	if CHAIN.IDName == ""
+	{
+		_num = TOINT(ExtractNumber(reference0))
+		LOGGING("=======================================")
+		LOGGING("%(_num)")
+		LOGGING("%(reference0)")
+		_blank = REPLACE(reference0,"%(_num)","")
+		LOGGING("=======================================")
+		LOGGING("%(_num)")
+		LOGGING("%(reference0)")
+		if _num == 0; _num = 2
+		else; _num++
+		"\![raise,%(_blank)%(_num),0]"
+	}
+	else;
+	{
+		LastTalk = ChainTalk
+		LastTalk
+	}
+}

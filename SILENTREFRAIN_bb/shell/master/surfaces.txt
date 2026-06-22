@@ -1,0 +1,321 @@
+descript
+{
+	version,1
+}
+//animation#.pattern#,method,surface,pause,X,Y
+
+//-----------surfaces 
+//--SAKURA 
+//vala pose1 neutral mouth
+//vala pose1 sad mouth
+//vala pose1 happy mouth
+//vala pose2 neutral mouth
+//vala pose2 sad mouth
+//vala pose2 happy mouth
+
+//—————————————————————————————— Sakura surfaces ——————————————————————————————
+
+//pose1 neutral mouth
+surface0
+{
+	//MOUTH 
+	//neut 
+	animation100.interval,runonce
+	animation100.pattern0,overlay,2100,0,0,0
+	//neut open 
+	animation101.interval,never
+	animation101.pattern0,parallelstop,(100,199)
+	animation101.pattern1,overlay,2101,0,0,0
+	//sad 
+	animation102.interval,never
+	animation102.pattern0,parallelstop,(100,199)
+	animation102.pattern1,overlay,2102,0,0,0
+	//sad open
+	animation103.interval,never
+	animation103.pattern0,parallelstop,(100,199)
+	animation103.pattern1,overlay,2103,0,0,0
+	//happy 
+	animation104.interval,never
+	animation104.pattern0,parallelstop,(100,199)
+	animation104.pattern1,overlay,2104,0,0,0
+	//happy open
+	animation105.interval,never
+	animation105.pattern0,parallelstop,(100,199)
+	animation105.pattern1,overlay,2105,0,0,0
+	
+	//talk 
+	animation199.interval,talk,4
+	animation199.pattern0,stop,100
+	animation199.pattern1,overlay,2101,0,0,0
+	animation199.pattern2,overlay,-1,200,0,0
+	animation199.pattern3,start,100
+}
+//pose1 sad mouth
+surface1
+{
+	//MOUTH 
+	//neut 
+	animation100.interval,never
+	animation100.pattern0,parallelstop,(102,199)
+	animation100.pattern1,overlay,2100,0,0,0
+	//neut open 
+	animation101.interval,never
+	animation101.pattern0,parallelstop,(102,199)
+	animation101.pattern1,overlay,2101,0,0,0
+	//sad 
+	animation102.interval,runonce
+	animation102.pattern0,overlay,2102,0,0,0
+	//sad open
+	animation103.interval,never
+	animation103.pattern0,parallelstop,(102,199)
+	animation103.pattern1,overlay,2103,0,0,0
+	//happy 
+	animation104.interval,never
+	animation104.pattern0,parallelstop,(102,199)
+	animation104.pattern1,overlay,2104,0,0,0
+	//happy open
+	animation105.interval,never
+	animation105.pattern0,parallelstop,(102,199)
+	animation105.pattern1,overlay,2105,0,0,0
+	
+	//talk 
+	animation199.interval,talk,4
+	animation199.pattern0,stop,102
+	animation199.pattern1,overlay,2103,0,0,0
+	animation199.pattern2,overlay,-1,200,0,0
+	animation199.pattern3,start,102
+}
+//pose1 happy mouth
+surface2
+{
+	//MOUTH 
+	//neut 
+	animation100.interval,never
+	animation100.pattern0,parallelstop,(104,199)
+	animation100.pattern1,overlay,2100,0,0,0
+	//neut open 
+	animation101.interval,never
+	animation101.pattern0,parallelstop,(104,199)
+	animation101.pattern1,overlay,2101,0,0,0
+	//sad 
+	animation102.interval,never
+	animation102.pattern0,parallelstop,(104,199)
+	animation102.pattern1,overlay,2102,0,0,0
+	//sad open
+	animation103.interval,never
+	animation103.pattern0,parallelstop,(104,199)
+	animation103.pattern1,overlay,2103,0,0,0
+	//happy 
+	animation104.interval,runonce
+	animation104.pattern0,overlay,2104,0,0,0
+	//happy open
+	animation105.interval,never
+	animation105.pattern0,parallelstop,(104,199)
+	animation105.pattern1,overlay,2105,0,0,0
+	
+	//talk 
+	animation199.interval,talk,4
+	animation199.pattern0,stop,104
+	animation199.pattern1,overlay,2105,0,0,0
+	animation199.pattern2,overlay,-1,200,0,0
+	animation199.pattern3,start,104
+}
+
+surface.append0-2
+{
+	element0,overlay,pose1/0bodybase1.png,0,0
+	
+	//fun stuff
+	animation0.interval,runonce
+	animation0.pattern0,replace,2000,0,0,0
+	animation1.interval,random,8
+	animation1.pattern0,replace,2001,0,0,0
+	animation1.pattern1,replace,2000,1000,0,0
+	animation1.pattern2,replace,2002,1000,0,0
+	animation1.pattern3,replace,2000,1000,0,0
+	
+	//BACKGROUND DRESSUPS
+	//cloud
+	animation10.interval,bind+always
+	animation10.pattern0,interpolate,1000,0,0,0
+	animation10.pattern1,interpolate,1001,1000,0,0
+	animation10.pattern2,interpolate,1000,1000,0,0
+	animation10.option,shared-index
+	
+	//DRESSES
+	//transparent blue dress
+	animation50.interval,bind
+	animation50.pattern0,add,2050,0,0,0
+	
+	//EYES
+	//neutral
+	animation200.interval,never
+	animation200.pattern0,parallelstop,(201,299)
+	animation200.pattern1,overlay,2200,0,0,0
+	//neutral look
+	animation201.interval,runonce
+	animation201.pattern0,overlay,2202,0,0,0
+	//u_u
+	animation202.interval,never
+	animation202.pattern0,parallelstop,(201,299)
+	animation202.pattern1,overlay,2204,0,0,0
+	//^_^
+	animation203.interval,never
+	animation203.pattern0,parallelstop,(201,299)
+	animation203.pattern1,overlay,2205,0,0,0
+	//>_<
+	animation204.interval,never
+	animation204.pattern0,parallelstop,(201,299)
+	animation204.pattern1,overlay,2206,0,0,0
+	
+	//BROWS
+	//neutral 
+	animation300.interval,runonce
+	animation300.pattern0,overlay,2300,0,0,0
+	//sad 
+	animation301.interval,never
+	animation301.pattern0,stop,300
+	animation301.pattern1,overlay,2301,0,0,0
+	//angry 
+	animation302.interval,never
+	animation302.pattern0,stop,300
+	animation302.pattern1,overlay,2302,0,0,0
+	//surprise 
+	animation303.interval,never
+	animation303.pattern0,stop,300
+	animation303.pattern1,overlay,2303,0,0,0
+	
+	//MORE FUN STUFF 
+	//blush
+	animation350.interval,never
+	animation350.pattern0,overlay,2350,0,0,0
+	//tears
+	animation351.interval,runonce
+	animation351.pattern0,stop,352
+	animation352.interval,always
+	animation352.pattern0,overlay,2351,0,0,0
+	animation352.pattern1,overlay,2352,250,0,0
+	animation352.pattern2,overlay,2351,250,0,0
+	
+	//plink plink
+	animation299.interval,random,4
+	animation299.pattern0,stop,201
+	animation299.pattern1,overlay,2203,0,0,0
+	animation299.pattern2,overlay,2204,100-120,0,0
+	animation299.pattern3,overlay,2203,80,0,0
+	animation299.pattern4,overlay,2202,80,0,0
+	animation299.pattern5,start,201
+	
+	//ARM
+	//out rest knee
+	animation400.interval,runonce
+	animation400.pattern0,overlay,2400,0,0,0
+	animation400.pattern1,start,700
+	//on mouth
+	animation401.interval,never
+	animation401.pattern0,stop,400
+	animation401.pattern1,overlay,2401,0,0,0
+	animation401.pattern2,start,701
+	//on knee
+	animation402.interval,never
+	animation402.pattern0,stop,400
+	animation402.pattern1,overlay,2402,0,0,0
+	animation402.pattern2,start,702
+	//on cheek
+	animation403.interval,never
+	animation403.pattern0,stop,400
+	animation403.pattern1,overlay,2403,0,0,0
+	animation403.pattern2,start,703
+	//clasped
+	animation404.interval,never
+	animation404.pattern0,stop,400
+	animation404.pattern1,overlay,2404,0,0,0
+	animation404.pattern2,start,704
+	//flail setup
+	animation405.interval,runonce
+	animation405.pattern0,parallelstop,(406,706)
+	//flail
+	animation406.interval,always
+	animation406.pattern0,stop,400
+	animation406.pattern1,start,706
+	animation406.pattern2,overlay,2405,0,0,0
+	animation406.pattern3,overlay,2406,50,0,0
+	animation406.pattern4,overlay,2407,50,0,0
+	animation406.pattern5,overlay,2408,50,0,0
+	animation406.pattern6,overlay,2407,50,0,0
+	animation406.pattern7,overlay,2406,50,0,0
+	animation406.pattern8,overlay,2405,50,0,0
+	//fist hand simple
+	animation407.interval,never 
+	animation407.pattern0,stop,400
+	animation407.pattern1,overlay,2405,0,0,0
+	animation407.pattern2,start,707
+	
+	//ARM DRESSUP
+	//transparent blue dress -----------
+	//out rest knee
+	animation700.interval,bind+never
+	animation700.pattern0,overlay,2700,0,0,0
+	//on mouth
+	animation701.interval,bind+never
+	animation701.pattern0,overlay,2701,0,0,0
+	//on knee
+	animation702.interval,bind+never
+	animation702.pattern0,overlay,2702,0,0,0
+	//on cheek
+	animation703.interval,bind+never
+	animation703.pattern0,overlay,2703,0,0,0
+	//clasped
+	animation704.interval,bind+never
+	animation704.pattern0,overlay,2704,0,0,0
+	//flail
+	animation706.interval,bind+always
+	animation706.pattern0,overlay,2705,0,0,0
+	animation706.pattern1,overlay,2706,50,0,0
+	animation706.pattern2,overlay,2707,50,0,0
+	animation706.pattern3,overlay,2708,50,0,0
+	animation706.pattern4,overlay,2707,50,0,0
+	animation706.pattern5,overlay,2706,50,0,0
+	animation706.pattern6,overlay,2705,50,0,0
+	//fist hand simple 
+	animation707.interval,bind+never
+	animation707.pattern0,overlay,2705,0,0,0
+	
+	//floating
+	animation10000.interval,bind+always
+	animation10000.pattern0,move,-1,0,0,0
+	animation10000.pattern1,move,-1,750,0,-1
+	animation10000.pattern2,move,-1,300,0,-2
+	animation10000.pattern3,move,-1,400,0,-3
+	animation10000.pattern4,move,-1,750,0,-2
+	animation10000.pattern5,move,-1,300,0,-1
+	animation10000.pattern6,move,-1,400,0,0
+	animation10000.option,shared-index
+}
+
+surface3
+{
+	element0,overlay,pose2/1.png,0,0
+	
+	animation9.interval,never
+	animation9.pattern0,replace,3001,0,0,0
+	
+	//BACKGROUND DRESSUPS
+	//cloud
+	animation10.interval,bind+always
+	animation10.pattern0,interpolate,1000,0,0,0
+	animation10.pattern1,interpolate,1001,1000,0,0
+	animation10.pattern2,interpolate,1000,1000,0,0
+	animation10.option,shared-index
+	
+	//floating
+	animation10000.interval,bind+always
+	animation10000.pattern0,move,-1,0,0,0
+	animation10000.pattern1,move,-1,750,0,-1
+	animation10000.pattern2,move,-1,300,0,-2
+	animation10000.pattern3,move,-1,400,0,-3
+	animation10000.pattern4,move,-1,750,0,-2
+	animation10000.pattern5,move,-1,300,0,-1
+	animation10000.pattern6,move,-1,400,0,0
+	animation10000.option,shared-index
+}

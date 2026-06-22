@@ -1,0 +1,43 @@
+charset,UTF-8
+type,shell
+
+name,VALA
+craftman,WhatAPhantasia
+craftmanurl,https://whataphantasia.github.io/projects/ukagaka/
+
+seriko.alignmenttodesktop,free
+seriko.use_self_alpha,1
+
+sakura.balloon.offsetx,100
+sakura.balloon.offsety,-80
+kero.balloon.offsetx,60
+kero.balloon.offsety,170
+seriko.zorder,1,0
+
+menu.background.alignment,lefttop + repeaty
+menu.foreground.alignment,lefttop + repeaty
+menu.sidebar.alignment,bottom
+
+menu.background.bitmap.filename,menu_background.png
+menu.foreground.bitmap.filename,menu_foreground.png
+menu.sidebar.bitmap.filename,menu_sidebar.png
+
+sakura.bindgroup10.name,Backgrounds,Cloud
+sakura.bindgroup10.default,1
+
+sakura.bindgroup50.name,Dress,Transparent Blue
+sakura.bindgroup50.default,1
+sakura.bindgroup50.addid,700
+sakura.bindgroup50.addid,701
+sakura.bindgroup50.addid,702
+sakura.bindgroup50.addid,703
+sakura.bindgroup50.addid,704
+sakura.bindgroup50.addid,706
+sakura.bindgroup50.addid,707
+
+sakura.bindgroup10000.name,Floating,Toggle
+sakura.bindgroup10000.default,1
+
+sakura.menuitem0,10000
+sakura.menuitem1,50
+sakura.menuitem2,10

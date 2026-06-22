@@ -1,0 +1,284 @@
+descript
+{
+	version,1
+}
+
+//element#,method,filename,X,Y
+//animation#.pattern#,method,surface,pause,X,Y
+
+//-------------- parts
+//1-999: reserved
+//--sakura images 
+//1000-1999: cloud and bg elements
+//			- 999 images
+//2000-2999: vala pose1
+//			- 999 images
+//				- 000-049: body base
+//				- 050-099: body clothes
+//				- 100-199: mouth
+//				- 200-299: eyes
+//				- 300-349: brows 
+//				- 350-399: extras (tears, blush) 
+//				- 400-699: arm base 
+//				- 700-999: arm clothes
+//3000-3999: vala pose2
+//			- 999 images
+//				- 000-049: body base
+//				- 050-099: body clothes
+//				- 100-199: mouth
+//				- 200-299: eyes
+//				- 300-349: brows 
+//				- 350-399: extras (tears, blush) 
+//				- 400-699: arm base 
+//				- 700-999: arm clothes
+
+//-----SAKURA 
+//--BG ELEMS
+//CLOUD
+//cloud 1
+surface1000
+{
+	element0,overlay,cloud/1.png,0,0
+}
+//cloud 2
+surface1001
+{
+	element0,overlay,cloud/2.png,0,0
+}
+
+//--VALA POSE 1 
+//BODY BASE
+//body base 1
+surface2000
+{
+	element0,overlay,pose1/0bodybase1.png,0,0
+}
+//body base 2
+surface2001
+{
+	element0,overlay,pose1/0bodybase2.png,0,0
+}
+//body base 3
+surface2002
+{
+	element0,overlay,pose1/0bodybase3.png,0,0
+}
+
+//BODY CLOTHES
+//light blue transparent dress
+surface2050
+{
+	element0,overlay,pose1/0bodyc_dress1.png,0,0
+}
+
+//MOUTH
+//neut closed 
+surface2100
+{
+	element0,overlay,pose1/1mouth_neut1.png,0,0
+}
+//neut open
+surface2101
+{
+	element0,overlay,pose1/1mouth_neut2.png,0,0
+}
+//sad closed 
+surface2102
+{
+	element0,overlay,pose1/1mouth_sad1.png,0,0
+}
+//sad open
+surface2103
+{
+	element0,overlay,pose1/1mouth_sad2.png,0,0
+}
+//happy closed 
+surface2104
+{
+	element0,overlay,pose1/1mouth_happy1.png,0,0
+}
+//happy open
+surface2105
+{
+	element0,overlay,pose1/1mouth_happy2.png,0,0
+}
+
+//EYES
+//neut 1
+surface2200
+{
+	element0,overlay,pose1/2eyes_neut1.png,0,0
+}
+//neut 2
+surface2201
+{
+	element0,overlay,pose1/2eyes_neut2.png,0,0
+}
+//neut look 2
+surface2202
+{
+	element0,overlay,pose1/2eyes_neutlook1.png,0,0
+}
+//neut look 2
+surface2203
+{
+	element0,overlay,pose1/2eyes_neutlook2.png,0,0
+}
+//u_u
+surface2204
+{
+	element0,overlay,pose1/2eyes_uu.png,0,0
+}
+//^_^
+surface2205
+{
+	element0,overlay,pose1/2eyes_nn.png,0,0
+}
+//>_<
+surface2206
+{
+	element0,overlay,pose1/2eyes_uuguu.png,0,0
+}
+
+//BROWS
+//neut
+surface2300
+{
+	element0,overlay,pose1/3brow_neut.png,0,0
+}
+//sad
+surface2301
+{
+	element0,overlay,pose1/3brow_sad.png,0,0
+}
+//angry
+surface2302
+{
+	element0,overlay,pose1/3brow_angry.png,0,0
+}
+//surprise
+surface2303
+{
+	element0,overlay,pose1/3brow_surprise.png,0,0
+}
+
+//EXTRA
+//blush
+surface2350
+{
+	element0,overlay,pose1/4blush.png,0,0
+}
+//tear 1
+surface2351
+{
+	element0,overlay,pose1/4tear1.png,0,0
+}
+//tear 2
+surface2352
+{
+	element0,overlay,pose1/4tear2.png,0,0
+}
+
+//ARM BASE 
+//out rest knee
+surface2400
+{
+	element0,overlay,pose1/5arm_a1.png,0,0
+}
+//mouth
+surface2401
+{
+	element0,overlay,pose1/5arm_a2.png,0,0
+}
+//on knee
+surface2402
+{
+	element0,overlay,pose1/5arm_a3.png,0,0
+}
+//on cheek
+surface2403
+{
+	element0,overlay,pose1/5arm_a4.png,0,0
+}
+//clasped
+surface2404
+{
+	element0,overlay,pose1/5arm_a5.png,0,0
+}
+//flail 1
+surface2405
+{
+	element0,overlay,pose1/5arm_a6.png,0,0
+}
+//flail 2
+surface2406
+{
+	element0,overlay,pose1/5arm_a6_2.png,0,0
+}
+//flail 3
+surface2407
+{
+	element0,overlay,pose1/5arm_a7_2.png,0,0
+}
+//flail 4
+surface2408
+{
+	element0,overlay,pose1/5arm_a7.png,0,0
+}
+
+//ARM CLOTHES 
+//out rest knee
+surface2700
+{
+	element0,overlay,pose1/5arm_b1.png,0,0
+}
+//mouth
+surface2701
+{
+	element0,overlay,pose1/5arm_b2.png,0,0
+}
+//on knee
+surface2702
+{
+	element0,overlay,pose1/5arm_b3.png,0,0
+}
+//on cheek
+surface2703
+{
+	element0,overlay,pose1/5arm_b4.png,0,0
+}
+//clasped
+surface2704
+{
+	element0,overlay,pose1/5arm_b5.png,0,0
+}
+//flail 1
+surface2705
+{
+	element0,overlay,pose1/5arm_b6.png,0,0
+}
+//flail 2
+surface2706
+{
+	element0,overlay,pose1/5arm_b6_2.png,0,0
+}
+//flail 3
+surface2707
+{
+	element0,overlay,pose1/5arm_b7_2.png,0,0
+}
+//flail 4
+surface2708
+{
+	element0,overlay,pose1/5arm_b7.png,0,0
+}
+
+//POSE 2 BODY
+surface3000
+{
+	element0,overlay,pose2/1.png,0,0
+}
+surface3001
+{
+	element0,overlay,pose2/2.png,0,0
+}

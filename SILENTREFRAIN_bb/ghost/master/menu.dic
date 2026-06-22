@@ -1,0 +1,122 @@
+OnMouseDoubleClick
+{
+	if reference5 == 0 && !BalloonIsOpen
+	{
+		if !Flag("firstboot")
+		{OnFirstBoot}
+		elseif reference3 == 0
+		{OnMenu}
+	}
+}
+
+OnMenu : all 
+{
+	"\0\b[4]\_q\![set,autoscroll,disable]"
+	"\f[bold,1]THE LADY OF THE MOONS\n\n\f[bold,0]"
+
+	"\![*]\q[Listen,OnAiTalk]    "
+	if LastTalk != ""; "\![*]\q[Remember,OnLastTalk]\n\n"
+	else; "\![*]\f[color,disable]Remember\n\n\f[color,default]"
+
+	"\![*]\q[Previous Conversations,OnConversations]    "
+	"\![*]\q[Options,OnOptions]\n\n"
+
+	"\![*]\q[Say bye,OnClose,manual]    "
+	"\![*]\q[Close menu,blank]"
+}
+
+OnOptions : all
+{
+	"\0\b[4]\_q\![set,autoscroll,disable]\![close,inputbox,__SYSTEM_ALL_INPUT__]"
+	"\f[bold,1]— OPTIONS —\n\n\f[bold,0]"
+
+	"\![*]Your name: \_a[OnName]Mortal\_a\n\n"
+
+	"\![*]Allow Vala to force close: \_a[OnToggle,allowforceclose"
+	if !allowforceclose; ",0]NO"
+	else; ",1]YES"
+	"\_a\n"
+
+	"\![*]Allow Vala to stop close: \_a[OnToggle,allowstopclose"
+	if !allowstopclose; ",0]NO"
+	else; ",1]YES"
+	"\_a\n"
+
+	"\![*]Allow question timeout: \_a[OnToggle,allowchoicetimeout"
+	if !allowchoicetimeout; ",0]NO"
+	else; ",1]YES"
+	"\_a\n"
+
+	"\![*]Talkrate: \_a[OnToggleTalkrate]"
+	case aitalkinterval
+	{
+		when 0; "off"
+		when 30; "30 secs"
+		when 60; "1 minute"
+		when 180; "3 minutes"
+		when 300; "5 minutes"
+	}
+	"\_a\n"
+
+	"\n"
+
+	"\![*]\q[Back,OnMenu]  \![*]\q[Close,blank]"
+}
+
+On_balloon_tooltip
+{
+	if reference1 == "OnToggleTalkrate" && !Flag("event1")
+	{"Finish the main scenario before controlling talkrate!"}
+}
+
+OnName : all
+{
+	"\t"
+	"\0\_q\![set,autoscroll,disable]"
+	"Your name is...\w8\w8\n\n"
+	"\![open,inputbox,OnNameJoke]"
+	"\![*]\q[Back,OnOptions]    \![*]\q[Close,OnCloseInput]"
+}
+
+OnCloseInput {"\![close,inputbox,__SYSTEM_ALL_INPUT__]"}
+
+OnNameJoke : all
+{
+	"\0\s[0]Hm?\w8\w8 .\w8.\w8.\w8You say the funniest things sometimes,\w4 mortal." 
+	"%(qprep)"
+	random:{
+		"(She never listens, does she.)"
+		"(It was worth a shot.)"
+		"(You weren't sure what you wanted her to say, here.)"
+	}
+	"\w8\w8\0\n\n"
+	"\![*]\q[Close,blank]"
+}
+
+OnToggle
+{
+	if !reference1; LETTONAME("%(reference0)",1)
+	else; LETTONAME("%(reference0)",0)
+	OnOptions
+}
+
+OnToggleTalkrate
+{
+	if !Flag("event1"); OnOptions
+	else
+	{
+		case aitalkinterval
+		{
+			when 0, 30; aitalkinterval += 30
+			when 60; aitalkinterval = 180
+			when 180; aitalkinterval = 300 
+			when 300; aitalkinterval = 0
+		}
+	}
+	OnOptions
+}
+
+OnConversations
+{
+	//TODO: finish... this
+}

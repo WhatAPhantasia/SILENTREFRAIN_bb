@@ -1,0 +1,62 @@
+charset,UTF-8
+version,1
+option,DisableNoDefineSurfaces
+
+group,__disabled
+{
+	1000,__parts			//cloud 1
+	1001,__parts			//cloud 2
+	
+	2000,__parts			//body base 1
+	2001,__parts			//body base 2
+	2002,__parts			//body base 3
+	
+	2050,__parts			//light blue transparent dress
+	
+	2100,__parts			//mouth neut closed
+	2101,__parts			//mouth neut open
+	2102,__parts			//mouth sad closed
+	2103,__parts			//mouth sad open
+	2104,__parts			//mouth happy closed
+	2105,__parts			//mouth happy open
+	
+	2200,__parts			//eyes neut 1
+	2201,__parts			//eyes neut 2
+	2202,__parts			//eyes neut look 1
+	2203,__parts			//eyes neut look 2
+	2204,__parts			//eyes u_U
+	2205,__parts			//eyes ^_^
+	2206,__parts			//eyes >_<
+	
+	2300,__parts			//brows neut
+	2301,__parts			//brows sad
+	2302,__parts			//brows angry
+	2303,__parts			//brows surprise
+	
+	2350,__parts			//blush
+	2351,__parts			//tear 1
+	2352,__parts			//tear 2
+	
+	2400,__parts			//arm base out rest knee
+	2401,__parts			//arm base mouth
+	2402,__parts			//arm base on knee
+	2403,__parts			//arm base on cheek
+	2404,__parts			//arm base clasped
+	2405,__parts			//arm base flail 1
+	2406,__parts			//arm base flail 2
+	2407,__parts			//arm base flail 3
+	2408,__parts			//arm base flail 4
+	
+	2700,__parts			//arm clothes1 out rest knee
+	2701,__parts			//arm clothes1 mouth
+	2702,__parts			//arm clothes1 on knee
+	2703,__parts			//arm clothes1 on cheek
+	2704,__parts			//arm clothes1 clasped
+	2705,__parts			//arm clothes1 flail 1
+	2706,__parts			//arm clothes1 flail 2
+	2707,__parts			//arm clothes1 flail 3
+	2708,__parts			//arm clothes1 flail 4
+	
+	3000,__parts			//pose 2 - 1
+	3001,__parts			//pose 2 - 2
+}
