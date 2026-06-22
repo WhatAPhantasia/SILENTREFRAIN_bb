@@ -3,6 +3,8 @@ OnFirstBoot : all
 	flags = IARRAY //barebones for jam
 	silence = 0 //how many times you don't answer her questions
 	//she doesnt keep track of anything else bc she doesnt care about u she just yaps
+	
+	//no silence decay either but there willll be an apology choice in her menu :3
 
 	//utility variables
 	aitalkinterval = 30
@@ -140,6 +142,20 @@ OnTranslate
 	}
 	//-------------------------
 	
+	//this is the scuffiest way to do this
+	if silence == anger1
+	{
+		_talk = "\![raise,OnWarnAnger]"
+		TOSTR(_talk)
+		return
+	}
+	elseif silence >= anger2
+	{
+		_talk = "\![raise,OnForceBoot]"
+		TOSTR(_talk)
+		return
+	}
+	
 	if _temp != "OnBalloonBreak" || _temp != "OnBalloonClose" || _temp != "OnBalloonTimeout" || _temp != "OnChoiceTimeout"
 	{oldfunc = reference2} //honest to god i think this does nothing but it doesnt hurt to keep
 	
@@ -239,9 +255,13 @@ OnBoot
 
 OnClose
 {
-	if silence <= 10
+	if silence >= anger2
 	{
 		
+	}
+	elseif silence >= anger1
+	{
+	
 	}
 	else
 	{

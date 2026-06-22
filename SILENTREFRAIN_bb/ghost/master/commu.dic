@@ -66,7 +66,25 @@ OnFlakesOfFancyStateNotify
 
 OnNeedlePoke
 {
-
+	//i wont increment silence here if you interrupt her by poking because teeecchnically you arent being silent youre nag nagging her
+	
+	//TODO: change based on silence level
+	if silence >= anger1
+	{
+		"\s[0]\i[302]Oh, now you want to bother me?\w8\w8 ...\w8\s[2]You mortals are so funny."
+		"\s[0]\i[402]Oh, I thought you were busy ignoring me.\w8\w8 \i[200]You mortals and your whims."
+	}
+	else
+	{
+		"\s[0]...?"
+		"\s[2]...Hello!\w8\w8 \i[403]Oh, you're just so CUTE!"
+		"\s[0]--Oh, huh?\w8\w8 ...\w8\s[2]\i[403]Ehehe, where did you get that?\w8\w8 That's a funny looking needle."
+		"\s[0]--Hm?\w8\w8 ...\w8\s[0]\i[403]What are you doing with that, mortal?\w8\w8 \i[301]You could get hurt!"
+		"\s[0]--Hm?\w8\w8 ...\w8\s[2]\i[403]Ehe. \w8\w8What a small needle..."
+		"\s[0]--Huh?\w8\w8 ...\w8\s[2]\i[403]Awwww, it's so small!"
+		"\s[0]--Hm.\w8\w8 \s[0]\i[403]You know, mortal, that almost reminds me of my old needle...\w8\w8 \s[2]\i[202]Of course, it's much bigger than this one.\w8\w8 \s[0]\i[403]And currently stuck in the sky of the Bramblebrush.\w8\w8 \s[2]\i[202]\i[403]I do miss that old thing..."
+		"\s[0]\i[200]\i[403]Ooh, I should pick up sewing again, shouldn't I?\w8\w8 \s[2]\i[404]I taught all my siblings how to sew, you know.\w8\w8 \s[0]\i[200]\i[302]\i[404]Not like Fenr picked any of it up, though."
+	}
 }
 
 OnLoboHowl
@@ -78,6 +96,8 @@ OnLoboHowl
 		when "normal"
 			{"ooh scary"
 			"the kinds of monsters my resonance make are FAR more elegant that fenrs"}
+		when "pain"
+			{"ohhh :( poor thing..."}
 		when "sad"
 			{"oh :( how sad"}
 		when "hopeful"

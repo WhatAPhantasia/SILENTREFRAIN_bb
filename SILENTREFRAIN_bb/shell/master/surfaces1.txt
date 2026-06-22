@@ -184,46 +184,73 @@ surface2352
 surface2400
 {
 	element0,overlay,pose1/5arm_a1.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2700,0,0,0
 }
 //mouth
 surface2401
 {
 	element0,overlay,pose1/5arm_a2.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2701,0,0,0
 }
 //on knee
 surface2402
 {
 	element0,overlay,pose1/5arm_a3.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2702,0,0,0
 }
 //on cheek
 surface2403
 {
 	element0,overlay,pose1/5arm_a4.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2703,0,0,0
 }
 //clasped
 surface2404
 {
 	element0,overlay,pose1/5arm_a5.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2704,0,0,0
 }
 //flail 1
 surface2405
 {
 	element0,overlay,pose1/5arm_a6.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2705,0,0,0
 }
 //flail 2
 surface2406
 {
 	element0,overlay,pose1/5arm_a6_2.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2706,0,0,0
 }
 //flail 3
 surface2407
 {
 	element0,overlay,pose1/5arm_a7_2.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2707,0,0,0
 }
 //flail 4
 surface2408
 {
 	element0,overlay,pose1/5arm_a7.png,0,0
+	
+	animation50.interval,bind
+	animation50.pattern0,overlay,2708,0,0,0
 }
 
 //ARM CLOTHES 

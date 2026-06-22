@@ -5,7 +5,7 @@ OnAiTalk
 	else
 	{LastTalk = ChainTalk}
 
-	LastTalk
+	//LastTalk
 }
 
 OnLastTalk {LastTalk}
@@ -15,20 +15,80 @@ OnLastTalk {LastTalk}
 
 PromptQuestion : nonoverlap_pool
 {
-
+	"\![raise,OnQuestion.MadeOf]"
+	"\![raise,OnQuestion.LongHair]"
+	"\![raise,OnQuestion.WantTreat]"
 }
+
+qchoice {"\![*]\_a[OnNextFunc,%(oldfunc)]"}
+
+//-------
+//CONVERSATIONAL QUESTION CHAINS 
+//kinda deceptive to call them chains huh
+OnQuestion.MadeOf : all
+{
+	"\s[0]\i[403]Mortal, do you think my hair is too frizzy today?\w8 \i[200]Oh, but I suppose you couldn't answer, could you--\w8\w8 %(s.smile)\i[203]You mortals have totally different bodies!\w8\w8 You're made of fabric and stuffing!\w8\w8 \![anim,stop,203]\i[201]Oh, I have a game we can play, what do you think I'm made of?\w8\w8 You should know this!"
+	"%(qprep)"
+	"%(qchoice),1]Stars\_a\w8\n"
+	"%(qchoice),1]The Moon\_a\w8\n"
+	"%(qchoice),1]Resonance\_a\w8\n"
+	"%(qchoice),1]I don't care\_a"
+}
+OnQuestion.MadeOf2
+{
+	if !reference0; silence++
+	"%(s.smile)It's Resonance!\w8\w8 \![anim,stop,203]\i[202]Now, I didn't tell any of my subjects this when making them way back when, of course, but they were clever little cookies!\w8\w8 \s[2]\i[403]Ehehe, I remember, they made this big stone monument all about it when I told them--\w8\w8 \s[1]\i[301]\i[407]Oh, why don't my mortals do that for me anymore?\w8\w8 %(s.tantrum)%(flail)You're all so mean!"
+	"%(s.smile)It's Resonance!\w8\w8 That's what you little mortals call it, right?\w8\w8 \s[0]\i[403]Though, it'd be more accurate to say that I AM Resonance, hum?\w8\w8 \i[301]Oh, I just reminded myself of how limited you things are...\w8\w8 \s[0]\i[301]\i[404]%(tears)You can't even change size!\w8\w8 That's such a sad way to live..."
+}
+
+OnQuestion.LongHair : all 
+{
+	"\s[0]\i[403]Oh, you know what, I think my hair's gotten a bit too long... \w8Maybe it's due for a change..."
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.LongHair2,1]Shave it all off\_a\w8\n"
+	"\![*]\_a[OnQuestion.LongHair2,1]Try a different style\_a\w8\n"
+	"\![*]\_a[OnQuestion.LongHair2,1]Longer's the way to go\_a\w8\n"
+	"\![*]\_a[OnQuestion.LongHair2,1]It's perfect the way it is\_a\w8\n"
+}
+OnQuestion.LongHair2 : all 
+{
+	if !reference0; silence++
+	else; "\s[2]\i[403]Hmmm...\w8\w8 \i[203]Hehehehe~\w8\w8 You mortals say the funniest things!\w8\w8 "
+	"\s[2]\i[403]What am I even saying?\w8 My hair is pretty!\w8 \i[202]I can run my paws through them and feel the rippling between each braid, and when I move it flows behind me in a wave\w8\w8 \![anim,stop,202]\i[203]If it's worked for centuries, why change it?!"
+}
+
+OnQuestion.WantTreat : all
+{
+	"\s[0]\i[403]You know, I've always wanted to keep a pet, but you bunnies die so quickly up here...\w8\w8 You really are special, mortal, you know that?\w8\w8 I think you're my favorite.\w8 I should get you a treat!\w8\w8 You like stars, don't you?" 
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.KeepPet2]I can't eat that\_a\w8\n"
+	"\![*]\_a[OnQuestion.KeepPet2]I prefer sweets\_a\w8\n"
+	"\![*]\_a[OnQuestion.KeepPet2]I prefer meat\_a\w8\n"
+	"\![*]\_a[OnQuestion.KeepPet2]I'm not a pet like at all\_a\w8\n"
+}
+OnQuestion.WantTreat2 : all
+{
+	if !reference0; silence++
+	"awwwwwwwwwwwww little mortal wants startreatsies!!! aww!! aww!!!"
+}
+
+//-------
+//EVENT QUESTION CHAINS 
+
+
+
+//-------
 
 OnDressupChanged
 {
 	"\1\s[-1]\0%(idleneutral)"
 	--
-	if Flag("firstboot")
+	if !Flag("firstboot") {OnFirstBoot}
+	else
 	{
-		
+	
 	}
 }
-
-//-------
 
 //SHELL SHORTCUTS
 tears {"\![anim,stop,351]\i[352]"}
@@ -45,6 +105,13 @@ s.sweat {"\s[2]\i[203]\i[301]\i[402]"}
 s.indignant {"\s[1]\i[302]\i[350]\i[403]"}
 s.thinking {"\s[0]\i[403]"}
 s.unamused {"\s[0]\i[200]"}
+s.tantrum {"\s[1]\i[204]\i[301]"}
+s.angrytantrum {"\s[1]\i[204]\i[302]"}
+
+//ANGER SILENCE LEVELS 
+//making them their own block because what if i want to change the threshold for anger and force booting
+anger1 {10}
+anger2 {16}
 
 //HANDLE BALLOON BREAK, TIMEOUT, AND CLOSE
 ExtractNumber
@@ -63,17 +130,20 @@ OnNextFunc
 {
 	if CHAIN.IDName == ""
 	{
+		_i = 0
+		if ISINT(reference1); _i = reference1
 		_num = TOINT(ExtractNumber(reference0))
-		LOGGING("=======================================")
-		LOGGING("%(_num)")
-		LOGGING("%(reference0)")
 		_blank = REPLACE(reference0,"%(_num)","")
-		LOGGING("=======================================")
-		LOGGING("%(_num)")
-		LOGGING("%(reference0)")
 		if _num == 0; _num = 2
 		else; _num++
-		"\![raise,%(_blank)%(_num),0]"
+		
+		_final = "%(_blank)%(_num)"
+		
+		if ISFUNC("%(_final)")
+		{
+			LastTalk = "\![embed,%(_final),%(_i)]"
+			"\![raise,%(_final),%(_i)]"
+		}
 	}
 	else;
 	{

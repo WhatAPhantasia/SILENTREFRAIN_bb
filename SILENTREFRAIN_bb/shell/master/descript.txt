@@ -27,13 +27,6 @@ sakura.bindgroup10.default,1
 
 sakura.bindgroup50.name,Dress,Transparent Blue
 sakura.bindgroup50.default,1
-sakura.bindgroup50.addid,700
-sakura.bindgroup50.addid,701
-sakura.bindgroup50.addid,702
-sakura.bindgroup50.addid,703
-sakura.bindgroup50.addid,704
-sakura.bindgroup50.addid,706
-sakura.bindgroup50.addid,707
 
 sakura.bindgroup10000.name,Floating,Toggle
 sakura.bindgroup10000.default,1

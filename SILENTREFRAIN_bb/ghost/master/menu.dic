@@ -5,7 +5,10 @@ OnMouseDoubleClick
 		if !Flag("firstboot")
 		{OnFirstBoot}
 		elseif reference3 == 0
-		{OnMenu}
+		{
+			if silence >= anger2; OnForceBoot
+			else; OnMenu
+		}
 	}
 }
 
@@ -17,8 +20,13 @@ OnMenu : all
 	"\![*]\q[Listen,OnAiTalk]    "
 	if LastTalk != ""; "\![*]\q[Remember,OnLastTalk]\n\n"
 	else; "\![*]\f[color,disable]Remember\n\n\f[color,default]"
+	
+	if silence >= anger1 
+	{
+		"\![*]\q[Please don't be mad at me\, Vala,OnApologize]\n\n"
+	}
 
-	"\![*]\q[Previous Conversations,OnConversations]    "
+	"\![*]\q[Previous Vents,OnVents]    "
 	"\![*]\q[Options,OnOptions]\n\n"
 
 	"\![*]\q[Say bye,OnClose,manual]    "
@@ -116,7 +124,7 @@ OnToggleTalkrate
 	OnOptions
 }
 
-OnConversations
+OnVents
 {
 	//TODO: finish... this
 }

@@ -210,76 +210,39 @@ surface.append0-2
 	//out rest knee
 	animation400.interval,runonce
 	animation400.pattern0,overlay,2400,0,0,0
-	animation400.pattern1,start,700
 	//on mouth
 	animation401.interval,never
 	animation401.pattern0,stop,400
 	animation401.pattern1,overlay,2401,0,0,0
-	animation401.pattern2,start,701
 	//on knee
 	animation402.interval,never
 	animation402.pattern0,stop,400
 	animation402.pattern1,overlay,2402,0,0,0
-	animation402.pattern2,start,702
 	//on cheek
 	animation403.interval,never
 	animation403.pattern0,stop,400
 	animation403.pattern1,overlay,2403,0,0,0
-	animation403.pattern2,start,703
 	//clasped
 	animation404.interval,never
 	animation404.pattern0,stop,400
 	animation404.pattern1,overlay,2404,0,0,0
-	animation404.pattern2,start,704
 	//flail setup
 	animation405.interval,runonce
-	animation405.pattern0,parallelstop,(406,706)
+	animation405.pattern0,stop,406
 	//flail
 	animation406.interval,always
 	animation406.pattern0,stop,400
-	animation406.pattern1,start,706
-	animation406.pattern2,overlay,2405,0,0,0
-	animation406.pattern3,overlay,2406,50,0,0
-	animation406.pattern4,overlay,2407,50,0,0
-	animation406.pattern5,overlay,2408,50,0,0
-	animation406.pattern6,overlay,2407,50,0,0
-	animation406.pattern7,overlay,2406,50,0,0
-	animation406.pattern8,overlay,2405,50,0,0
+	animation406.pattern1,overlay,2405,0,0,0
+	animation406.pattern2,overlay,2406,30,0,0
+	animation406.pattern3,overlay,2407,30,0,0
+	animation406.pattern4,overlay,2408,50,0,0
+	animation406.pattern5,overlay,2407,30,0,0
+	animation406.pattern6,overlay,2406,30,0,0
+	animation406.pattern7,overlay,2405,50,0,0
 	//fist hand simple
 	animation407.interval,never 
 	animation407.pattern0,stop,400
 	animation407.pattern1,overlay,2405,0,0,0
-	animation407.pattern2,start,707
-	
-	//ARM DRESSUP
-	//transparent blue dress -----------
-	//out rest knee
-	animation700.interval,bind+never
-	animation700.pattern0,overlay,2700,0,0,0
-	//on mouth
-	animation701.interval,bind+never
-	animation701.pattern0,overlay,2701,0,0,0
-	//on knee
-	animation702.interval,bind+never
-	animation702.pattern0,overlay,2702,0,0,0
-	//on cheek
-	animation703.interval,bind+never
-	animation703.pattern0,overlay,2703,0,0,0
-	//clasped
-	animation704.interval,bind+never
-	animation704.pattern0,overlay,2704,0,0,0
-	//flail
-	animation706.interval,bind+always
-	animation706.pattern0,overlay,2705,0,0,0
-	animation706.pattern1,overlay,2706,50,0,0
-	animation706.pattern2,overlay,2707,50,0,0
-	animation706.pattern3,overlay,2708,50,0,0
-	animation706.pattern4,overlay,2707,50,0,0
-	animation706.pattern5,overlay,2706,50,0,0
-	animation706.pattern6,overlay,2705,50,0,0
-	//fist hand simple 
-	animation707.interval,bind+never
-	animation707.pattern0,overlay,2705,0,0,0
 	
 	//floating
 	animation10000.interval,bind+always
