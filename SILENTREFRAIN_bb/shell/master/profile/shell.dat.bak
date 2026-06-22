@@ -1,18 +1,18 @@
 Charset,UTF-8
 __system_settings_version__,2
-char0.bind.savearray,10000=1 50=1 10=1
+char0.bind.savearray,10000=1 50=0 10=1
 balloon,C:\Users\eshal\Documents\SSP\balloon\MoonviewingPool\
 Char1.balloon.isleft,1
 inputbox.left,1460
-scriptbox.left,3057
-Char0.ratio.x,0.604166667
+scriptbox.left,2898
+Char0.ratio.x,0.883854167
 Char0.ratio.devid,9dgRmMHPXPKyBv/eoI8XXg==
-Char0.ratio.y,0.934259259
+Char0.ratio.y,0.948148148
 Char0.balloon.isleft,1
 Char.VirtualDesktop,0a9eacd6-a14b-4a42-8572-7b873f950c79
 Char1.ratio.devid,9dgRmMHPXPKyBv/eoI8XXg==
-scriptbox.top,-195
-Char1.ratio.x,0.618750000
-Char1.ratio.y,0.982407407
+scriptbox.top,-241
+Char1.ratio.x,0.898437500
+Char1.ratio.y,0.998148148
 inputbox.top,512
 __system_written_flag_do_not_remove__,written

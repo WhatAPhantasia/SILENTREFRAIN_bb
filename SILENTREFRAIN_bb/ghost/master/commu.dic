@@ -1,5 +1,3 @@
-OnOtherOverlap
-
 OnSpectrePlugin.ConfirmCalibration
 {
 	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm]"
