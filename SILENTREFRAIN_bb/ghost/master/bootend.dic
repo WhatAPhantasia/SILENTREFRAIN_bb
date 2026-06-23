@@ -7,7 +7,7 @@ OnFirstBoot : all
 	//no silence decay either but there willll be an apology choice in her menu :3
 
 	//utility variables
-	aitalkinterval = 30
+	aitalkinterval = 0
 	allowforceclose = 1
 	allowstopclose = 1
 	allowchoicetimeout = 1
@@ -124,6 +124,8 @@ OnFirstBoot5 : all
 OnFirstBoot6 : all
 {
 	flags ,= "firstboot"
+	aitalkinterval = 30
+	
 	"\s[2]\i[203]\i[350]\i[404]Oh,\w8 wonderful!"
 	
 	"%(qprep)"

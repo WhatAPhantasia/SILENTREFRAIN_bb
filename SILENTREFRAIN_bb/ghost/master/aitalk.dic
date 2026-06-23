@@ -9,6 +9,7 @@ OnAiTalk
 }
 
 OnLastTalk {LastTalk}
+//LastTalk is a manually set variable, SHIORI3FW.LastTalk is the root of the question tree as prompted by aitalk
 
 //all of vala's dialogue is questions.
 //therefore, lasttalk shouldnt be the root of the question tree, if the question was already answered. make sure to set lasttalk for answers, make sure chaintalk works properly..
@@ -151,6 +152,7 @@ OnNextFunc
 		if ISFUNC("%(_final)")
 		{
 			LastTalk = "\![embed,%(_final),%(_i)]"
+			LastTalk = TOSTR(LastTalk)
 			"\![raise,%(_final),%(_i)]"
 		}
 	}
@@ -159,4 +161,11 @@ OnNextFunc
 		LastTalk = ChainTalk
 		LastTalk
 	}
+}
+
+OnDialogueVars
+{
+	SHIORI3FW.LastTalkTime = GETSECCOUNT
+	SHIORI3FW.LastAITalkTime = GETSECCOUNT
+	SHIORI3FW.ResetAITalkInterval(STRLEN("%(LastTalk)"))
 }
