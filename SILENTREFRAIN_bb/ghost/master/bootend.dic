@@ -12,6 +12,7 @@ OnFirstBoot : all
 	allowstopclose = 1
 	allowchoicetimeout = 1
 	oldfunc = ""
+	LastTalk = ""
 
 	"\t"
 	"%(windowinit)"
@@ -64,12 +65,12 @@ OnFirstBoot3 : all
 	}
 	else
 	{
-		"\s[2]\i[203]\i[301]\i[404]Please,\w8 I implore you,\w8 that's much too formal!\w8\w8 It's due respect for your Caretaker, of course, but I feel so sorry for you and how pitiful you are when you sound so stuffy like that!"
+		"\s[2]\i[203]\i[301]\i[404]Please, that's much too formal!\w8\w8 It's due respect for your Caretaker, of course, but I feel so sorry for you and how pitiful you are when you act all stuffy like that!"
 	}
 
 	"\w8\w8\w8\n\n"
 
-	"\s[2]\i[404]You may call me Vala.\w8\w8 \i[202]It's the name that whispers in every babbling brook, every silver stream, every crack and break of the winds on the waves--\w8\w8\w8 \s[0]\i[302]\i[407]Completely unlike that nasty, SELFISH Fenr!"
+	"\s[2]\i[404]You may call me Vala.\w8\w8 \i[202]It's the name that whispers in every bubbling brook, every silver stream, every crack and break of the winds on the waves--\w8\w8\w8 \s[0]\i[302]\i[407]Completely unlike that nasty, SELFISH Fenr!"
 
 	"%(qprep)"
 	"\![*]\_a[OnFirstBoot4,1]Oh no, what did he do?\_a\w8\n"
@@ -102,7 +103,7 @@ OnFirstBoot5 : all
 	if !reference0
 	{
 		silence++
-		"\s[2]\i[302]\i[407]"
+		"\s[1]\i[302]\i[407]"
 		if silence >= 4
 		{"...And you know, \w8you've been TERRIBLY awful company!"}
 		else; 
@@ -151,13 +152,13 @@ OnTranslate
 	}
 	elseif silence >= anger2
 	{
-		_talk = "\![raise,OnForceBoot]"
+		_talk = "\![raise,OnForceClose]"
 		TOSTR(_talk)
 		return
 	}
 	
 	if _temp != "OnBalloonBreak" || _temp != "OnBalloonClose" || _temp != "OnBalloonTimeout" || _temp != "OnChoiceTimeout"
-	{oldfunc = reference2} //honest to god i think this does nothing but it doesnt hurt to keep
+	{oldfunc = reference2} 
 	
 	if SHIORI3FW.BalloonName == "Moonviewing Pool"
 	{
@@ -239,6 +240,16 @@ windowinit : all
 	"\![set,balloonoffset,@0,@0]"
 }
 
+OnInitialize
+{
+	if reference0 != "reload"
+	{
+		LastTalk = ""
+		oldfunc = ""
+		silence = 0
+	}
+}
+
 OnBoot
 {
 	silence = 0
@@ -249,8 +260,13 @@ OnBoot
 	{
 		"\![set,alpha,100,500]\_w[500]"
 		--
-		"Hello! \w8Welcome back~!"
+		"Humm?\w8 %(s.smile)Oh, there you are, mortal!\w8\w8 Come here, come here!\w8 I've got just the thing to tell you!"
 	}
+}
+
+OnForceClose
+{
+
 }
 
 OnClose
@@ -265,6 +281,31 @@ OnClose
 	}
 	else
 	{
-		
+		"\s[0]Hum?\w8 Mortal, where are you going?\w8 You're going to get hurt!\w8 Shh, it's alright, I've got you.\w8\w8 You nearly fell off the cloud!\w8 That would've been bad!"
+		--
+		"%(qprep)"
+		--
+		if !allowforceclose
+		{
+			"(Nope, you're getting out of here.)\w8\w8\![set,alpha,0,500]\_w[500]\-"
+		}
+		else
+		{
+			"(It was worth a shot.)"
+		}
 	}
+}
+
+//handles reloading her
+OnGhostChanging
+{
+	_path = REPLACE(SHIORI3FW.Path,"\","/")
+	_path = REPLACE(_path,"ghost/master/","")
+
+	if reference3 == _path {"\0\_q(Reloading...)\w8\w8"}
+	else {OnClose}
+}
+OnGhostChanged
+{
+
 }

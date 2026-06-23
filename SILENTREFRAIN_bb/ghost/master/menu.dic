@@ -6,7 +6,7 @@ OnMouseDoubleClick
 		{OnFirstBoot}
 		elseif reference3 == 0
 		{
-			if silence >= anger2; OnForceBoot
+			if silence >= anger2; OnForceClose
 			else; OnMenu
 		}
 	}
@@ -58,7 +58,7 @@ OnOptions : all
 	"\![*]Talkrate: \_a[OnToggleTalkrate]"
 	case aitalkinterval
 	{
-		when 0; "off"
+		when 0; "OFF"
 		when 30; "30 secs"
 		when 60; "1 minute"
 		when 180; "3 minutes"
@@ -110,8 +110,7 @@ OnToggle
 
 OnToggleTalkrate
 {
-	if !Flag("event1"); OnOptions
-	else
+	if Flag("event1") || SHIORI3FW.DebugMode
 	{
 		case aitalkinterval
 		{

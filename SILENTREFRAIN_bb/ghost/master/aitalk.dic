@@ -5,7 +5,7 @@ OnAiTalk
 	else
 	{LastTalk = ChainTalk}
 
-	//LastTalk
+	LastTalk
 }
 
 OnLastTalk {LastTalk}
@@ -20,7 +20,7 @@ PromptQuestion : nonoverlap_pool
 	"\![raise,OnQuestion.WantTreat]"
 }
 
-qchoice {"\![*]\_a[OnNextFunc,%(oldfunc)]"}
+qchoice {"\![*]\_a[OnNextFunc,%(oldfunc)"}
 
 //-------
 //CONVERSATIONAL QUESTION CHAINS 
@@ -29,16 +29,16 @@ OnQuestion.MadeOf : all
 {
 	"\s[0]\i[403]Mortal, do you think my hair is too frizzy today?\w8 \i[200]Oh, but I suppose you couldn't answer, could you--\w8\w8 %(s.smile)\i[203]You mortals have totally different bodies!\w8\w8 You're made of fabric and stuffing!\w8\w8 \![anim,stop,203]\i[201]Oh, I have a game we can play, what do you think I'm made of?\w8\w8 You should know this!"
 	"%(qprep)"
-	"%(qchoice),1]Stars\_a\w8\n"
-	"%(qchoice),1]The Moon\_a\w8\n"
-	"%(qchoice),1]Resonance\_a\w8\n"
-	"%(qchoice),1]I don't care\_a"
+	"\![*]\_a[OnQuestion.MadeOf2,1]Stars\_a\w8\n"
+	"\![*]\_a[OnQuestion.MadeOf2,1]The Moon\_a\w8\n"
+	"\![*]\_a[OnQuestion.MadeOf2,1]Resonance\_a\w8\n"
+	"\![*]\_a[OnQuestion.MadeOf2,1]I don't care\_a"
 }
 OnQuestion.MadeOf2
 {
 	if !reference0; silence++
-	"%(s.smile)It's Resonance!\w8\w8 \![anim,stop,203]\i[202]Now, I didn't tell any of my subjects this when making them way back when, of course, but they were clever little cookies!\w8\w8 \s[2]\i[403]Ehehe, I remember, they made this big stone monument all about it when I told them--\w8\w8 \s[1]\i[301]\i[407]Oh, why don't my mortals do that for me anymore?\w8\w8 %(s.tantrum)%(flail)You're all so mean!"
-	"%(s.smile)It's Resonance!\w8\w8 That's what you little mortals call it, right?\w8\w8 \s[0]\i[403]Though, it'd be more accurate to say that I AM Resonance, hum?\w8\w8 \i[301]Oh, I just reminded myself of how limited you things are...\w8\w8 \s[0]\i[301]\i[404]%(tears)You can't even change size!\w8\w8 That's such a sad way to live..."
+	"%(s.smile)It's Resonance!\w8\w8 \![anim,stop,203]\i[202]Now, I didn't tell any of my subjects this when making them way back when, of course, but they were all clever little cookies and figured it out themselves!\w8\w8\w8\n\n\s[2]\i[403]Ehehe, I remember, they made this big stone monument all about it when I told them--\w8\w8 \s[1]\i[301]\i[407]Oh, why don't my mortals do that for me anymore?\w8\w8 %(s.tantrum)%(flail)You're all so mean!"
+	"%(s.smile)It's Resonance!\w8\w8 That's what you little mortals call it, right?\w8\w8 \s[0]\i[403]Though, it'd be more accurate to say that I AM Resonance, hum?\w8\w8\w8\n\n\i[301]Oh, I just reminded myself of how limited you things are...\w8\w8 \s[0]\i[301]\i[404]%(tears)You can't even change size!\w8\w8 That's such a sad way to live..."
 }
 
 OnQuestion.LongHair : all 
@@ -54,27 +54,31 @@ OnQuestion.LongHair2 : all
 {
 	if !reference0; silence++
 	else; "\s[2]\i[403]Hmmm...\w8\w8 \i[203]Hehehehe~\w8\w8 You mortals say the funniest things!\w8\w8 "
-	"\s[2]\i[403]What am I even saying?\w8 My hair is pretty!\w8 \i[202]I can run my paws through them and feel the rippling between each braid, and when I move it flows behind me in a wave\w8\w8 \![anim,stop,202]\i[203]If it's worked for centuries, why change it?!"
+	"\s[2]\i[403]What am I even saying?\w8 My hair is pretty!\w8 \i[202]I can run my paws through them and feel the rippling between each braid, and when I move it flows behind me in a wave--\w8\w8 \![anim,stop,202]\i[203]If it's worked for centuries, why change it?!"
 }
 
 OnQuestion.WantTreat : all
 {
-	"\s[0]\i[403]You know, I've always wanted to keep a pet, but you bunnies die so quickly up here...\w8\w8 You really are special, mortal, you know that?\w8\w8 I think you're my favorite.\w8 I should get you a treat!\w8\w8 You like stars, don't you?" 
+	"\s[0]\i[403]You know, I've always wanted to keep a pet, but you bunnies die so quickly up here...\w8\w8 \s[2]\i[403]You really are special, mortal, you know that?\w8\w8 %(s.smile)I think you're my favorite.\w8 \i[203]I should get you a treat!\w8\w8 \![anim,stop,203]\i[201]You like stars, don't you?" 
 	"%(qprep)"
-	"\![*]\_a[OnQuestion.KeepPet2]I can't eat that\_a\w8\n"
-	"\![*]\_a[OnQuestion.KeepPet2]I prefer sweets\_a\w8\n"
-	"\![*]\_a[OnQuestion.KeepPet2]I prefer meat\_a\w8\n"
-	"\![*]\_a[OnQuestion.KeepPet2]I'm not a pet like at all\_a\w8\n"
+	"\![*]\_a[OnQuestion.WantTreat2]I can't eat that\_a\w8\n"
+	"\![*]\_a[OnQuestion.WantTreat2]I prefer sweets\_a\w8\n"
+	"\![*]\_a[OnQuestion.WantTreat2]I prefer meat\_a\w8\n"
+	"\![*]\_a[OnQuestion.WantTreat2]I'm not a pet like at all\_a\w8\n"
 }
 OnQuestion.WantTreat2 : all
 {
 	if !reference0; silence++
-	"awwwwwwwwwwwww little mortal wants startreatsies!!! aww!! aww!!!"
+	"\s[2]\i[203]\i[403]Awww~!\w8 Little mortal wants startreatsies!\w8 \s[0]\i[401]Oh,\w8 but I can only give you the best ones,\w8 wait just a moment,\w8 \s[0]\i[200]\i[403]I can pick one of these out..." //she forgor
 }
 
 //-------
 //EVENT QUESTION CHAINS 
 
+OnFenrComplainOne1
+{
+
+}
 
 
 //-------
@@ -130,8 +134,13 @@ OnNextFunc
 {
 	if CHAIN.IDName == ""
 	{
+		//remnants of me trying to make onnextfunc work in more general contexts and replace manually typing in the event in the choice markers. alas
+		//i just realllyyy dont wanna bugtest oldfunc right now
+		/*
 		_i = 0
-		if ISINT(reference1); _i = reference1
+		if GETTYPE(reference1) == 1; _i = reference1
+		*/
+		
 		_num = TOINT(ExtractNumber(reference0))
 		_blank = REPLACE(reference0,"%(_num)","")
 		if _num == 0; _num = 2

@@ -37,25 +37,16 @@ OnSpectrePlugin.Surface
 
 OnSpectrePlugin.Possession
 {
-	if RAND(4) && !BalloonIsOpen
+	if RAND(4) == 1 && !BalloonIsOpen
 	{
 		"%(s.thinking)...Hm?\w8 You're looking at me funny, mortal.\w8\w8 I don't understand what makes you do the things you do, sometimes, it's like you saw a ghost!\w8\w8 \s[2]\i[203]Don't be silly, ghosts are nothing to be afraid of!"
 		"%(s.thinking)The thing you mortals call ""ghosts"" are just the remnants of one of your resonance floating back up to my domain.\w8\w8 \i[202]They're terribly frustrating company."
 		"\s[0]\i[200]\i[403]...Ghosts don't come up here often.\w8\w8 \![anim,stop,200]\i[201]I don't particularly like them."
 		if reference0 != "cheerful"
 		{
-			all:{"%(s.discouraged)%(tears)...Oh,\w8 I suddenly feel like crying all of a sudden...\w8\w8 \![anim,stop,200]\i[201]You heard that too, didn't you, mortal?"
-			"%(qprep)"
-			"\![*]\_q[OnSpectrePlugin.Possession2]Huh?\w8 The ghost, you mean?\_a\w8\n"
-			"\![*]\_q[OnSpectrePlugin.Possession2]I didn't hear anything\_a\w8\n"}
+			"%(s.discouraged)%(tears)...Oh,\w8 I suddenly feel like crying all of a sudden..."
 		}
 	}
-}
-
-OnSpectrePlugin.Possession2
-{
-	if !reference0; silence++
-	"\s[1]\i[203]\i[301]\i[403]%(tears)I just feel for all my subjects so deeply...\w8\w8 Oh, I just can't help it..."
 }
 
 OnFlakesOfFancyStateNotify
@@ -68,6 +59,8 @@ OnNeedlePoke
 {
 	//i wont increment silence here if you interrupt her by poking because teeecchnically you arent being silent youre nag nagging her
 	
+	"\s[0]...?"
+	
 	//TODO: change based on silence level
 	if silence >= anger1
 	{
@@ -76,7 +69,6 @@ OnNeedlePoke
 	}
 	else
 	{
-		"\s[0]...?"
 		"\s[2]...Hello!\w8\w8 \i[403]Oh, you're just so CUTE!"
 		"\s[0]--Oh, huh?\w8\w8 ...\w8\s[2]\i[403]Ehehe, where did you get that?\w8\w8 That's a funny looking needle."
 		"\s[0]--Hm?\w8\w8 ...\w8\s[0]\i[403]What are you doing with that, mortal?\w8\w8 \i[301]You could get hurt!"
@@ -89,23 +81,23 @@ OnNeedlePoke
 
 OnLoboHowl
 {
-	if RAND(2) && !BalloonIsOpen
+	if RAND(2) == 1 && !BalloonIsOpen
 	{
 		case reference0
 		{
-		when "normal"
-			{"ooh scary"
-			"the kinds of monsters my resonance make are FAR more elegant that fenrs"}
-		when "pain"
-			{"ohhh :( poor thing..."}
 		when "sad"
-			{"oh :( how sad"}
+			{"\s[1]\i[403]Oh...\w8 How sad..."}
 		when "hopeful"
-			{"what a nice wolf"}
+			{"\s[2]\i[403]Aw...\w8 What a cute wolf!"}
 		when "strange"
-			{"mortals say the funniest things sometimes"}
+			{"\s[2]\i[203]\i[403]Ehehe~\w8 Those creatures say the funniest things, sometimes!"}
 		when "vulgar"
-			{"well thats not polite!"}
+			{"\s[0]\i[401]Oh...!\w8 Well, that's not polite!"}
+		others //normal and pain
+			{"\s[2]\i[403]Ooh...\w8 \i[203]Scary~"
+			"\s[0]\i[301]\i[403]Ohhh...!\w8 Poor thing..."
+			"\s[0]\i[202]See?\w8 The kinds of monsters my resonance make are FAR more elegant that Fenr's..." //funny for pain howls
+			}
 		}
 	}
 }
