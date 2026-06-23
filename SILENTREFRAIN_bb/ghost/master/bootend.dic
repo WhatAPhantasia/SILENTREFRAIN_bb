@@ -285,13 +285,13 @@ OnClose
 		--
 		"%(qprep)"
 		--
-		if !allowforceclose
+		if !allowstopclose
 		{
-			"(Nope, you're getting out of here.)\w8\w8\![set,alpha,0,500]\_w[500]\-"
+			"(Nope, you're getting out of here.)\w8\w8\0\![set,alpha,100]\![set,alpha,0,500]\_w[500]\-"
 		}
 		else
 		{
-			"(It was worth a shot.)"
+			"(It was worth a shot.)\e"
 		}
 	}
 }
@@ -301,11 +301,13 @@ OnGhostChanging
 {
 	_path = REPLACE(SHIORI3FW.Path,"\","/")
 	_path = REPLACE(_path,"ghost/master/","")
-
 	if reference3 == _path {"\0\_q(Reloading...)\w8\w8"}
 	else {OnClose}
 }
 OnGhostChanged
 {
-
+	_path = REPLACE(SHIORI3FW.Path,"\","/")
+	_path = REPLACE(_path,"ghost/master/","")
+	if reference3 == _path {"\![embed,OnSurfaceRestore]\_q(Reloaded.)"}
+	else {OnBoot}
 }
