@@ -12,7 +12,7 @@
 TALK_INTERVAL	Talk interval default value [seconds]
 COM_RATIO		The rate of communication-starting talk for AITalk [%]
 */
-#globaldefine	TALK_INTERVAL	180
+#globaldefine	TALK_INTERVAL	30
 #globaldefine	COM_RATIO		0
 
 

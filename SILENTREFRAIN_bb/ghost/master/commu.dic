@@ -40,11 +40,11 @@ OnSpectrePlugin.Possession
 	if RAND(4) == 1 && !BalloonIsOpen
 	{
 		"%(s.thinking)...Hm?\w8 You're looking at me funny, mortal.\w8\w8 I don't understand what makes you do the things you do, sometimes, it's like you saw a ghost!\w8\w8 \s[2]\i[203]Don't be silly, ghosts are nothing to be afraid of!"
-		"%(s.thinking)The thing you mortals call ""ghosts"" are just the remnants of one of your resonance floating back up to my domain.\w8\w8 \i[202]They're terribly frustrating company."
+		"%(s.thinking)The thing you mortals call ""ghosts"" are just the postmortem remnants of the Resonance in your gems floating back up to my domain.\w8\w8 \i[202]They're terribly frustrating company."
 		"\s[0]\i[200]\i[403]...Ghosts don't come up here often.\w8\w8 \![anim,stop,200]\i[201]I don't particularly like them."
 		if reference0 != "cheerful"
 		{
-			"%(s.discouraged)%(tears)...Oh,\w8 I suddenly feel like crying all of a sudden..."
+			"%(s.discouraged)%(tears)...Oh,\w8 I feel like crying all of a sudden..."
 		}
 	}
 }
@@ -61,7 +61,6 @@ OnNeedlePoke
 	
 	"\s[0]...?"
 	
-	//TODO: change based on silence level
 	if silence >= anger1
 	{
 		"\s[0]\i[302]Oh, now you want to bother me?\w8\w8 ...\w8\s[2]You mortals are so funny."

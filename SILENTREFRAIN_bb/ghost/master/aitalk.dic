@@ -16,9 +16,12 @@ OnLastTalk {LastTalk}
 
 PromptQuestion : nonoverlap_pool
 {
+	//normal conversation 
 	"\![raise,OnQuestion.MadeOf]"
 	"\![raise,OnQuestion.LongHair]"
 	"\![raise,OnQuestion.WantTreat]"
+	
+	//flakes of fancy
 }
 
 qchoice {"\![*]\_a[OnNextFunc,%(oldfunc)"}
@@ -70,17 +73,63 @@ OnQuestion.WantTreat : all
 OnQuestion.WantTreat2 : all
 {
 	if !reference0; silence++
-	"\s[2]\i[203]\i[403]Awww~!\w8 Little mortal wants startreatsies!\w8 \s[0]\i[401]Oh,\w8 but I can only give you the best ones,\w8 wait just a moment,\w8 \s[0]\i[200]\i[403]I can pick one of these out..." //she forgor
+	"\s[2]\i[203]\i[403]Awww~!\w8 Little mortal wants startreatsies!\w8 \s[0]\i[401]Oh,\w8 but I can only give you the best ones,\w8 wait just a moment,\w8 \s[0]\i[200]\i[403]I can pick one of these out..." 
+	"%(qprep)"
+	"(...Luckily,\w8 it looks like she lost her train of thought while parsing through her favorite stars.)"
 }
+
+OnQuestion.GoldSilver : all
+{
+	//fenr is so gaudy with his bright gold-- pale gold and silver are the way to go! 
+}
+
+OnQuestion.HarpsMortal : all
+{
+	//my favorite instrument is the one you little mortals made-- the harp!
+}
+
+OnQuestion.JellyfishMaking : all
+{
+	//
+}
+
+OnQuestion.JellyfishCute : all 
+{
+	//i love making jellyfish :) which part do you think is the cutest? the bell? the tendrils?
+}
+
+OnQuestion.Fabrics : all 
+{
+	//you mortals are so creative! youve made so many different kinds of fabrics! i wish i could wear clothes the way you do, but my bodys made of resonance so all i can do is replicate the look... ooh! what dress should i make next mortal :)
+}
+
+
+//---flakes of fancy
+
+
 
 //-------
 //EVENT QUESTION CHAINS 
 
-OnFenrComplainOne1
+OnQuestion.EventFenrOne1 : all
 {
-
+	"\s[1]\i[200]\i[350]\i[403]\i[Ohhh...\w8\w8 No, no, no, it's still no good!\w8\w8 Do you want to know what Fenr said to me, mortal?!\w8\w8 Do you?!"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.EventFenr2,1]I do!\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventFenr2,1]What did he say?\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventFenr2,1]Seriously, what did he say\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventFenr2,1]Does my answer matter here\_a"
 }
-
+OnQuestion.EventFenrOne2 : all
+{
+	if !reference0; silence++
+	"He said to me--\w8\w8 \f[italics,1]"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.EventFenr3,1]Is... Is that it?\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventFenr3,1]Oh...! That's mean!\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventFenr3,1]Hasn't he done far worse\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventFenr3,2]You should KILL him\_a\w8\n"
+}
 
 //-------
 
@@ -91,7 +140,11 @@ OnDressupChanged
 	if !Flag("firstboot") {OnFirstBoot}
 	else
 	{
-	
+		if reference1 == "Transparent Blue"
+		{
+			if reference2; "\s[2]\i[403]Hummm...\w8\w8 Yes, I think I like this.\w8\w8 \i[203]It's my favorite dress, you know."
+			else; "\s[0]\i[403]Hm...\w8\w8 It's getting in the way.\w8\w8 \s[0]\i[202]I'm done with that for now!"
+		}
 	}
 }
 
@@ -126,10 +179,10 @@ ExtractNumber
 	RE_GETSTR[0]
 }
 
-OnBalloonBreak {"\![raise,OnNextFunc,%(oldfunc)]"}
-OnBalloonClose {"\![raise,OnNextFunc,%(oldfunc)]"}
-OnBalloonTimeout {"\![raise,OnNextFunc,%(oldfunc)]"}
-OnChoiceTimeout {"\![raise,OnNextFunc,%(oldfunc)]"}
+OnBalloonBreak {"\![leave,passivemode]\![raise,OnNextFunc,%(oldfunc)]"}
+OnBalloonClose {"\![leave,passivemode]\![raise,OnNextFunc,%(oldfunc)]"}
+OnBalloonTimeout {"\![leave,passivemode]\![raise,OnNextFunc,%(oldfunc)]"}
+OnChoiceTimeout {"\![leave,passivemode]\![raise,OnNextFunc,%(oldfunc)]"}
 
 OnNextFunc
 {
@@ -151,9 +204,8 @@ OnNextFunc
 		
 		if ISFUNC("%(_final)")
 		{
-			LastTalk = "\![embed,%(_final),%(_i)]"
-			LastTalk = TOSTR(LastTalk)
-			"\![raise,%(_final),%(_i)]"
+			OnUpdateTalkInterval
+			"\![raise,%(_final),%(_i)]" //lasttalk is set properly in ontranslate
 		}
 	}
 	else;
@@ -163,9 +215,8 @@ OnNextFunc
 	}
 }
 
-OnDialogueVars
+OnUpdateTalkInterval
 {
-	SHIORI3FW.LastTalkTime = GETSECCOUNT
-	SHIORI3FW.LastAITalkTime = GETSECCOUNT
 	SHIORI3FW.ResetAITalkInterval(STRLEN("%(LastTalk)"))
+	SHIORI3FW.LastTalkTime = GETSECCOUNT
 }

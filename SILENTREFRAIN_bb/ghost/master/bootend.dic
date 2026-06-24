@@ -136,14 +136,14 @@ OnFirstBoot6 : all
 OnTranslate
 {
 	_talk = reference0
-	_temp = TOSTR(reference2)
+	_func = TOSTR(reference2) //the tostr does nothing i just feel safer with it
 	
 	//TODO: DELETE THIS OH MY GOD 
 	if reference1 == "" && reference2 == "" //If this is from the input box
 	{ //send input box : no event (ref2) , no special flag (ref1)
 		_talk = EVAL('"' + REPLACE(_talk,'"','""') + '"')
 	}
-	//-------------------------
+	//--------------------------------------------------------------
 	
 	//this is the scuffiest way to do this
 	if silence == anger1
@@ -159,8 +159,10 @@ OnTranslate
 		return
 	}
 	
-	if _temp != "OnBalloonBreak" || _temp != "OnBalloonClose" || _temp != "OnBalloonTimeout" || _temp != "OnChoiceTimeout"
+	//--------- IMPORTANT, DON'T REMOVE, THE SHIORI3FW VARIABLES DONT FIT MY PURPOSES SO I MADE MY OWN ----------------------------------
+	if _func != "OnBalloonBreak" || _func != "OnBalloonClose" || _func != "OnBalloonTimeout" || _func != "OnChoiceTimeout"
 	{oldfunc = reference2} 
+	//----------------------------------------------------------------
 	
 	if SHIORI3FW.BalloonName == "Moonviewing Pool"
 	{
@@ -172,10 +174,16 @@ OnTranslate
 		if allowchoicetimeout && !("\*" _in_ _talk); _talk = "\![set,choicetimeout,%(aitalkinterval * 750)]" + _talk
 		else; _talk = "\*" + _talk
 	}
-	elseif "\_a[" _in_ talk
+	elseif "\_a[" _in_ _talk
 	{
 		if allowchoicetimeout && !("\*" _in_ _talk); _talk = "\![set,balloontimeout,%(aitalkinterval * 750)]" + _talk
 		else; _talk = "\*" + _talk
+	}
+	
+	if "OnQuestion" _in_ _func
+	{
+		LastTalk = reference0 
+		_talk = _talk + "\![raise,OnUpdateTalkInterval]"
 	}
 	
 	TOSTR(_talk)
@@ -271,34 +279,44 @@ OnForceClose
 
 }
 
-OnClose
+OnCloseAll
 {
-	if silence >= anger2
+	"\![raise,OnClose,hehehe]" //now you could just do reference0 == "user" in onclose however this also catches if you try to close her with multiple ghosts open so this is my workaround
+}
+
+OnClose : all
+{
+	if allowstopclose; "\t\*" 
+	
+	if silence >= anger1
 	{
 		
 	}
-	elseif silence >= anger1
+	else
 	{
+		random:{
+		"\s[0]Hum?\w8 Mortal, where are you going?\w8 You're going to get hurt!\w8\w8 Shh, it's alright, I've got you.\w8\w8 You nearly fell off the cloud!\w8 That would've been bad!"
+		}
+	}
 	
+	"%(qprep)"
+	
+	if !allowstopclose || reference0 == "hehehe" //after ages of trying different tricks to stop close from right click menu ive just accepted its impossible . and that makes sense because that would be intrusive as hell. alas
+	{
+		random:{
+			"(Nope, you're getting out of here.)"
+			"(She won't even notice you're gone, with the way she's been talking to you.\w8 You sneak away anyway.)"
+		}
+		"\w8\w8\0\![set,alpha,100]\![set,alpha,0,500]\_w[500]\-"
 	}
 	else
 	{
-		"\s[0]Hum?\w8 Mortal, where are you going?\w8 You're going to get hurt!\w8 Shh, it's alright, I've got you.\w8\w8 You nearly fell off the cloud!\w8 That would've been bad!"
-		--
-		"%(qprep)"
-		--
-		if !allowstopclose
-		{
-			"(Nope, you're getting out of here.)\w8\w8\0\![set,alpha,100]\![set,alpha,0,500]\_w[500]\-"
-		}
-		else
-		{
-			"(It was worth a shot.)\e"
-		}
+		"(It was worth a shot.)\w8\w8\w8\![raise,OnMenu]"
 	}
 }
 
 //handles reloading her
+//TODO: delete this...
 OnGhostChanging
 {
 	_path = REPLACE(SHIORI3FW.Path,"\","/")

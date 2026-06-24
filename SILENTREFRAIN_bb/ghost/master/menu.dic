@@ -14,6 +14,8 @@ OnMouseDoubleClick
 
 OnMenu : all 
 {
+	"\![leave,passivemode]"
+	
 	"\0\b[4]\_q\![set,autoscroll,disable]"
 	"\f[bold,1]THE LADY OF THE MOONS\n\n\f[bold,0]"
 
@@ -90,7 +92,7 @@ OnCloseInput {"\![close,inputbox,__SYSTEM_ALL_INPUT__]"}
 
 OnNameJoke : all
 {
-	"\0\s[0]Hm?\w8\w8 .\w8.\w8.\w8You say the funniest things sometimes,\w4 mortal." 
+	"\0\s[0]Hm?\w8\w8 .\w8.\w8.\w8\s[2]\i[403]You say the funniest things sometimes,\w4 mortal." 
 	"%(qprep)"
 	random:{
 		"(She never listens, does she.)"
