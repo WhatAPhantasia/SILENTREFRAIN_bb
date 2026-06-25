@@ -10,7 +10,7 @@ dicdir, yaya_base
 dic, bootend.dic
 dic, aitalk.dic
 dic, menu.dic
-dic, commu.dic
+
 
 msglang,english
 
