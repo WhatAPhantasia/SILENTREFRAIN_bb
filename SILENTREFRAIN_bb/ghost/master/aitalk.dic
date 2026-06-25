@@ -5,7 +5,7 @@ OnAiTalk
 	else
 	{LastTalk = ChainTalk}
 	
-	if RAND(6) == 1
+	if RAND(3) == 1
 	{
 		//control event playing
 		if !Flag("event.fenrone"); LastTalk = "\![raise,OnQuestion.EventFenrOne1]"
@@ -137,7 +137,12 @@ OnQuestion.JellyfishCute : all
 OnQuestion.JellyfishCute2 : all
 {
 	if !reference0; silence++
-	"%(s.smile)Bzzzt!\w8 All parts of my creatures are perfect~!"
+	"%(s.smile)Bzzzt!\w8 Wrong answer~!\w8\w8 \i[203]EVERY single part of my creatures is perfect!\w8\w8 How could I choose?!"
+}
+
+OnQuestion.JellyfishInspo : all 
+{
+
 }
 
 OnQuestion.Fabrics : all 
@@ -178,7 +183,7 @@ OnQuestion.EventFenrOne1 : all
 OnQuestion.EventFenrOne2 : all
 {
 	if !reference0; silence++
-	"\s[1]\i[202]\i[403]%(tears)He said to me--\w8\w8 \s[1]\i[200]\i[302]\i[407]\f[italic,1]Vala,\w8 you're STUPID for making those creatures out of membrane and tentacles and no BRAIN or CHORDS!\w8 THIS is why you're always ALONE on that QUIET, SILENT MOON OF YOURS!!\f[italic,0]\w8\w8\n\n%(s.angrytantrum)%(flail)%(tears)Does he ever SHUT UP!!\w8 I'M NOT LONELY!!\w8 IT'S HIS FAULT!!!"
+	"\s[1]\i[202]\i[403]%(tears)He said to me--\w8\w8 \s[1]\i[200]\i[302]\i[407]\f[italic,1]Vala,\w8 you're STUPID for making those creatures out of membrane and tentacles and no BRAIN or CHORDS!\w8 THIS is why you're always ALONE on that QUIET, STUPID MOON OF YOURS!!\f[italic,0]\w8\w8\n\n%(s.angrytantrum)%(flail)%(tears)Does he ever SHUT UP!!\w8 I'M NOT LONELY!!\w8 IT'S HIS FAULT!!!"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.EventFenrOne3,1]Oh...! That's mean!\_a\w8\n"
 	"\![*]\_a[OnQuestion.EventFenrOne3,1]Is... Is that it?\_a\w8\n"
@@ -187,7 +192,7 @@ OnQuestion.EventFenrOne2 : all
 }
 OnQuestion.EventFenrOne3 : all
 {
-	flags ,= "event.fenrone"
+	if !Flag("event.fenrone"); flags ,= "event.fenrone"
 	if !reference0; silence++
 	if reference0 == 2
 	{
@@ -203,7 +208,7 @@ OnQuestion.EventFenrOne3 : all
 OnQuestion.EventFenrTwo1 : all
 {
 	"\s[0]\i[200]\i[301]\i[403]%(tears)...Sniffle,\w8 do you really think Fenr was right?\w8\w8 \![anim,stop,200]\i[202]I know, I know,\w8 he's a stupid brute, he's never right,\w8 but he's usually more swing than bark...\w8\w8 \s[0]\i[200]\i[301]\i[401]%(tears)And he never talks about being lonely, he's too stupid to think about things like that.\w8\w8\n\n"
-	"\![anim,stop,200]\i[201]Maybe it's because he loves talking to his mortals so much.\w8\w8 So I thought maybe, if I started to do it too, something would..."
+	"\![anim,stop,200]\i[201]Maybe it's because he loves talking to his mortals so much.\w8\w8 So, actually, if I started to do it too..."
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.EventFenrTwo2,1]No YOU'RE in the right\_a\w8\n"
 	"\![*]\_a[OnQuestion.EventFenrTwo2,1]There's a bit more to it than that\_a\w8\n"
@@ -212,7 +217,7 @@ OnQuestion.EventFenrTwo1 : all
 }
 OnQuestion.EventFenrTwo2 : all 
 {
-	flags ,= "event.fenrtwo"
+	if !Flag("event.fenrtwo"); flags ,= "event.fenrtwo"
 	if !reference0; silence++
 	"\s[1]\i[301]\i[403]%(tears)Mmmn...\w8\w8 I just don't get it..."
 }
@@ -228,7 +233,8 @@ OnQuestion.EventFenrThree1 : all
 }
 OnQuestion.EventFenrThree2 : all 
 {
-	flags ,= "event.fenrthree"
+	if !Flag("event.fenrthree"); flags ,= "event.fenrthree"
+	aitalkinterval = 60
 	if !reference0; silence++
 	elseif reference0 == 2
 	{
@@ -236,7 +242,7 @@ OnQuestion.EventFenrThree2 : all
 	}
 	else 
 	{
-		"\s[0]\i[403]Hmm...\w8\w8 There's a distinction there, I suppose.\w8\w8 \s[2]You really shouldn't concern yourself with it so much, mortal--\w8\w8 \i[301]\i[403]You're \f[italic,1]already\f[italic,0] so frail and survival-focused."
+		"\s[0]\i[403]Hmm...\w8\w8 There's a distinction there, I suppose.\w8\w8 \s[2]You really shouldn't concern yourself with it so much, mortal--\w8\w8 \i[301]\i[403]You're \f[italic,1]already\f[italic,0] so frail and so concerned with surviving and all."
 	}
 	"\w8\w8\n\n"
 	"\s[2]\i[203]\i[301]\i[402]Well, it is...\w8 Nice,\w8 to have an audience.\w8\w8 I never sought one out, since you can hardly understand what I'm saying...\w8\w8 \![anim,stop,203]\i[201]But it's nice to have a listener anyway, isn't it?"
@@ -250,6 +256,7 @@ OnQuestion.EventFenrThree2 : all
 
 OnWarnAnger : all
 {
+	if !Flag("warned"); flags ,= "warned"
 	"\t\*"
 	random:{
 		"\s[0]\i[403]...\w8You are AWFULLY quiet,\w8 aren't you.\w8\w8 You know, the whole point of entertaining you being here is because you're supposed to be COMPANY, mortal.\w8\w8 \s[1]\i[200]\i[302]Maybe start acting like it."
@@ -321,18 +328,10 @@ ExtractNumber
 	RE_GETSTR[0]
 }
 
-OnBalloonBreak {
-	if oldfunc == "OnForceClose"; "\-"
-	"\![leave,passivemode]\![raise,OnNextFunc,%(oldfunc)]"}
-OnBalloonClose {
-	if oldfunc == "OnForceClose"; "\-"
-	"\![leave,passivemode]\![raise,OnNextFunc,%(oldfunc)]"}
-OnBalloonTimeout {
-	if oldfunc == "OnForceClose"; "\-"
-	"\![leave,passivemode]\![raise,OnNextFunc,%(oldfunc)]"}
-OnChoiceTimeout {
-	if oldfunc == "OnForceClose"; "\-"
-	"\![leave,passivemode]\![raise,OnNextFunc,%(oldfunc)]"}
+OnBalloonBreak {"\![raise,OnNextFunc,%(oldfunc)]"}
+OnBalloonClose {"\![raise,OnNextFunc,%(oldfunc)]"}
+OnBalloonTimeout {"\![raise,OnNextFunc,%(oldfunc)]"}
+OnChoiceTimeout {"\![raise,OnNextFunc,%(oldfunc)]"}
 
 OnNextFunc
 {

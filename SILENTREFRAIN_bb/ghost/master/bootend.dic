@@ -14,7 +14,6 @@ OnFirstBoot : all
 	oldfunc = ""
 	LastTalk = ""
 	
-	apologized = 0
 	flakesdata[0] = IARRAY
 
 	"\t"
@@ -126,7 +125,7 @@ OnFirstBoot5 : all
 
 OnFirstBoot6 : all
 {
-	flags ,= "firstboot"
+	if !Flag("firstboot"); flags ,= "firstboot"
 	aitalkinterval = 30
 	
 	"\s[2]\i[203]\i[350]\i[404]Oh,\w8 wonderful!"
@@ -144,13 +143,13 @@ OnTranslate
 	//--------------------------------------------------------------
 	
 	//this is the scuffiest way to do this
-	if silence == anger1
+	if silence == anger1 && !Flag("warned")
 	{
 		_talk = "\![raise,OnWarnAnger]"
 		TOSTR(_talk)
 		return
 	}
-	elseif silence >= anger2
+	elseif silence >= anger2 && _func != "OnForceClose"
 	{
 		_talk = "\![raise,OnForceClose]"
 		TOSTR(_talk)
@@ -187,10 +186,23 @@ OnTranslate
 	TOSTR(_talk)
 }
 
+//thanks zichqec
 Flag
 {
 	if ASEARCH(_argv[0],flags) != -1; 1
 	else; 0
+}
+RemoveFlag //Removes all instances of a flag in the array.
+{
+	_elements = ASEARCHEX(_argv[0],MiscFlags)
+	if ARRAYSIZE(_elements) > 0
+	{
+		for _i = ARRAYSIZE(_elements) - 1; _i >= 0; _i-- //Goes from the end of the list to the start, so the elements stay in the same positions while we erase
+		{
+			_current = _elements[_i]
+			MiscFlags[_current] = IARRAY
+		}
+	}
 }
 
 On_homeurl {"https://raw.githubusercontent.com/whataphantasia/SILENTREFRAIN_bb/master/SILENTREFRAIN_bb/"}
@@ -257,7 +269,10 @@ OnInitialize
 		LastTalk = ""
 		oldfunc = ""
 		silence = 0
-		apologized = 0
+		
+		//FLAGS 
+		RemoveFlag("apologized")
+		RemoveFlag("warned")
 	}
 }
 
