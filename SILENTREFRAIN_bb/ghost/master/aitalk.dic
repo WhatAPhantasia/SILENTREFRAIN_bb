@@ -121,7 +121,7 @@ OnQuestion.HarpsFav : all
 OnQuestion.HarpsFav2 : all 
 {
 	if !reference0; silence++
-	"\s[2]\i[403]Ooh, I know!\w8 \i[203]You should play me the harp, mortal!\w8 %(s.smile)\i[202]Now, to get one up here that sounds nice..."
+	"\s[2]\i[403]Ooh, I know!\w8 \i[203]You should play me the harp, mortal!\w8 %(s.smile)\i[202]Now, the last one that I gave Resonance strings to died, so I should probably find one that you actually CAN play..."
 	
 }
 
@@ -197,9 +197,7 @@ OnQuestion.EventFenrOne3 : all
 	{
 		"%(s.angrytantrum)%(tears)\i[407]H-H-HE...\w8\w8 \![anim,stop,407]%(flail)WAHHHHH!!\w8\w8 "
 	}
-	"\s[1]\i[202]\i[302]\i[403]Oh, not that's not the POINT!\w8\w8 \s[1]\i[205]\i[302]\i[407]I've been TRYING to kill him!!\w8\w8 That's what you mortals are supposed to DO!!\w8\w8 %(s.angrytantrum)%(flail)%(tears)Ugh, why can't you do anything right?!"
-	"%(qprep)"
-	"(Okay.\w8 She didn't really say anything.\w8 Again.)"
+	"\s[1]\i[202]\i[302]\i[403]Oh, no, that's not the POINT!\w8\w8 \s[1]\i[205]\i[302]\i[407]I've been TRYING to kill him!!\w8\w8 That's what you mortals are supposed to DO, that's why I MADE you!!\w8\w8 %(s.angrytantrum)%(flail)%(tears)Ugh, why can't you do anything right?!"
 }
 
 OnQuestion.EventFenrTwo1 : all
@@ -225,7 +223,7 @@ OnQuestion.EventFenrThree1 : all
 	"With that in mind...\w8\w8 \s[0]\i[304]\i[404]What does he find interesting in you mortals, anyway?"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.EventFenrThree2,1]Maybe he sees us as people\_a\w8\n"
-	"\![*]\_a[OnQuestion.EventFenrThree2,1]Not too dissimilar from you treating me like a pet\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventFenrThree2,1]No, he's not too dissimilar from you treating me like a pet\_a\w8\n"
 	"\![*]\_a[OnQuestion.EventFenrThree2,2]Isn't it enough to be a fun audience?\_a\w8\n"
 }
 OnQuestion.EventFenrThree2 : all 
@@ -241,11 +239,11 @@ OnQuestion.EventFenrThree2 : all
 		"\s[0]\i[403]Hmm...\w8\w8 There's a distinction there, I suppose.\w8\w8 \s[2]You really shouldn't concern yourself with it so much, mortal--\w8\w8 \i[301]\i[403]You're \f[italic,1]already\f[italic,0] so frail and survival-focused."
 	}
 	"\w8\w8\n\n"
-	"\s[2]\i[203]\i[301]\i[402]It's...\w8 Nice,\w8 to have an audience.\w8\w8 I never sought one out, since you can hardly understand what I'm saying...\w8\w8 \![anim,stop,203]\i[201]But it's nice to have a listener anyway, isn't it?"
+	"\s[2]\i[203]\i[301]\i[402]Well, it is...\w8 Nice,\w8 to have an audience.\w8\w8 I never sought one out, since you can hardly understand what I'm saying...\w8\w8 \![anim,stop,203]\i[201]But it's nice to have a listener anyway, isn't it?"
 	"\w8\w8\w8\n\n"
 	"\s[2]\i[403]...I like you.\w8\w8 \i[301]I've said that before, haven't I?\w8\w8 \i[203]I really do like you."
-	"%(qprep)"
-	"(...Looks like she's finally calmed down.\w8\w8\w8 Even if she still doesn't get it.\w8\w8\w8 Maybe,\w she can give you a little bit of a break on the talking.)"
+	"%(qprep)\_q"
+	"(...Looks like she's finally calmed down.\w8\w8 Even if she still doesn't get it.\w\w8 Maybe,\w8\w8 she can give you a little bit of a break on the talking.)"
 }
 
 //-------
