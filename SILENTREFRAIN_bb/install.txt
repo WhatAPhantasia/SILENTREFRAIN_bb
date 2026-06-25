@@ -3,3 +3,4 @@ type,ghost
 
 name,SILENT RE:FRAIN
 directory,SILENTREFRAIN_bb
+balloon.directory,MoonviewingPool

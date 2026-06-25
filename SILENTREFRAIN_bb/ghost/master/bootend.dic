@@ -141,11 +141,6 @@ OnTranslate
 	_talk = reference0
 	_func = TOSTR(reference2) //the tostr does nothing i just feel safer with it
 	
-	//TODO: DELETE THIS OH MY GOD 
-	if reference1 == "" && reference2 == "" //If this is from the input box
-	{ //send input box : no event (ref2) , no special flag (ref1)
-		_talk = EVAL('"' + REPLACE(_talk,'"','""') + '"')
-	}
 	//--------------------------------------------------------------
 	
 	//this is the scuffiest way to do this
@@ -301,7 +296,7 @@ OnForceClose
 
 OnCloseAll
 {
-	"\![raise,OnClose,hehehe]" //now you could just do reference0 == "user" in onclose however this also catches if you try to close her with multiple ghosts open so this is my workaround
+	"\![embed,OnClose,hehehe]" //now you could just do reference0 == "user" in onclose however this also catches if you try to close her with multiple ghosts open so this is my workaround
 }
 
 OnClose : all
@@ -345,7 +340,6 @@ OnClose : all
 }
 
 //handles reloading her
-//TODO: delete this...
 OnGhostChanging
 {
 	_path = REPLACE(SHIORI3FW.Path,"\","/")

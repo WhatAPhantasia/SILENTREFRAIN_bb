@@ -23,12 +23,14 @@ OnMenu : all
 	if LastTalk != ""; "\![*]\q[Remember,OnLastTalk]\n\n"
 	else; "\![*]\f[color,disable]Remember\n\n\f[color,default]"
 	
+	/*
 	if silence >= anger1 
 	{
 		"\![*]\q[Please don't be mad at me\, Vala,OnApologize]\n\n"
 	}
+	*/
 
-	"\![*]\q[Previous Vents,OnVents]    "
+	//"\![*]\q[Previous Vents,OnVents]    "
 	"\![*]\q[Options,OnOptions]\n\n"
 
 	"\![*]\q[Say bye,OnClose,manual]    "
@@ -75,7 +77,7 @@ OnOptions : all
 
 On_balloon_tooltip
 {
-	if reference1 == "OnToggleTalkrate" && !Flag("event1")
+	if reference1 == "OnToggleTalkrate" && !Flag("event.fenrthree")
 	{"Finish the main scenario before controlling talkrate!"}
 }
 
@@ -112,7 +114,7 @@ OnToggle
 
 OnToggleTalkrate
 {
-	if Flag("event1") || SHIORI3FW.DebugMode
+	if Flag("event.fenrthree") || SHIORI3FW.DebugMode
 	{
 		case aitalkinterval
 		{

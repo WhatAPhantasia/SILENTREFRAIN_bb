@@ -5,7 +5,7 @@ OnAiTalk
 	else
 	{LastTalk = ChainTalk}
 	
-	if RAND(2) == 1
+	if RAND(6) == 1
 	{
 		//control event playing
 		if !Flag("event.fenrone"); LastTalk = "\![raise,OnQuestion.EventFenrOne1]"
