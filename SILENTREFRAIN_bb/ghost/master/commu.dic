@@ -52,7 +52,7 @@ OnSpectrePlugin.Possession
 OnFlakesOfFancyStateNotify
 {
 	flakesdata[0] = reference0 //how hard its snowing
-	//may add more so its an array for now
+	//ok nevermind zi said that the notifyother wasnt formatted properly and i check and it was that was 30 mins wasted OOPS
 }
 
 OnNeedlePoke

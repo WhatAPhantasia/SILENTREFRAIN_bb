@@ -13,6 +13,9 @@ OnFirstBoot : all
 	allowchoicetimeout = 1
 	oldfunc = ""
 	LastTalk = ""
+	
+	apologized = 0
+	flakesdata[0] = IARRAY
 
 	"\t"
 	"%(windowinit)"
@@ -195,7 +198,7 @@ Flag
 	else; 0
 }
 
-On_homeurl {"https://raw.githubusercontent.com/WhatAPhantasia/SILENTREFRAIN_bb/refs/heads/main/SILENTREFRAIN_bb/"}
+On_homeurl {"https://raw.githubusercontent.com/kakworm/SILENTREFRAIN_bb/master/SILENTREFRAIN_bb/"}
 
 //wait ive never done recommendsites from scratch before. uhhhhhhhhh. ok lets go to ukadoc
 On_recommendrootbutton.caption
@@ -230,8 +233,8 @@ OnKeyPress
 OnSurfaceRestore
 {
 	//TODO: make her grumpier based on silence variable
-	
-	"\1\s[-1]\0%(idleneutral)%(windowinit)"
+	if silence >= anger1; "\1\s[-1]\0%(idleangry)%(windowinit)"
+	else; "\1\s[-1]\0%(idleneutral)%(windowinit)"
 }
 
 OnWindowStateRestore
@@ -240,6 +243,8 @@ OnWindowStateRestore
 }
 
 idleneutral {"\s[0]%(ANY('\i[200]','\i[202]'))%(ANY('','\i[402]'))"}
+idleangry {"\s[0]%(ANY('\i[200]','\i[202]'))\i[302]%(ANY('','\i[402]'))"
+			"\s[1]%(ANY('\i[200]','\i[202]'))\i[302]%(ANY('','\i[402]'))"}
 
 windowinit : all
 {
@@ -257,6 +262,7 @@ OnInitialize
 		LastTalk = ""
 		oldfunc = ""
 		silence = 0
+		apologized = 0
 	}
 }
 
@@ -271,12 +277,26 @@ OnBoot
 		"\![set,alpha,100,500]\_w[500]"
 		--
 		"Humm?\w8 %(s.smile)Oh, there you are, mortal!\w8\w8 Come here, come here!\w8 I've got just the thing to tell you!"
+		"%(s.smile)Mortal!\w8 There you are!\w8\w8 \i[202]Oh, I was just about to head over to Linn's place--\w8\w8 \![anim,stop,202]\i[203]Now I don't have to!"
+		"%(s.smile)Mortal!\w8 Gosh, I was just wondering where you went--\w8\w8 \s[0]\i[301]\i[403]You little things get hurt so easily!\w8\w8 \s[2]\i[403]Not to worry, I'll make sure you don't get lost again, okay?"
+		"%(s.smile)...Hiiiii!\w8\w8 \i[203]Hehehe, you missed me, didn't you, mortal?\w8 \![anim,stop,203]\i[202]Shhh, come here, I'll comfort you now, okay?"
+		"Hm?\w8 \s[2]Oh, that one mortal!\w8\w8 %(s.smile)\i[203]Oh, you're here just in time, I've got something I want to tell you!"
 	}
 }
 
 OnForceClose
 {
-
+	"\t\*"
+	--
+	
+	"\s[1]\i[302]\i[407]No, STOP it, I've HAD it with you being so RUDE to me--\w8\w8 Do you WANT to leave me alone forever, is that it?!\w8 \i[204]%(tears)Keep quiet and leave me to cry all by myself with no one to talk to, is that it?!\w8\w8 %(s.angrytantrum)%(flail)%(tears)I don't like it when it's silent!!\w8\w8 Don't you GET it, don't you have any SENSE--\w8 \s[1]\i[302]\i[407]%(tears)Oh, of COURSE you don't, you're a clueless little MORTAL--\w8 %(s.angrytantrum)%(flail)%(tears)Get out, get out, get out!!!"
+	
+	"\s[1]\i[302]\i[407]I--\w8\w8 \i[205]SAY SOMETHING!!\w8\w8 %(s.angrytantrum)%(flail)%(tears)I hate this, I hate this, I hate it!!\w8 No one EVER wants to talk to me!!\w8 It's so quiet, I'm so scared, and SAD, and you don't CARE!!\w8\w8 \s[0]\i[302]\i[407]Oh, well, I guess it doesn't matter, it's not like you're an actual person, %(s.angrytantrum)%(flail)%(tears)just LEAVE already, leave, leave, LEAVE, I'll KILL you!"
+	
+	"\s[0]\i[302]\i[407]...I should KILL you.\w8\w8 \s[1]\i[302]\i[407]I should KILL you!\w8 %(tears)You're being so MEAN to me!!\w8 %(s.angrytantrum)%(flail)%(tears)You have mouths for a REASON, you're supposed to TALK!!\w8 Do you WANT to leave me alone, left to CRY, left to feel all SAD and BROKEN?!\w8 Leave, leave LEAVE!!"
+	
+	--
+	"%(qprep)(She doesn't give you any time before you're being closed...)\w8\w8\-"
 }
 
 OnCloseAll
@@ -290,12 +310,21 @@ OnClose : all
 	
 	if silence >= anger1
 	{
+		random:{
+		"\s[1]\i[302]...\w8\w8 You've been terrible company.\w8\w8 Get out of here."
+		"\s[0]\i[402]...\w8\w8 Yes.\w8\w8 I don't like you very much.\w8\w8 \s[0]\i[202]Off you go, then."
+		}
 		
+		"%(qprep)"
+		random:{
+		"(Oh. Okay.)"
+		}
+		"\w8\w8\0\![set,alpha,100]\![set,alpha,0,500]\_w[500]\-"
 	}
 	else
 	{
 		random:{
-		"\s[0]Hum?\w8 Mortal, where are you going?\w8 You're going to get hurt!\w8\w8 Shh, it's alright, I've got you.\w8\w8 You nearly fell off the cloud!\w8 That would've been bad!"
+		"\s[0]Hum?\w8 \s[0]\i[301]\i[403]Mortal, where are you going?\w8 You're going to get hurt!\w8\w8 %(s.smile)Shh, it's alright, I've got you.\w8\w8 \i[203]You nearly fell off the cloud!\w8 That would've been bad!"
 		}
 	}
 	
@@ -330,4 +359,35 @@ OnGhostChanged
 	_path = REPLACE(_path,"ghost/master/","")
 	if reference3 == _path {"\![embed,OnSurfaceRestore]\_q(Reloaded.)"}
 	else {OnBoot}
+}
+
+//----------
+
+OnUpdateBegin
+{
+	"\0\_q(Updating...)\w8"
+}
+
+OnUpdateReady
+{
+	reference0++
+	"\0\_q(New files: %(reference0))"
+}
+
+OnUpdateComplete
+{
+	if reference0 == "none" {"\0\_q(No new files.)"}
+	else {"\0\_q(Update complete.)"}
+}
+
+OnUpdateFailure : all
+{	
+	"\0\s[0]Could not update"
+	case reference0
+	{
+		when "artificial"; ": canceled"
+		when "timeout"; ": connection timed out"
+		when "md5 miss"; ": MD5 error"
+		others; "."
+	}
 }

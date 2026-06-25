@@ -129,3 +129,16 @@ OnVents
 {
 	//TODO: finish... this
 }
+
+OnApologize
+{
+	if apologized >= 0
+	{
+	
+	}
+	else 
+	{
+		apologized = 1
+		
+	}
+}
