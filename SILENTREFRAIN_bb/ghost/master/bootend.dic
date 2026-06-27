@@ -207,13 +207,13 @@ Flag
 }
 RemoveFlag //Removes all instances of a flag in the array.
 {
-	_elements = ASEARCHEX(_argv[0],MiscFlags)
+	_elements = ASEARCHEX(_argv[0],flags)
 	if ARRAYSIZE(_elements) > 0
 	{
 		for _i = ARRAYSIZE(_elements) - 1; _i >= 0; _i-- //Goes from the end of the list to the start, so the elements stay in the same positions while we erase
 		{
 			_current = _elements[_i]
-			MiscFlags[_current] = IARRAY
+			flags[_current] = IARRAY
 		}
 	}
 }
