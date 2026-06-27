@@ -11,6 +11,8 @@ OnAiTalk
 		if !Flag("event.fenrone"); LastTalk = "\![raise,OnQuestion.EventFenrOne1]"
 		elseif !Flag("event.fenrtwo"); LastTalk = "\![raise,OnQuestion.EventFenrTwo1]"
 		elseif !Flag("event.fenrthree"); LastTalk = "\![raise,OnQuestion.EventFenrThree1]"
+		
+		if !Flag("event.caretakersone") && Flag("event.fenrthree") && (ghostuptimes >= 1 || upmins >= 5); LastTalk = "\![raise,OnQuestion.EventCaretakersOne1]"
 	}
 	
 	LastTalk
@@ -29,9 +31,16 @@ PromptQuestion : nonoverlap_pool
 	"\![raise,OnQuestion.LongHair]"
 	"\![raise,OnQuestion.WantTreat]"
 	"\![raise,OnQuestion.GoldSilver]"
-	"\![raise,OnQuestion.Fabrics]"
 	"\![raise,OnQuestion.HarpsFav]"
+	"\![raise,OnQuestion.InstrumentMyFav]"
+	"\![raise,OnQuestion.PianosFav]"
 	"\![raise,OnQuestion.JellyfishCute]"
+	"\![raise,OnQuestion.JellyfishInspo]"
+	"\![raise,OnQuestion.Clothes]"
+	"\![raise,OnQuestion.Fabrics]"
+	"\![raise,OnQuestion.Messenger]"
+	"\![raise,OnQuestion.MessyFood]"
+	"\![raise,OnQuestion.Talkative]"
 	
 	//flakes of fancy (not properly implemented yet)
 	//if ISVAR("flakesdata") && flakesdata[0] != IARRAY
@@ -45,6 +54,8 @@ qchoice {"\![*]\_a[OnNextFunc,%(oldfunc)"}
 //-------
 //CONVERSATIONAL QUESTION CHAINS 
 //kinda deceptive to call them chains huh
+
+//--1
 OnQuestion.MadeOf : all
 {
 	"\s[0]\i[403]Mortal, do you think my hair is too frizzy today?\w8 \i[200]Oh, but I suppose you couldn't answer, could you--\w8\w8 %(s.smile)\i[203]You mortals have totally different bodies!\w8\w8 You're made of fabric and stuffing!\w8\w8 \![anim,stop,203]\i[201]Oh, I have a game we can play, what do you think I'm made of?\w8\w8 You should know this!"
@@ -60,7 +71,7 @@ OnQuestion.MadeOf2
 	"%(s.smile)It's Resonance!\w8\w8 \![anim,stop,203]\i[202]Now, I didn't tell any of my subjects this when making them way back when, of course, but they were all clever little cookies and figured it out themselves!\w8\w8\w8\n\n\s[2]\i[403]Ehehe, I remember, they made this big stone monument all about it when I told them--\w8\w8 \s[1]\i[301]\i[407]Oh, why don't my mortals do that for me anymore?\w8\w8 %(s.tantrum)%(flail)You're all so mean!"
 	"%(s.smile)It's Resonance!\w8\w8 That's what you little mortals call it, right?\w8\w8 \s[0]\i[403]Though, it'd be more accurate to say that I AM Resonance, hum?\w8\w8\w8\n\n\i[301]Oh, I just reminded myself of how limited you things are...\w8\w8 \s[0]\i[301]\i[404]%(tears)You can't even change size!\w8\w8 That's such a sad way to live..."
 }
-
+//--2
 OnQuestion.LongHair : all 
 {
 	"\s[0]\i[403]Oh, you know what, I think my hair's gotten a bit too long... \w8Maybe it's due for a change..."
@@ -76,7 +87,7 @@ OnQuestion.LongHair2 : all
 	else; "\s[2]\i[403]Hmmm...\w8\w8 \i[203]Hehehehe~\w8\w8 You mortals say the funniest things!\w8\w8 "
 	"\s[2]\i[403]What am I even saying?\w8 My hair is pretty!\w8 \i[202]I can run my paws through them and feel the rippling between each braid, and when I move it flows behind me in a wave--\w8\w8 \![anim,stop,202]\i[203]If it's worked for centuries, why change it?!"
 }
-
+//--3
 OnQuestion.WantTreat : all
 {
 	"\s[0]\i[403]You know, I've always wanted to keep a pet, but you bunnies die so quickly up here...\w8\w8 \s[2]\i[403]You really are special, mortal, you know that?\w8\w8 %(s.smile)I think you're my favorite.\w8 \i[203]I should get you a treat!\w8\w8 \![anim,stop,203]\i[201]You like stars, don't you?" 
@@ -90,10 +101,10 @@ OnQuestion.WantTreat2 : all
 {
 	if !reference0; silence++
 	"\s[2]\i[203]\i[403]Awww~!\w8 Little mortal wants startreatsies!\w8 \s[0]\i[401]Oh,\w8 but I can only give you the best ones,\w8 wait just a moment,\w8 \s[0]\i[200]\i[403]I can pick one of these out..." 
-	"%(qprep)"
+	"%(qprep)\_q"
 	"(...Luckily,\w8 it looks like she lost her train of thought while parsing through her favorite stars.)"
 }
-
+//--4
 OnQuestion.GoldSilver : all
 {
 	"\s[1]\i[202]\i[403]Fenr is so GAUDY with his bright, yellow gold--\w8\w8 %(s.smile)As you can see, pale gold is the way to go!\w8\w8 \i[202]I'm partial to silver too, of course.\w8\w8 \s[0]\i[403]I'm not wearing any though.\w8\w8 \s[2]\i[403]The pale gold looks nicer on these blues, right?"
@@ -108,29 +119,58 @@ OnQuestion.GoldSilver2 : all
 	if !reference0; silence++
 	"%(s.smile)\i[203]Hehe~!\w8\w8 Like your little Resonance gems, metals have their own Resonance carrying properties, you know?\w8\w8 \s[2]\i[403]Ah, but, I suppose it's too miniscule of a capacity for you mortals to use, hum..."
 }
-
+//--5
 OnQuestion.HarpsFav : all
 {
-	"\s[0]\i[202]Strings connect your entire world, my entire being, the Bramblebrush and beyond...\w8\w8 \i[404]Knowing this, I made the harp, and gifted it to my first subjects.\w8\w8 %(s.smile)You've all made such pretty harps from then on!\w8\w8 Creature-string, metal, Resonance-encrusted...\w8\w8 You like harps too, right, mortal?"
+	"\s[0]\i[202]Strings connect your entire world, my entire being, the Bramblebrush and beyond...\w8\w8 \i[404]Knowing this, I made the harp, and gifted it to my first subjects.\w8\w8 %(s.smile)You've all made such pretty harps from then on!\w8\w8 Creature hair string, metal, Resonance gem encrusted...\w8\w8 You like harps too, right, mortal?"
 	"%(qprep)"
-	"\![*]\_a[OnQuestion.HarpsFav2,1]Never thought about it before\_a\w8\n"
-	"\![*]\_a[OnQuestion.HarpsFav2,1]They're so peaceful\_a\w8\n"
+	"\![*]\_a[OnQuestion.HarpsFav2,1]They're nice\_a\w8\n"
+	"\![*]\_a[OnQuestion.HarpsFav2,1]I totally hate them\_a\w8\n"
 	"\![*]\_a[OnQuestion.HarpsFav2,1]They look hard to play\_a\w8\n"
-	"\![*]\_a[OnQuestion.HarpsFav2,1]I hate them\_a\w8\n"
+	"\![*]\_a[OnQuestion.HarpsFav2,1]Never thought about it before\_a\w8\n"
 }
 OnQuestion.HarpsFav2 : all 
 {
 	if !reference0; silence++
 	"\s[2]\i[403]Ooh, I know!\w8 \i[203]You should play me the harp, mortal!\w8 %(s.smile)\i[202]Now, the last one that I gave Resonance strings to died, so I should probably find one that you actually CAN play..."
-	
 }
-
+//--6
+OnQuestion.InstrumentMyFav : all
+{
+	"%(s.smile)Music is your purest form of devotion to your Caretaker!\w8\w8 \s[2]\i[202]\i[403]It feeds the very essense of your lifeforce,\w8 your RESONANCE,\w8 \![anim,stop,202]\i[203]and it sounds very, very pleasant!\w8\w8 %(s.smile)Ooh, pop quiz!\w8\w8 \i[203]What instrument do I like best, mortal?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.InstrumentMyFav2,1]The Harp\_a\w8\n"
+	"\![*]\_a[OnQuestion.InstrumentMyFav2,1]The Flute\_a\w8\n"
+	"\![*]\_a[OnQuestion.InstrumentMyFav2,1]The Piano\_a\w8\n"
+	"\![*]\_a[OnQuestion.InstrumentMyFav2,1]The Tuba\_a\w8\n"
+}
+OnQuestion.InstrumentMyFav2 : all 
+{
+	if !reference0; silence++
+	"\s[2]\i[203]\i[403]Ehehe--\w8 \![anim,stop,203]\i[201]I like pianos!\w8 %(s.smile)\i[202]I never thought I'd like them so much, but there's something about the twinkling when your paws touch the keys that makes me feel so calm!\w8\w8 \![anim,stop,202]\i[201]You little bunnies are so creative when it comes to using strings!"
+}
+//--7
+OnQuestion.PianosFav : all 
+{
+	"\s[2]\i[403]It's nice to have little mortals with brains...\w8\w8 \i[203]So they can make things I didn't!\w8\w8 %(s.smile)Like pianos!\w8\w8 \i[202]Oh, they're just so fascinating, mortal,\w8 it's like an automatic dulcimer...\w8\w8 \![anim,stop,202]\i[203]See, this is why I created you!\w8 You're like cute little idea minions!\w8 \s[2]You ought to have invented something too, right, mortal?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.PianosFav2,1]I like making things!\_a\w8\n"
+	"\![*]\_a[OnQuestion.PianosFav2,1]I like making music...\_a\w8\n"
+	"\![*]\_a[OnQuestion.PianosFav2,1]I'm not really a maker\_a\w8\n"
+	"\![*]\_a[OnQuestion.PianosFav2,1]I'm not your minion\_a\w8\n"
+}
+OnQuestion.PianosFav2 : all
+{
+	if !reference0; silence++
+	"\s[0]\i[303]\i[401]Oh!\w8 %(s.smile)You should make music for me!\w8 You could be my little court musician!\w8\w8 \i[203]I,\w8 eheh,\w8 DO like the kind of musics you mortals are making now,\w8 lots of vocals and dancing,\w8 but I DO miss the piano pieces...\w8\w8 \s[2]\i[403]It should be easy, since I'm such a beautiful muse!"
+}
+//--8
 OnQuestion.JellyfishCute : all 
 {
-	"%(s.smile)\i[203]Ehehehe~\w8\w8 I love making jellyfish!\w8\w8 I love fish, of course, but jellyfish are my favorite!\w8\w8 Their bells, their tendrils, their cute little mouths...\w8\w8 You like jellyfish too, right?\w8\w8 Which part's your favorite?"
+	"%(s.smile)\i[203]Ehehehe~\w8\w8 I love making jellyfish!\w8\w8 I love fish, of course, but jellyfish are my favorite!\w8\w8 Their bells, their tentacles, their cute little mouths...\w8\w8 You like jellyfish too, right?\w8\w8 Which part's your favorite?"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.JellyfishCute2,1]Bell\_a\w8\n"
-	"\![*]\_a[OnQuestion.JellyfishCute2,1]Tendril\_a\w8\n"
+	"\![*]\_a[OnQuestion.JellyfishCute2,1]Tentacles\_a\w8\n"
 	"\![*]\_a[OnQuestion.JellyfishCute2,1]Mouth\_a\w8\n"
 	"\![*]\_a[OnQuestion.JellyfishCute2,1]I don't care\_a\w8\n"
 }
@@ -139,25 +179,106 @@ OnQuestion.JellyfishCute2 : all
 	if !reference0; silence++
 	"%(s.smile)Bzzzt!\w8 Wrong answer~!\w8\w8 \i[203]EVERY single part of my creatures is perfect!\w8\w8 How could I choose?!"
 }
-
+//--9
 OnQuestion.JellyfishInspo : all 
 {
-
-}
-
-OnQuestion.Fabrics : all 
-{
-	"%(s.smile)You mortals are so creative!\w8 You've made so many different kinds of fabrics!\w8\w8 \i[203]I wish I could make and wear clothes the way you do, but it's not like I'm corporeal, ahaha!\w8\w8 \s[2]\i[202]\i[404]All I can do is replicate the look...\w8\w8 \s[2]\i[404]Ooh!\w8 \![anim,stop,404]\i[403]\i[203]What dress should I make next, mortal?"
+	"\s[2]\i[202]\i[403]Oh, to be a floating, ethereal thing, drifting on ocean currents and stinging anyone who thinks they can mess with me...\w8\w8 I love flowing things, mortal.\w8\w8 That's why I made so many different kinds of jellyfish!\w8\w8 You like jellyfish, too, right?\w8\w8 Which one?"
 	"%(qprep)"
-	"\![*]\_a[OnQuestion.Fabrics2,1]More sheer dresses!!\_a\w8\n"
-	"\![*]\_a[OnQuestion.Fabrics2,1]You should try suits!\_a\w8\n"
-	"\![*]\_a[OnQuestion.Fabrics2,1]You'd look nice in a sweater\_a\w8\n"
-	"\![*]\_a[OnQuestion.Fabrics2,1]What's up with your weird bodysuit\_a\w8\n"
+	"\![*]\_a[OnQuestion.JellyfishInspo2,1]Moon Jelly\_a\w8\n"
+	"\![*]\_a[OnQuestion.JellyfishInspo2,1]Bell Jelly\_a\w8\n"
+	"\![*]\_a[OnQuestion.JellyfishInspo2,1]Box Jelly\_a\w8\n"
+	"\![*]\_a[OnQuestion.JellyfishInspo2,1]Upside-down Jelly\_a\w8\n"
+}
+OnQuestion.JellyfishInspo2 : all 
+{
+	if !reference0; silence++
+	else; "\s[2]\i[203]\i[403]Ehehehe~\w8\w8 Come on, you're just trying to flatter mee~!\w8\w8 "
+	"%(s.smile)Oh, you know me, I can't choooose!\w8 \i[202]\i[301]They're all so cuteeee~!\w8\w8 \s[2]\i[202]\i[403]My first few attempts at making jellies was kind of lacking--\w8 \i[301]For one, I didn't give them any \f[italic,1]brains...\f[italic,0]\w8\w8 %(s.smile)But now, I think they're cuter that way!"
+}
+//--10
+OnQuestion.Clothes : all 
+{
+	"%(s.smile)You mortals are so creative!\w8 You've made so many different kinds of clothes!\w8\w8 \i[203]I wish I could make and wear clothes the way you do, but it's not like I'm corporeal, ahaha!\w8\w8 \s[2]\i[202]\i[404]All I can do is replicate the look...\w8\w8 \s[2]\i[404]Ooh!\w8 \![anim,stop,404]\i[403]\i[203]What dress should I make next, mortal?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Clothes2,1]More sheer dresses!!\_a\w8\n"
+	"\![*]\_a[OnQuestion.Clothes2,1]You should try suits!\_a\w8\n"
+	"\![*]\_a[OnQuestion.Clothes2,1]You'd look nice in a sweater\_a\w8\n"
+	"\![*]\_a[OnQuestion.Clothes2,1]What's up with your weird bodysuit\_a\w8\n"
+}
+OnQuestion.Clothes2 : all 
+{
+	if !reference0; silence++
+	"%(s.smile)\i[203]Ooh, I should make new %(clothes)!\w8\w8 You bunnies have just been making the most INTERESTING things lately, it makes me want to try them, too!"
+}
+//--11
+OnQuestion.Fabrics : all
+{
+	_1 = fabric
+	_2 = fabric
+	while _1 == _2; {_2 = fabric}
+	_3 = fabric 
+	while _3 == _1 || _3 == 2; {_3 = fabric}
+	
+	
+	"\s[0]\i[202]\i[404]%(Capitalize(_1)), %(_2), %(_3)...\w8\w8 %(s.smile)You bunnies have made so many different types of fabric!\w8\w8 Well, of course, it's nothing new to ME,\w8 Where do you think the fabric you're made of came from?\w8\w8 Still,\w8 it's been entertaining watching you figure it out yourselves!\w8\w8 Ooh,\w8 what fabric should I play with next...?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Fabrics2,1]%(Capitalize(_1))\_a\w8\n"
+	"\![*]\_a[OnQuestion.Fabrics2,1]%(Capitalize(_2))\_a\w8\n"
+	"\![*]\_a[OnQuestion.Fabrics2,1]%(Capitalize(_3))\_a\w8\n"
+	"\![*]\_a[OnQuestion.Fabrics2,2]Satin\_a\w8\n"
 }
 OnQuestion.Fabrics2 : all 
 {
 	if !reference0; silence++
-	"%(s.smile)\i[203]Ooh, I should make new %(clothes)!\w8\w8 You bunnies have just been making the most INTERESTING things lately!"
+	
+	if reference0 == 2; "\s[0]\i[303]\i[401]Oh!\w8\w8 \s[2]\i[403]Yes, of course, that's my favorite!\w8\w8 You can never go wrong with a satin nightgown, can you?\w8\w8 \i[203]Ehehe, mortal, you're so smaarrtt!"
+	else; "\s[0]\i[202]\i[301]\i[403]Oh,\w8 I just don't knowwww...\w8\w8 \s[0]\i[403]You know what?\w8 %(s.smile)How about %(fabric) %(clothes)?\w8\w8 \![anim,stop,203]\i[202]Yes, I think that sounds nice..." //this makes some absolutely horrendous combinations
+}
+//--12
+OnQuestion.Messenger : all 
+{
+	"\s[0]\i[200]\i[403]I don't know where all these mortals are getting the idea of a\w4 ""messenger of Vala""\w4 from...\w8\w8 \s[0]\i[302]\i[403]Probably because FENR\w4 came up with the stupid idea of making mortals OTHER\w4 than bunnies,\w8 and making THEM SPECIFICALLY\w4 do all his dirty work...\w8\w8 %(s.thinking)What was that mouse's name,\w8 Clementine?\w8 Celestia?\w8\w8 \i[202]\i[302]It's so inefficient!\w8\w8\w8\n\n"
+	"%(s.thinking)But,\w8 oh,\w8 I'm having so much fun talking to YOU...\w8\w8 %(s.smile)Maybe you should be my messenger!"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Messenger2,1]It would be an honor!\_a\w8\n"
+	"\![*]\_a[OnQuestion.Messenger2,1]Um, messengers are supposed to be your tertiary species, Vala\_a\w8\n"
+	"\![*]\_a[OnQuestion.Messenger2,1]No thanks\_a\w8\n"
+}
+OnQuestion.Messenger2 : all
+{
+	if !reference0; silence++ 
+	"\s[2]Ehehe--\w8\w8 \i[203]\i[403]No,\w8 no,\w8 that's so much fuss!\w8\w8 I like you much more as my favorite little mortal!\w8\w8 \s[2]\i[301]\i[404]It'd be such a waste for you to get paraded around as much as Fenr's little messenger does.\w8\w8 \s[2]\i[203]\i[401]You wouldn't have any time to talk to me!"
+}
+//--13
+OnQuestion.MessyFood : all 
+{
+	"\s[0]\i[403]...Gosh,\w8 I'm quite glad I don't eat the same things you mortals do.\w8\w8 \i[301]It looks so messy and gross!\w8\w8 \s[1]\i[202]\i[301]\i[403]The fact that you have to chew and digest it...\w8\w8 \s[0]\i[402]Oh, you know my least favorite thing?\w8\w8 \s[1]\i[302]\i[407]Long noodles and tomato sauce...!\w8\w8 It just goes...\w8 Everywhere!\w8\w8 \s[0]\i[301]\i[403]How do you enjoy eating that kind of thing?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.MessyFood2,1]It tastes good?\_a\w8\n"
+	"\![*]\_a[OnQuestion.MessyFood2,1]The mess is part of the fun\_a\w8\n"
+	"\![*]\_a[OnQuestion.MessyFood2,1]Not everyone eats spaghetti like that\_a\w8\n"
+	"\![*]\_a[OnQuestion.MessyFood2,1]I don't\_a\w8\n"
+}
+OnQuestion.MessyFood2 : all 
+{
+	if !reference0; silence++
+	"\s[2]\i[301]\i[403]...Oh,\w8 I have to admit,\w8 it IS a little cute to watch.\w8\w8 \i[203]I think that's your charm, no?\w8\w8 %(s.smile)\i[202]The fact that you do such capricious, inconvenient little things..."
+}
+//--15
+OnQuestion.Talkative : all 
+{
+	"\s[0]\i[303]\i[401]...Gosh,\w8 I'm not usually this talkative,\w8 truly!\w8\w8 \i[202]I like my silence, mortal.\w8 It's my time to think, after all.\w8\w8 \s[0]\i[301]\i[403]But,\w8 ah,\w8 it's been no fun, lately, crying all by myself...\w8\w8 %(s.smile)You should cry with me!\w8\w8 \i[203]I know you mortals are capable of it."
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Talkative2,1]Like, right now?\_a\w8\n"
+	"\![*]\_a[OnQuestion.Talkative2,1]Sniffle, sniffle...\_a\w8\n"
+	"\![*]\_a[OnQuestion.Talkative2,1]I don't know if I can just DO that\_a\w8\n"
+	"\![*]\_a[OnQuestion.Talkative2,1]I don't want to do that\_a\w8\n"
+}
+OnQuestion.Talkative2 : all 
+{
+	if !reference0; silence++
+	"\s[0]\i[202]\i[301]\i[401]%(tears)Sniffleeee...!\w8\w8\n\n"
+	"\s[2]\i[301]\i[403]%(tears)--Ehehe, see?\w8\w8 Isn't that fun?"
 }
 
 //---flakes of fancy
@@ -169,8 +290,9 @@ OnQuestion.CurrentSnow : all
 
 
 //-------
-//EVENT QUESTION CHAINS 
+//---EVENT QUESTION CHAINS 
 
+//INITIAL FENR ARGUMENT
 OnQuestion.EventFenrOne1 : all
 {
 	"\s[0]\i[200]\i[302]\i[402]Ohhh...\w8\w8 \s[1]\i[204]\i[302]%(flail)No, no, no, it's still no good!\w8\w8 \s[1]\i[302]\i[407]Do you want to know what Fenr said to me, mortal?!\w8 Do you?!"
@@ -235,7 +357,11 @@ OnQuestion.EventFenrThree2 : all
 {
 	if !Flag("event.fenrthree"); flags ,= "event.fenrthree"
 	aitalkinterval = 60
-	if !reference0; silence++
+	if !reference0 
+	{
+		silence++
+		"\s[0]\i[302]...You're supposed to SAY something, mortal.\w8\w8 \s[0]\i[303]\i[401]...Oh!\w8\w8 I think I get it now!"
+	}
 	elseif reference0 == 2
 	{
 		"\s[0]\i[303]\i[401]...\w8Oh!\w8\w8 Well,\w8 that...\w8\w8 \s[0]\i[200]\i[403]I never thought about it that way.\w8\w8 \s[0]\i[403]You...\w8\w8 \s[2]\i[403]Are \f[italic,1]fascinating,\f[italic,0]\w8 mortal."
@@ -249,7 +375,36 @@ OnQuestion.EventFenrThree2 : all
 	"\w8\w8\w8\n\n"
 	"\s[2]\i[403]...I like you.\w8\w8 \i[301]I've said that before, haven't I?\w8\w8 \i[203]I really do like you."
 	"%(qprep)\_q"
-	"(...Looks like she's finally calmed down.\w8\w8 Even if she still doesn't get it.\w\w8 Maybe,\w8\w8 she can give you a little bit of a break on the talking.)"
+	"(...Looks like she's finally calmed down.\w8\w8 Even if she still doesn't get it.\w8\w8 Maybe,\w8\w8 she can give you a little bit of a break on the talking.)"
+}
+
+//---INTRODUCE OTHER CARETAKERS
+OnQuestion.EventCaretakersOne1 : all 
+{
+	"\s[0]\i[404]...I was wondering,\w8 have you met my other siblings?\w8\w8 \s[2]\i[403]Of course, I'm the only one worth visiting,\w8 but if you can visit me,\w8 you can visit the others, can't you?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.EventCaretakersOne2,1]No, I haven't\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventCaretakersOne2,2]Didn't even know there was more than you and Fenr\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventCaretakersOne2,1]I'd rather not\_a\w8\n"
+}
+OnQuestion.EventCaretakersOne2 : all 
+{
+	if !reference0; silence++
+	if reference0 == 2; "\s[0]\i[303]\i[401]You--!\w8\w8 \s[0]\i[301]\i[403]You didn't know?\w8\w8 Gosh, what are they teaching you mortals nowadays?\w8\w8\w8 "
+	"%(s.smile)Well, you should!\w8\w8 \i[203]Visit everyone who isn't Fenr, I mean!\w8\w8 \![anim,stop,203]\i[202]All my other younger siblings,\w8 for all their disrespect,\w8 are very,\w8 very cute.\w8\w8 \s[2]\i[403]Pont's currently in it's rebellious phase, and Linlin is always so fun to have tea with!\w8\w8 \i[203]The way Linn tries to shoo me out of their workshop is so cute,\w8 they get so embarrassed around me!"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.EventCaretakersOne3,1]That's so cute!\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventCaretakersOne3,1]I'd like to meet them\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventCaretakersOne3,1]Sounds like they hate you\_a\w8\n"
+	"\![*]\_a[OnQuestion.EventCaretakersOne3,1]Did you know you're overbearing\_a\w8"
+}
+OnQuestion.EventCaretakersOne3 : all 
+{
+	if !Flag("event.caretakersone"); flags ,= "event.caretakersone"
+	if !reference0; silence++
+	"%(s.smile)Ooh!\w8\w8 What if I talked about them more?\w8\w8 \i[203]You'll definitely like them too, mortal!"
+	"%(qprep)\_q"
+	"(...Looks like she's made up her mind about it.)"
 }
 
 //-------
@@ -310,9 +465,48 @@ clothes
 {
 	"dresses"
 	"suits"
-	"raglan sweaters"
+	"sweaters"
 	"bodysuits"
 	"leotards"
+	"aprons"
+	"jeans"
+	"overalls"
+	"blouses"
+	"nightgowns"
+}
+fabric //excluding satin because thats her favorite
+{
+	"lace"
+	"leather"
+	"linen"
+	"canvas"
+	"cashmere"
+	"calico"
+	"chambray"
+	"chiffon"
+	"gingham"
+	"muslin"
+	"satin"
+	"suede"
+	"tweed"
+	"toile"
+	"twill"
+	"velvet"
+	"corduroy"
+	"fleece"
+	"denim"
+	"fur"
+	"flannel"
+	"felt"
+}
+
+//Written by Zichqec https://ukagaka.zichqec.com/
+Capitalize
+{
+	_first = SUBSTR(_argv[0],0,1)
+	_rest = ERASE(_argv[0],0,1) //Erase the first character and store everything else in _rest
+	
+	TOUPPER(_first) + _rest
 }
 
 //ANGER SILENCE LEVELS 

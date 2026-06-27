@@ -129,16 +129,26 @@ OnVents : all //get it. events. vents. hahahaha
 	"\0\b[4]\_q\![set,autoscroll,disable]"
 	"\f[bold,1]— PREVIOUS VENTS —\n\n\f[bold,0]"
 	
-	if Flag("event.fenrthree")
-	{"INITIAL ARGUMENT"
-	"\n"
-	"\![*]\_a[OnQuestion.EventFenrOne] "
-	"\_a[OnQuestion.EventFenrTwo] "
-	"\_a[OnQuestion.EventFenrThree]"}
-	else 
+	if RE_ASEARCH("event",flags) == -1
 	{"\f[color,disable]"
-	"\![*]??? - You haven't seen any events to completion yet!"
+	"\![*] ???\n"
+	"You haven't seen any events to completion yet!"
 	"\f[color,default]"}
+	else 
+	{
+		if Flag("event.fenrthree")
+		{"INITIAL ARGUMENT"
+		"\n"
+		"\![*] "
+		"\_a[OnQuestion.EventFenrOne1]1\_a "
+		"\_a[OnQuestion.EventFenrTwo1]2\_a "
+		"\_a[OnQuestion.EventFenrThree1]3\_a"}
+		if Flag("event.caretakersone")
+		{"\n\n[half]CARETAKER INTRODUCTION"
+		"\n"
+		"\![*] "
+		"\_a[OnQuestion.EventCaretakersOne1]1\_a"}
+	}
 	
 	"\n\n"
 	
@@ -147,5 +157,25 @@ OnVents : all //get it. events. vents. hahahaha
 
 OnApologize : all
 {
-	
+	if Flag("apologized")
+	{
+		"\s[0]\i[302]..."
+		
+		"%(qprep)\_q"
+		"(It doesn't really work the second time, huh.)"
+		"\w8\w8\0"
+		"\![*]\q[Back,OnMenu]  \![*]\q[Close,blank]"
+	}
+	else 
+	{
+		flags ,= "apologized"
+		silence = 0
+		
+		"\t\*"
+		"\s[0]\i[401]Oh...!\w8\w8 \i[301]Oh,\w8 poor thing...\w8\w8 You didn't mean it, did you?\w8\w8 \s[0]\i[202]\i[301]\i[404]Of course you didn't mean it.\w8\w8 You're too stupid to know what you were doing.\w8\w8 \s[0]\i[301]\i[404]I forgive you, mortal.\w8\w8\w8\n\n"
+		"%(s.smile)I take it you're up for better conversation, now?"
+		
+		"%(qprep)"
+		"\![*]\q[Back,OnMenu]  \![*]\q[Close,blank]"
+	}
 }
