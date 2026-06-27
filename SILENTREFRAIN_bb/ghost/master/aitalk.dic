@@ -42,6 +42,10 @@ PromptQuestion : nonoverlap_pool
 	"\![raise,OnQuestion.MessyFood]"
 	"\![raise,OnQuestion.Talkative]"
 	"\![raise,OnQuestion.Sylvie]"
+	"\![raise,OnQuestion.Alnoth]"
+	"\![raise,OnQuestion.CuteFood]"
+	"\![raise,OnQuestion.Chess]"
+	"\![raise,OnQuestion.Gambling]"
 	
 	//caretaker talk
 	if Flag("event.caretakersone")
@@ -189,7 +193,7 @@ OnQuestion.JellyfishCute2 : all
 //--9
 OnQuestion.JellyfishInspo : all 
 {
-	"\s[2]\i[202]\i[403]Oh, to be a floating, ethereal thing, drifting on ocean currents and stinging anyone who thinks they can mess with me...\w8\w8 I love flowing things, mortal.\w8\w8 That's why I made so many different kinds of jellyfish!\w8\w8 You like jellyfish, too, right?\w8\w8 Which one?"
+	"\s[2]\i[202]\i[403]Oh, to be a floating, ethereal thing, drifting on ocean currents and stinging anyone who thinks they can mess with me...\w8\w8 \!anim,stop,202]\i[203]I love flowing things, mortal.\w8\w8 That's why I made so many different kinds of jellyfish!\w8\w8 You like jellyfish, too, right?\w8\w8 Which one?"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.JellyfishInspo2,1]Moon Jelly\_a\w8\n"
 	"\![*]\_a[OnQuestion.JellyfishInspo2,1]Bell Jelly\_a\w8\n"
@@ -200,7 +204,7 @@ OnQuestion.JellyfishInspo2 : all
 {
 	if !reference0; silence++
 	else; "\s[2]\i[203]\i[403]Ehehehe~\w8\w8 Come on, you're just trying to flatter mee~!\w8\w8 "
-	"%(s.smile)Oh, you know me, I can't choose!\w8 \i[202]\i[301]They're all so cuteeee~!\w8\w8 \s[2]\i[202]\i[403]My first few attempts at making jellies were kind of lacking--\w8 \i[301]For one, I didn't give them any \f[italic,1]brains...\f[italic,0]\w8\w8 %(s.smile)But now, I think they're cuter that way!"
+	"%(s.smile)Oh, you know me, I can't choose!\w8 \i[202]\i[301]They're all so cuteeee~!\w8\w8 \s[2]\i[202]\i[403]My first few attempts at making jellies were kind of lacking--\w8 \i[301]For one, I didn't give them any%(br)\f[italic,1]brains...\f[italic,0]\w8\w8 %(s.smile)But now, I think they're cuter that way!"
 }
 //--10
 OnQuestion.Clothes : all 
@@ -227,7 +231,7 @@ OnQuestion.Fabrics : all
 	while _3 == _1 || _3 == 2; {_3 = fabric}
 	
 	
-	"\s[0]\i[202]\i[404]%(Capitalize(_1)), %(_2), %(_3)...\w8\w8 %(s.smile)You bunnies have made so many different types of fabric!\w8\w8 Well, of course, it's nothing new to ME,\w8 Where do you think the fabric you're made of came from?\w8\w8 Still,\w8 it's been entertaining watching you figure it out yourselves!\w8\w8 Ooh,\w8 what fabric should I play with next...?"
+	"\s[0]\i[202]\i[404]%(Capitalize(_1)), %(_2), %(_3)...\w8\w8 %(s.smile)You bunnies have made so many different types of fabric!\w8\w8 \i[202]Well, of course, it's nothing new to ME.\w8 \![anim,stop,202]\i[201]Where do you think the fabric you're made of came from?\w8\w8 \i[203]Still,\w8 it's been entertaining watching you figure it out yourselves!\w8\w8 \s[0]\i[200]\i[403]Ooh,\w8 what fabric should I play with next...?"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.Fabrics2,1]%(Capitalize(_1))\_a\w8\n"
 	"\![*]\_a[OnQuestion.Fabrics2,1]%(Capitalize(_2))\_a\w8\n"
@@ -248,7 +252,7 @@ OnQuestion.Messenger : all
 	"%(s.thinking)But,\w8 oh,\w8 I'm having so much fun talking to YOU...\w8\w8 %(s.smile)Maybe you should be my messenger!"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.Messenger2,1]It would be an honor!\_a\w8\n"
-	"\![*]\_a[OnQuestion.Messenger2,1]Um, messengers are supposed to be your tertiary species, Vala\_a\w8\n"
+	"\![*]\_a[OnQuestion.Messenger2,1]Um, messengers aren't bunnies because they're, like, special, I think\_a\w8\n"
 	"\![*]\_a[OnQuestion.Messenger2,1]No thanks\_a\w8\n"
 }
 OnQuestion.Messenger2 : all
@@ -290,7 +294,7 @@ OnQuestion.Talkative2 : all
 //--16
 OnQuestion.Sylvie : all 
 {
-	"\s[0]\i[402]There's this other mortal that's caught my eye...\w8\w8 Sylvie, I think her name was.\w8\w8 \i[202]White hair,\w8 tall frame,\w8 almost my splitting image.\w8\w8 %(s.smile)It's like Allnoth all over again!\w8\w8 \i[202]She plays such nice, reverby music on that little guitar of hers all about safety in self and her little friends,\w8 and she always speaks her mind and flips a table over or two when she can--\w8\w8\n\n"
+	"\s[0]\i[402]There's this other mortal that's caught my eye...\w8\w8 Sylvie, I think her name was.\w8\w8 \i[202]White hair,\w8 tall frame,\w8 almost my splitting image.\w8\w8 %(s.smile)It's like Alnoth all over again!\w8\w8 \i[202]She plays such nice, reverby music on that little guitar of hers all about safety in self and her little friends,\w8 and she always speaks her mind and flips a table over or two when she can--\w8\w8\n\n"
 	"%(s.thinking)I do wonder what she's up to right now.\w8\w8 Would you happen to know?"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.Sylvie2,1]No, sorry\_a\w8\n"
@@ -305,12 +309,78 @@ OnQuestion.Sylvie2 : all
 	if silence >= anger1; "\s[0]\i[401]Of course, you're an...\w8\w8 \i[200]Exception,\w8 but no matter..."
 	else; "\s[2]\i[403]Just like you~!"
 }
+//--17 
+OnQuestion.Alnoth : all 
+{
+	"\s[0]\i[202]\i[301]\i[403]Sigh...\w8 It's a pity there wont ever be another mortal like Alnoth again.\w8\w8 \![anim,stop,202]\i[201]The times have changed too much!\w8\w8 \s[2]\i[202]\i[404]He was the funnest to watch,\w8 you know,\w8 always appealing to us and showing us what those bunnies could do for us!\w8\w8 \![anim,stop,202]\i[201]Ehehe...\w8 Gosh,\w8 me talking about another mortal like this,\w8 are you jealous of him~?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Alnoth2,1]Why would I be\_a\w8\n"
+	"\![*]\_a[OnQuestion.Alnoth2,1]I don't even know this guy\_a\w8\n"
+	"\![*]\_a[OnQuestion.Alnoth2,1]Stop talking about people I don't know\_a\w8\n"
+	"\![*]\_a[OnQuestion.Alnoth2,1]A little\_a\w8"
+}
+OnQuestion.Alnoth2 : all 
+{
+	if !reference0; silence++
+	"\s[2]\i[203]\i[403]Ehehehe~!\w8\w8 No need to be jealous, mortal,\w8 YOU'RE my favorite, now!\w8\w8 "
+	if silence >= anger1; "\s[2]\i[301]\i[403]Well,\w8 you're being the same kind of annoying Alnoth was,\w8 with how much he kept talking about ""treating the bunnies fairly,""\w8 but that hardly matters now..."
+	else; "%(s.smile)You actually listen to me,\w8 for one!"
+}
+//--18
+OnQuestion.CuteFood : all 
+{
+	"\s[0]\i[403For how odd your mortal food is, those little macarons you make in the Valarian capitol...\w8\w8 %(s.smile)I've always wanted to try them!\w8\w8 They look so delicate,\w8 and neat,\w8 and cute,\w8 just like you...\w8\w8 Oh!\w8 You should get me some, mortal!"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.CuteFood2,1]I don't think food survives up here\_a\w8\n"
+	"\![*]\_a[OnQuestion.CuteFood2,1]I thought you couldn't eat mortal food\_a\w8\n"
+	"\![*]\_a[OnQuestion.CuteFood2,1]I... I can try!\_a\w8"
+}
+OnQuestion.CuteFood2 : all 
+{
+	if !reference0; silence++
+	"\s[0]\i[301]\i[403]Those macarons just crumble so easily,\w8 it's so pitiful watching those chefs make them and look upset when they don't turn out right...\w8\w8 %(s.smile)That's what's special about you mortals.\w8\w8 You make mistakes!\w8\w8 \i[202]I'd like to try one of those flat macarons,\w8 I think..."
+}
+//--19
+OnQuestion.Chess : all
+{
+	"\s[0]\i[403]It's both fun and frustrating to watch you mortals play chess...\w8\w8 \i[202]\i[301]It's hardly a solved game,\w8 at least until it gets down to the last few pieces,\w8 but you bunnies just--!\w8\w8 \s[0]\i[301]\i[407]%(tears)Keep making so many mistakes!\w8\w8 \i[202]It's only fun for a while,\w8 because after that I just get so sad..."
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Chess2,1]That's a shame\_a\w8\n"
+	"\![*]\_a[OnQuestion.Chess2,1]It's not a solved game\_a\w8\n"
+	"\![*]\_a[OnQuestion.Chess2,1]Yeah I'm terrible at chess\_a\w8\n"
+	"\![*]\_a[OnQuestion.Chess2,2]You should play chess with me!\_a\w8"
+}
+OnQuestion.Chess2 : all 
+{
+	if !reference0; silence++
+	
+	if reference0 == 2; "\s[2]\i[403]Pfft--\w8\w8 \i[203]Oh, mortal, you're so CUTE!\w8\w8 That wouldn't be any fun, for me and for you.\w8\w8 \s[2]\i[301]\i[404]Why would I play a game with someone so pitiful?"
+	else; "\s[0]\i[301]\i[404]%(tears)It really is such a shame...\w8\w8 \i[202]There's no fun board games anymore at all,\w8 Linn just shuts the board in my face when I try to play with them, after all..."
+}
+//--20
+OnQuestion.Gambling : all 
+{
+	"%(s.smile)Gambling is far more interesting than board games--\w8\w8 \i[203]There's a deceptive layer of control you can have, in a gamble.\w8\w8 \s[2]\i[403]And,\w8 well,\w8 the thrill of betting,\w8 of having something lost or gained,\w8 that's something too,\w8 isn't it?\w8\w8 \i[203]We should play sometime."
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Gambling2,1]You get it!\_a\w8\n"
+	"\![*]\_a[OnQuestion.Gambling2,1]What's the bet?\_a\w8\n"
+	"\![*]\_a[OnQuestion.Gambling2,1]That's not my thing\_a\w8\n"
+	"\![*]\_a[OnQuestion.Gambling2,1]I'd rather not gamble with a god\_a\w8"
+}
+OnQuestion.Gambling2 : all 
+{
+	if !reference0; silence++
+	"\s[2]\i[402]Ehehe~\w8\w8 I'll set the bar!\w8\w8 \s[2]\i[203]\i[403]How about your Resonance gem?\w8\w8 It's always nice to have some of my Resonance back...\w8\w8\n\n"
+	"\s[2]\i[301]\i[403]...Hm.\w8\w8 Pont gets upset when I mess with my Resonance gem.\w8 Maybe not."
+	"%(qprep)\_q"
+	"(oh thank god)"
+}
 
 //---caretaker talk
 //--1
 OnQuestion.LinnBramble : all 
 {
-	"\s[0]\i[404]Linn gets so possessive over%(br)""their planet!""\w8\w8 \s[0]\i[301]\i[403]Gosh,\w8 its OUR planet,\w8 Linlin!\w8\w8 You may have started it and tried to keep it away from us,\w8 but without me,\w8 you wouldnt have a moon,\w8 now would you?\w8\w8 \s[2]\i[203]\i[403]You agree,\w8 right,\w8 mortal?"
+	"\s[0]\i[404]Linn gets so possessive over%(br)""their planet!""\w8\w8 \s[0]\i[301]\i[403]Gosh,\w8 its OUR planet,\w8 Linlin!\w8\w8 You may have started it and tried to keep it away from us,\w8 but without me,\w8 you wouldn't have two moons,\w8 now would you?\w8\w8 \s[2]\i[203]\i[403]You agree,\w8 right,\w8 mortal?"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.LinnBramble2,1]Wait, is that true\_a\w8\n"
 	"\![*]\_a[OnQuestion.LinnBramble2,1]You should've left them alone\_a\w8\n"
@@ -553,8 +623,8 @@ Capitalize
 
 //ANGER SILENCE LEVELS 
 //making them their own block because what if i want to change the threshold for anger and force booting
-anger1 {10}
-anger2 {16}
+anger1 {8}
+anger2 {14}
 
 //HANDLE BALLOON BREAK, TIMEOUT, AND CLOSE
 ExtractNumber

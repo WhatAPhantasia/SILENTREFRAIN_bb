@@ -33,12 +33,12 @@ file,MoonviewingPool/sstp.pngf65886d3e24c05a169f9b2d670bf77d9size=395date=202
 file,MoonviewingPool/thumbnail.pnafedcd165e98454304cb83637435b2b5asize=8146date=2026-06-23T09:50:01
 file,MoonviewingPool/thumbnail.png9049e0e49fe168a68e5fb336a58e837fsize=81530date=2026-06-23T09:49:38
 file,ghost/master/Moons.ico542c8f57d73c55ed1c1433c5596f0480size=1150date=2026-06-21T20:04:16
-file,ghost/master/aitalk.dic0eb18c48fd24f01059e34789ba745babsize=29458date=2026-06-26T23:41:42
+file,ghost/master/aitalk.dic396823afa6ea2cbe6dffc65e8a72b8b1size=33931date=2026-06-27T11:35:47
 file,ghost/master/bootend.dic8634d75c729dd2625b16a0f65aa6ed7dsize=15048date=2026-06-26T23:36:38
 file,ghost/master/commu.dic88f47a1e737c60e766dcdb4eb3ded83asize=3798date=2026-06-25T11:43:08
 file,ghost/master/descript.txt66c0b95093ee07977599160b6a15319dsize=293date=2026-06-18T20:33:19
 file,ghost/master/emerg.dicc7cb6eacd3262003fef909c382a6fefesize=351date=2023-04-14T14:45:50
-file,ghost/master/menu.dicc42688c65f8859b5f1f003154e19f34bsize=4075date=2026-06-26T22:24:14
+file,ghost/master/menu.dic9d5fdef4cd3cb6c64ab989d8de52b9c6size=4104date=2026-06-27T11:39:46
 file,ghost/master/yaya.dll56e3af56c88e696cea1f39d53b239cefsize=880640date=2022-09-10T18:18:59
 file,ghost/master/yaya.txtfe076960b36a1ce012beffab634b7d18size=659date=2026-06-26T16:28:49
 file,ghost/master/yaya_emerg.txt3f3212dd41465ce4abf790747bbd0377size=609date=2026-06-26T16:29:34
