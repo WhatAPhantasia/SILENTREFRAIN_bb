@@ -193,7 +193,7 @@ OnQuestion.JellyfishCute2 : all
 //--9
 OnQuestion.JellyfishInspo : all 
 {
-	"\s[2]\i[202]\i[403]Oh, to be a floating, ethereal thing, drifting on ocean currents and stinging anyone who thinks they can mess with me...\w8\w8 \!anim,stop,202]\i[203]I love flowing things, mortal.\w8\w8 That's why I made so many different kinds of jellyfish!\w8\w8 You like jellyfish, too, right?\w8\w8 Which one?"
+	"\s[2]\i[202]\i[403]Oh, to be a floating, ethereal thing, drifting on ocean currents and stinging anyone who thinks they can mess with me...\w8\w8 \![anim,stop,202]\i[203]I love flowing things, mortal.\w8\w8 That's why I made so many different kinds of jellyfish!\w8\w8 You like jellyfish, too, right?\w8\w8 Which one?"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.JellyfishInspo2,1]Moon Jelly\_a\w8\n"
 	"\![*]\_a[OnQuestion.JellyfishInspo2,1]Bell Jelly\_a\w8\n"
@@ -334,6 +334,7 @@ OnQuestion.CuteFood : all
 	"\![*]\_a[OnQuestion.CuteFood2,1]I don't think food survives up here\_a\w8\n"
 	"\![*]\_a[OnQuestion.CuteFood2,1]I thought you couldn't eat mortal food\_a\w8\n"
 	"\![*]\_a[OnQuestion.CuteFood2,1]I... I can try!\_a\w8"
+	"\![*]\_a[OnQuestion.CuteFood2,1]I'm not your errandboy\_a\w8"
 }
 OnQuestion.CuteFood2 : all 
 {
