@@ -298,7 +298,7 @@ OnBoot
 	silence = 0
 	OnInitialize
 	--
-	"\1\s[-1]\0\s[0]\![set,alpha,0]"
+	"\1\s[-1]\0\s[0]\![set,alpha,0]%(windowinit)"
 	--
 	if !Flag("firstboot"); "\![raise,OnFirstBoot]"
 	else
