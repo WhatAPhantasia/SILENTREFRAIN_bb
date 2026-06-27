@@ -14,7 +14,6 @@ OnFirstBoot : all
 	oldfunc = ""
 	LastTalk = ""
 	
-	apologized = 0
 	flakesdata[0] = IARRAY
 
 	"\t"
@@ -30,8 +29,14 @@ OnFirstBoot : all
 	"\![*]\_a[OnFirstBoot2,0]...\_a"
 }
 
+//-----------------
+//USEFUL SET-UP THINGS
+
+br {if SHIORI3FW.BalloonName == "Moonviewing Pool"; "\n"; else; " "}
+upmins {ghostbootmin - (GETSECCOUNT/60)} 
 qprep {"\w8\w8\1\f[anchor.font.color,default.plain]\f[anchorvisitedfontcolor,default.plain]\![set,autoscroll,disable]\_q"}
 
+//-----------------
 OnFirstBoot2 : all
 {
 	"\t\0"
@@ -126,7 +131,7 @@ OnFirstBoot5 : all
 
 OnFirstBoot6 : all
 {
-	flags ,= "firstboot"
+	if !Flag("firstboot"); flags ,= "firstboot"
 	aitalkinterval = 30
 	
 	"\s[2]\i[203]\i[350]\i[404]Oh,\w8 wonderful!"
@@ -144,17 +149,24 @@ OnTranslate
 	//--------------------------------------------------------------
 	
 	//this is the scuffiest way to do this
-	if silence == anger1
+	if silence == anger1 && !Flag("warned")
 	{
 		_talk = "\![raise,OnWarnAnger]"
 		TOSTR(_talk)
 		return
 	}
-	elseif silence >= anger2
+	elseif silence >= anger2 && _func != "OnForceClose"
 	{
 		_talk = "\![raise,OnForceClose]"
 		TOSTR(_talk)
 		return
+	}
+	
+	//-----------------------------------------------------------------
+	//This is what makes %(embedded_elements) work in script input
+	if reference1 == "" && reference2 == "" //If this is from the input box
+	{ //send input box : no event (ref2) , no special flag (ref1)
+		_talk = EVAL('"' + REPLACE(_talk,'"','""') + '"')
 	}
 	
 	//--------- IMPORTANT, DON'T REMOVE, THE SHIORI3FW VARIABLES DONT FIT MY PURPOSES SO I MADE MY OWN ----------------------------------
@@ -187,13 +199,30 @@ OnTranslate
 	TOSTR(_talk)
 }
 
+//thanks zichqec
 Flag
 {
 	if ASEARCH(_argv[0],flags) != -1; 1
 	else; 0
 }
+RemoveFlag //Removes all instances of a flag in the array.
+{
+	_elements = ASEARCHEX(_argv[0],MiscFlags)
+	if ARRAYSIZE(_elements) > 0
+	{
+		for _i = ARRAYSIZE(_elements) - 1; _i >= 0; _i-- //Goes from the end of the list to the start, so the elements stay in the same positions while we erase
+		{
+			_current = _elements[_i]
+			MiscFlags[_current] = IARRAY
+		}
+	}
+}
 
-On_homeurl {"https://raw.githubusercontent.com/whataphantasia/SILENTREFRAIN_bb/master/SILENTREFRAIN_bb/"}
+On_homeurl 
+{
+	if SHIORI3FW.DebugMode; "https://raw.githubusercontent.com/WhatAPhantasia/SILENTREFRAIN_bb/refs/heads/dev/SILENTREFRAIN_bb/"
+	else; "https://raw.githubusercontent.com/WhatAPhantasia/SILENTREFRAIN_bb/refs/heads/main/SILENTREFRAIN_bb/"
+}
 
 //wait ive never done recommendsites from scratch before. uhhhhhhhhh. ok lets go to ukadoc
 On_recommendrootbutton.caption
@@ -257,13 +286,18 @@ OnInitialize
 		LastTalk = ""
 		oldfunc = ""
 		silence = 0
-		apologized = 0
+		
+		//FLAGS 
+		RemoveFlag("apologized")
+		RemoveFlag("warned")
 	}
 }
 
 OnBoot
 {
 	silence = 0
+	OnInitialize
+	--
 	"\1\s[-1]\0\s[0]\![set,alpha,0]"
 	--
 	if !Flag("firstboot"); "\![raise,OnFirstBoot]"
@@ -275,7 +309,9 @@ OnBoot
 		"%(s.smile)Mortal!\w8 There you are!\w8\w8 \i[202]Oh, I was just about to head over to Linn's place--\w8\w8 \![anim,stop,202]\i[203]Now I don't have to!"
 		"%(s.smile)Mortal!\w8 Gosh, I was just wondering where you went--\w8\w8 \s[0]\i[301]\i[403]You little things get hurt so easily!\w8\w8 \s[2]\i[403]Not to worry, I'll make sure you don't get lost again, okay?"
 		"%(s.smile)...Hiiiii!\w8\w8 \i[203]Hehehe, you missed me, didn't you, mortal?\w8 \![anim,stop,203]\i[202]Shhh, come here, I'll comfort you now, okay?"
-		"Hm?\w8 \s[2]Oh, that one mortal!\w8\w8 %(s.smile)\i[203]Oh, you're here just in time, I've got something I want to tell you!"
+		"Hm?\w8 \s[2]Oh, that one mortal!\w8\w8 %(s.smile)\i[203]You're here just in time, I've got something I want to tell you!"
+		"...Oh!\w8\w8 %(s.smile)Mortal!\w8\w8 \s[0]\i[301]\i[403]Gosh,\w8 I was getting so lonely--\w8\w8 \s[2]\i[403]You know just how to cheer me up!"
+		"...Oh!\w8\w8 %(s.smile)You must've been getting lonely, mortal.\w8\w8 \i[203]It's alright, come here!"
 	}
 }
 
@@ -284,14 +320,23 @@ OnForceClose
 	"\t\*"
 	--
 	
-	"\s[1]\i[302]\i[407]No, STOP it, I've HAD it with you being so RUDE to me--\w8\w8 Do you WANT to leave me alone forever, is that it?!\w8 \i[204]%(tears)Keep quiet and leave me to cry all by myself with no one to talk to, is that it?!\w8\w8 %(s.angrytantrum)%(flail)%(tears)I don't like it when it's silent!!\w8\w8 Don't you GET it, don't you have any SENSE--\w8 \s[1]\i[302]\i[407]%(tears)Oh, of COURSE you don't, you're a clueless little MORTAL--\w8 %(s.angrytantrum)%(flail)%(tears)Get out, get out, get out!!!"
+	"\s[1]\i[302]\i[407]No, STOP it, I've HAD it with you being so RUDE to me--\w8\w8 Do you WANT to leave me alone forever, is that it?!\w8 \i[204]%(tears)Keep quiet and leave me to cry all by myself with no one to talk to, is that it?!\w8\w8 %(s.angrytantrum)%(flail)%(tears)I don't like it when it's quiet!!\w8\w8 Don't you GET it, don't you have any SENSE--\w8 \s[1]\i[302]\i[407]%(tears)Oh, of COURSE you don't, you're a clueless little MORTAL--\w8 %(s.angrytantrum)%(flail)%(tears)Get out, get out, get out!!!"
 	
 	"\s[1]\i[302]\i[407]I--\w8\w8 \i[205]SAY SOMETHING!!\w8\w8 %(s.angrytantrum)%(flail)%(tears)I hate this, I hate this, I hate it!!\w8 No one EVER wants to talk to me!!\w8 It's so quiet, I'm so scared, and SAD, and you don't CARE!!\w8\w8 \s[0]\i[302]\i[407]Oh, well, I guess it doesn't matter, it's not like you're an actual person, %(s.angrytantrum)%(flail)%(tears)just LEAVE already, leave, leave, LEAVE, I'll KILL you!"
 	
 	"\s[0]\i[302]\i[407]...I should KILL you.\w8\w8 \s[1]\i[302]\i[407]I should KILL you!\w8 %(tears)You're being so MEAN to me!!\w8 %(s.angrytantrum)%(flail)%(tears)You have mouths for a REASON, you're supposed to TALK!!\w8 Do you WANT to leave me alone, left to CRY, left to feel all SAD and BROKEN?!\w8 Leave, leave LEAVE!!"
 	
 	--
-	"%(qprep)(She doesn't give you any time before you're being closed...)\w8\w8\-"
+	if !allowforceclose
+	{
+		"(...)\w8\![set,alpha,100]\![set,alpha,0,500]\_w[500]\x\![raise,OnBoot]"
+	}
+	else
+	{
+		"%(qprep)(She doesn't give you any time before you're being sent back down...)"
+		--
+		"\w8\w8\![set,alpha,100]\![set,alpha,0,500]\_w[500]\-"
+	}
 }
 
 OnCloseAll
@@ -308,6 +353,8 @@ OnClose : all
 		random:{
 		"\s[1]\i[302]...\w8\w8 You've been terrible company.\w8\w8 Get out of here."
 		"\s[0]\i[402]...\w8\w8 Yes.\w8\w8 I don't like you very much.\w8\w8 \s[0]\i[202]Off you go, then."
+		"\s[0]\i[402]...\w8\w8 Hm.\w8\w8 \i[200]I don't particularly care."
+		"\s[0]\i[402]...\w8\w8 Hm?\w8\w8 \i[200]Hm."
 		}
 		
 		"%(qprep)"
@@ -320,10 +367,13 @@ OnClose : all
 	{
 		random:{
 		"\s[0]Hum?\w8 \s[0]\i[301]\i[403]Mortal, where are you going?\w8 You're going to get hurt!\w8\w8 %(s.smile)Shh, it's alright, I've got you.\w8\w8 \i[203]You nearly fell off the cloud!\w8 That would've been bad!"
+		"\s[0]\i[301]\i[403]Gosh, where are you wandering off to?\w8\w8 %(s.smile)Shh, I've got you.\w8\w8 \i[203]You mortals get lost so easily...!"
+		"\s[0]\i[301]\i[403]Oh, no, no, no, not that way!\w8\w8 You're going to get lost!\w8\w8 \s[2]\i[301]\i[404]Come here."
+		"\s[0]\i[301]\i[403]My,\w8 you mortals have a habit of losing your bearings, don't you?\w8\w8 %(s.smile)\i[203]That's alright, I've got you, you're not getting lost on my watch!"
 		}
 	}
 	
-	"%(qprep)"
+	"%(qprep)\_q"
 	
 	if !allowstopclose || reference0 == "hehehe" //after ages of trying different tricks to stop close from right click menu ive just accepted its impossible . and that makes sense because that would be intrusive as hell. alas
 	{
@@ -335,7 +385,7 @@ OnClose : all
 	}
 	else
 	{
-		"(It was worth a shot.)\w8\w8\w8\![raise,OnMenu]"
+		"(It was worth a shot.)\w8\w8\w8\x\![raise,OnMenu]"
 	}
 }
 

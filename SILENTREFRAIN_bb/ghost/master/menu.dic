@@ -13,9 +13,7 @@ OnMouseDoubleClick
 }
 
 OnMenu : all 
-{
-	"\![leave,passivemode]"
-	
+{	
 	"\0\b[4]\_q\![set,autoscroll,disable]"
 	"\f[bold,1]THE LADY OF THE MOONS\n\n\f[bold,0]"
 
@@ -23,14 +21,12 @@ OnMenu : all
 	if LastTalk != ""; "\![*]\q[Remember,OnLastTalk]\n\n"
 	else; "\![*]\f[color,disable]Remember\n\n\f[color,default]"
 	
-	/*
 	if silence >= anger1 
 	{
 		"\![*]\q[Please don't be mad at me\, Vala,OnApologize]\n\n"
 	}
-	*/
 
-	//"\![*]\q[Previous Vents,OnVents]    "
+	"\![*]\q[Previous Vents,OnVents]    "
 	"\![*]\q[Options,OnOptions]\n\n"
 
 	"\![*]\q[Say bye,OnClose,manual]    "
@@ -102,6 +98,7 @@ OnNameJoke : all
 		"(You weren't sure what you wanted her to say, here.)"
 	}
 	"\w8\w8\0\n\n"
+	"\![*]\q[Back,OnOptions]    "
 	"\![*]\q[Close,blank]"
 }
 
@@ -127,20 +124,59 @@ OnToggleTalkrate
 	OnOptions
 }
 
-OnVents
+OnVents : all //get it. events. vents. hahahaha
 {
-	//TODO: finish... this
+	"\0\b[4]\_q\![set,autoscroll,disable]"
+	"\f[bold,1]— PREVIOUS VENTS —\n\n\f[bold,0]"
+	
+	if RE_ASEARCH("event",flags) == -1
+	{"\f[color,disable]"
+	"\![*] ???\n"
+	"You haven't seen any events to completion yet!"
+	"\f[color,default]"}
+	else 
+	{
+		if Flag("event.fenrthree")
+		{"INITIAL ARGUMENT"
+		"\n"
+		"\![*] "
+		"\_a[OnQuestion.EventFenrOne1]1\_a "
+		"\_a[OnQuestion.EventFenrTwo1]2\_a "
+		"\_a[OnQuestion.EventFenrThree1]3\_a"}
+		if Flag("event.caretakersone")
+		{"\n\n[half]CARETAKER INTRODUCTION"
+		"\n"
+		"\![*] "
+		"\_a[OnQuestion.EventCaretakersOne1]1\_a"}
+	}
+	
+	"\n\n"
+	
+	"\![*]\q[Back,OnMenu]  \![*]\q[Close,blank]"
 }
 
-OnApologize
+OnApologize : all
 {
-	if apologized >= 0
+	if Flag("apologized")
 	{
-	
+		"\s[0]\i[302]..."
+		
+		"%(qprep)\_q"
+		"(It doesn't really work the second time, huh.)"
+		"\w8\w8\0"
+		"\![*]\q[Back,OnMenu]  \![*]\q[Close,blank]"
 	}
 	else 
 	{
-		apologized = 1
+		flags ,= "apologized"
+		RemoveFlag("warned")
+		silence = 0
 		
+		"\t\*"
+		"\s[0]\i[401]Oh...!\w8\w8 \i[301]Oh,\w8 poor thing...\w8\w8 You didn't mean it, did you?\w8\w8 \s[0]\i[202]\i[301]\i[404]Of course you didn't mean it.\w8\w8 You're too stupid to know what you were doing.\w8\w8 \s[0]\i[301]\i[404]I forgive you, mortal.\w8\w8\w8\n\n"
+		"%(s.smile)I take it you're up for better conversation, now?"
+		
+		"\w8\w8\n\n\_q"
+		"\![*]\q[Back,OnMenu]  \![*]\q[Close,blank]"
 	}
 }
