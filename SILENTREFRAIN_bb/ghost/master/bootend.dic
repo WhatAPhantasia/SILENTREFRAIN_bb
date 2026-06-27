@@ -32,8 +32,8 @@ OnFirstBoot : all
 //-----------------
 //USEFUL SET-UP THINGS
 
+br {if SHIORI3FW.BalloonName == "Moonviewing Pool"; "\n"; else; " "}
 upmins {ghostbootmin - (GETSECCOUNT/60)} 
-
 qprep {"\w8\w8\1\f[anchor.font.color,default.plain]\f[anchorvisitedfontcolor,default.plain]\![set,autoscroll,disable]\_q"}
 
 //-----------------

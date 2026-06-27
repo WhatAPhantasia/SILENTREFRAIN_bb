@@ -60,3 +60,21 @@ group,__disabled
 	3000,__parts			//pose 2 - 1
 	3001,__parts			//pose 2 - 2
 }
+
+group,V1
+{
+	scope,0
+	0,neut
+	1,frown
+	2,smile
+}
+group,V2
+{
+	scope,0
+	3,neut
+}
+group,K
+{
+	scope,1
+	10,blank
+}

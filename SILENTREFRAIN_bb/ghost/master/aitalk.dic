@@ -12,7 +12,7 @@ OnAiTalk
 		elseif !Flag("event.fenrtwo"); LastTalk = "\![raise,OnQuestion.EventFenrTwo1]"
 		elseif !Flag("event.fenrthree"); LastTalk = "\![raise,OnQuestion.EventFenrThree1]"
 		
-		if !Flag("event.caretakersone") && Flag("event.fenrthree") && (ghostuptimes >= 1 || upmins >= 5); LastTalk = "\![raise,OnQuestion.EventCaretakersOne1]"
+		if !Flag("event.caretakersone") && Flag("event.fenrthree") && (ghostuptimes > 1 || upmins >= 5); LastTalk = "\![raise,OnQuestion.EventCaretakersOne1]"
 	}
 	
 	LastTalk
@@ -41,6 +41,13 @@ PromptQuestion : nonoverlap_pool
 	"\![raise,OnQuestion.Messenger]"
 	"\![raise,OnQuestion.MessyFood]"
 	"\![raise,OnQuestion.Talkative]"
+	"\![raise,OnQuestion.Sylvie]"
+	
+	//caretaker talk
+	if Flag("event.caretakersone")
+	{
+		"\![raise,OnQuestion.LinnBramble]"
+	}
 	
 	//flakes of fancy (not properly implemented yet)
 	//if ISVAR("flakesdata") && flakesdata[0] != IARRAY
@@ -193,7 +200,7 @@ OnQuestion.JellyfishInspo2 : all
 {
 	if !reference0; silence++
 	else; "\s[2]\i[203]\i[403]Ehehehe~\w8\w8 Come on, you're just trying to flatter mee~!\w8\w8 "
-	"%(s.smile)Oh, you know me, I can't choooose!\w8 \i[202]\i[301]They're all so cuteeee~!\w8\w8 \s[2]\i[202]\i[403]My first few attempts at making jellies was kind of lacking--\w8 \i[301]For one, I didn't give them any \f[italic,1]brains...\f[italic,0]\w8\w8 %(s.smile)But now, I think they're cuter that way!"
+	"%(s.smile)Oh, you know me, I can't choose!\w8 \i[202]\i[301]They're all so cuteeee~!\w8\w8 \s[2]\i[202]\i[403]My first few attempts at making jellies were kind of lacking--\w8 \i[301]For one, I didn't give them any \f[italic,1]brains...\f[italic,0]\w8\w8 %(s.smile)But now, I think they're cuter that way!"
 }
 //--10
 OnQuestion.Clothes : all 
@@ -279,6 +286,41 @@ OnQuestion.Talkative2 : all
 	if !reference0; silence++
 	"\s[0]\i[202]\i[301]\i[401]%(tears)Sniffleeee...!\w8\w8\n\n"
 	"\s[2]\i[301]\i[403]%(tears)--Ehehe, see?\w8\w8 Isn't that fun?"
+}
+//--16
+OnQuestion.Sylvie : all 
+{
+	"\s[0]\i[402]There's this other mortal that's caught my eye...\w8\w8 Sylvie, I think her name was.\w8\w8 \i[202]White hair,\w8 tall frame,\w8 almost my splitting image.\w8\w8 %(s.smile)It's like Allnoth all over again!\w8\w8 \i[202]She plays such nice, reverby music on that little guitar of hers all about safety in self and her little friends,\w8 and she always speaks her mind and flips a table over or two when she can--\w8\w8\n\n"
+	"%(s.thinking)I do wonder what she's up to right now.\w8\w8 Would you happen to know?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Sylvie2,1]No, sorry\_a\w8\n"
+	"\![*]\_a[OnQuestion.Sylvie2,1]I love Sylvie! She's famous!\_a\w8\n"
+	"\![*]\_a[OnQuestion.Sylvie2,1]Do you think all mortals know all other mortals. They don't\_a\w8"
+}
+OnQuestion.Sylvie2 : all 
+{
+	if !reference0; silence++ 
+	"%(s.smile)Well, if you're doing fine, then she must be doing fine, too!\w8\w8 \i[202]My mortals are far less brash than Fenr's,\w8 they have much more poise and sense!\w8\w8 "
+	
+	if silence >= anger1; "\s[0]\i[401]Of course, you're an...\w8\w8 \i[200]Exception,\w8 but no matter..."
+	else; "\s[2]\i[403]Just like you~!"
+}
+
+//---caretaker talk
+//--1
+OnQuestion.LinnBramble : all 
+{
+	"\s[0]\i[404]Linn gets so possessive over%(br)""their planet!""\w8\w8 \s[0]\i[301]\i[403]Gosh,\w8 its OUR planet,\w8 Linlin!\w8\w8 You may have started it and tried to keep it away from us,\w8 but without me,\w8 you wouldnt have a moon,\w8 now would you?\w8\w8 \s[2]\i[203]\i[403]You agree,\w8 right,\w8 mortal?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.LinnBramble2,1]Wait, is that true\_a\w8\n"
+	"\![*]\_a[OnQuestion.LinnBramble2,1]You should've left them alone\_a\w8\n"
+	"\![*]\_a[OnQuestion.LinnBramble2,1]I would've hated to have no moon\_a\w8\n"
+	"\![*]\_a[OnQuestion.LinnBramble2,1]We only have a sun because of Fenr?\_a\w8"
+}
+OnQuestion.LinnBramble2 : all 
+{
+	if !reference0; silence++
+	"%(s.smile)See?\w8\w8 I knew you were smart, mortal!\w8\w8 \i[203]Now,\w8 if only Linn could get it!"
 }
 
 //---flakes of fancy
