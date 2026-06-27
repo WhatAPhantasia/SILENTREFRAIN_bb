@@ -329,7 +329,7 @@ OnQuestion.Alnoth2 : all
 //--18
 OnQuestion.CuteFood : all 
 {
-	"\s[0]\i[403For how odd your mortal food is, those little macarons you make in the Valarian capitol...\w8\w8 %(s.smile)I've always wanted to try them!\w8\w8 They look so delicate,\w8 and neat,\w8 and cute,\w8 just like you...\w8\w8 Oh!\w8 You should get me some, mortal!"
+	"\s[0]\i[403]For how odd your mortal food is, those little macarons you make in the Valarian capitol...\w8\w8 %(s.smile)I've always wanted to try them!\w8\w8 They look so delicate,\w8 and neat,\w8 and cute,\w8 just like you...\w8\w8 Oh!\w8 You should get me some, mortal!"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.CuteFood2,1]I don't think food survives up here\_a\w8\n"
 	"\![*]\_a[OnQuestion.CuteFood2,1]I thought you couldn't eat mortal food\_a\w8\n"
