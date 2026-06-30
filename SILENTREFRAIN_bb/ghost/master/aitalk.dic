@@ -46,11 +46,16 @@ PromptQuestion : nonoverlap_pool
 	"\![raise,OnQuestion.CuteFood]"
 	"\![raise,OnQuestion.Chess]"
 	"\![raise,OnQuestion.Gambling]"
+	"\![raise,OnQuestion.Slots]"
+	"\![raise,OnQuestion.Coin]"
+	"\![raise,OnQuestion.Tall]"
 	
 	//caretaker talk
 	if Flag("event.caretakersone")
 	{
 		"\![raise,OnQuestion.LinnBramble]"
+		"\![raise,OnQuestion.PontAnnoying]"
+		"\![raise,OnQuestion.PontCold]"
 	}
 	
 	//flakes of fancy (not properly implemented yet)
@@ -78,7 +83,6 @@ OnQuestion.MadeOf : all
 }
 OnQuestion.MadeOf2
 {
-	if !reference0; silence++
 	"%(s.smile)It's Resonance!\w8\w8 \![anim,stop,203]\i[202]Now, I didn't tell any of my subjects this when making them way back when, of course, but they were all clever little cookies and figured it out themselves!\w8\w8\w8\n\n\s[2]\i[403]Ehehe, I remember, they made this big stone monument all about it when I told them--\w8\w8 \s[1]\i[301]\i[407]Oh, why don't my mortals do that for me anymore?\w8\w8 %(s.tantrum)%(flail)You're all so mean!"
 	"%(s.smile)It's Resonance!\w8\w8 That's what you little mortals call it, right?\w8\w8 \s[0]\i[403]Though, it'd be more accurate to say that I AM Resonance, hum?\w8\w8\w8\n\n\i[301]Oh, I just reminded myself of how limited you things are...\w8\w8 \s[0]\i[301]\i[404]%(tears)You can't even change size!\w8\w8 That's such a sad way to live..."
 }
@@ -94,8 +98,7 @@ OnQuestion.LongHair : all
 }
 OnQuestion.LongHair2 : all 
 {
-	if !reference0; silence++
-	else; "\s[2]\i[403]Hmmm...\w8\w8 \i[203]Hehehehe~\w8\w8 You mortals say the funniest things!\w8\w8 "
+	if reference0 >= 1; "\s[2]\i[403]Hmmm...\w8\w8 \i[203]Hehehehe~\w8\w8 You mortals say the funniest things!\w8\w8 "
 	"\s[2]\i[403]What am I even saying?\w8 My hair is pretty!\w8 \i[202]I can run my paws through them and feel the rippling between each braid, and when I move it flows behind me in a wave--\w8\w8 \![anim,stop,202]\i[203]If it's worked for centuries, why change it?!"
 }
 //--3
@@ -110,7 +113,6 @@ OnQuestion.WantTreat : all
 }
 OnQuestion.WantTreat2 : all
 {
-	if !reference0; silence++
 	"\s[2]\i[203]\i[403]Awww~!\w8 Little mortal wants startreatsies!\w8 \s[0]\i[401]Oh,\w8 but I can only give you the best ones,\w8 wait just a moment,\w8 \s[0]\i[200]\i[403]I can pick one of these out..." 
 	"%(qprep)\_q"
 	"(...Luckily,\w8 it looks like she lost her train of thought while parsing through her favorite stars.)"
@@ -127,7 +129,6 @@ OnQuestion.GoldSilver : all
 }
 OnQuestion.GoldSilver2 : all 
 {
-	if !reference0; silence++
 	"%(s.smile)\i[203]Hehe~!\w8\w8 Like your little Resonance gems, metals have their own Resonance carrying properties, you know?\w8\w8 \s[2]\i[403]Ah, but, I suppose it's too miniscule of a capacity for you mortals to use, hum..."
 }
 //--5
@@ -142,7 +143,6 @@ OnQuestion.HarpsFav : all
 }
 OnQuestion.HarpsFav2 : all 
 {
-	if !reference0; silence++
 	"\s[2]\i[403]Ooh, I know!\w8 \i[203]You should play me the harp, mortal!\w8 %(s.smile)\i[202]Now, the last one that I gave Resonance strings to died, so I should probably find one that you actually CAN play..."
 }
 //--6
@@ -157,7 +157,6 @@ OnQuestion.InstrumentMyFav : all
 }
 OnQuestion.InstrumentMyFav2 : all 
 {
-	if !reference0; silence++
 	"\s[2]\i[203]\i[403]Ehehe--\w8 \![anim,stop,203]\i[201]I like pianos!\w8 %(s.smile)\i[202]I never thought I'd like them so much, but there's something about the twinkling when your paws touch the keys that makes me feel so calm!\w8\w8 \![anim,stop,202]\i[201]You little bunnies are so creative when it comes to using strings!"
 }
 //--7
@@ -172,7 +171,6 @@ OnQuestion.PianosFav : all
 }
 OnQuestion.PianosFav2 : all
 {
-	if !reference0; silence++
 	"\s[0]\i[303]\i[401]Oh!\w8 %(s.smile)You should make music for me!\w8 You could be my little court musician!\w8\w8 \i[203]I,\w8 eheh,\w8 DO like the kind of musics you mortals are making now,\w8 lots of vocals and dancing,\w8 but I DO miss the piano pieces...\w8\w8 \s[2]\i[403]It should be easy, since I'm such a beautiful muse!"
 }
 //--8
@@ -187,7 +185,6 @@ OnQuestion.JellyfishCute : all
 }
 OnQuestion.JellyfishCute2 : all
 {
-	if !reference0; silence++
 	"%(s.smile)Bzzzt!\w8 Wrong answer~!\w8\w8 \i[203]EVERY single part of my creatures is perfect!\w8\w8 How could I choose?!"
 }
 //--9
@@ -202,8 +199,7 @@ OnQuestion.JellyfishInspo : all
 }
 OnQuestion.JellyfishInspo2 : all 
 {
-	if !reference0; silence++
-	else; "\s[2]\i[203]\i[403]Ehehehe~\w8\w8 Come on, you're just trying to flatter mee~!\w8\w8 "
+	if reference0 >= 1; "\s[2]\i[203]\i[403]Ehehehe~\w8\w8 Come on, you're just trying to flatter mee~!\w8\w8 "
 	"%(s.smile)Oh, you know me, I can't choose!\w8 \i[202]\i[301]They're all so cuteeee~!\w8\w8 \s[2]\i[202]\i[403]My first few attempts at making jellies were kind of lacking--\w8 \i[301]For one, I didn't give them any%(br)\f[italic,1]brains...\f[italic,0]\w8\w8 %(s.smile)But now, I think they're cuter that way!"
 }
 //--10
@@ -218,7 +214,6 @@ OnQuestion.Clothes : all
 }
 OnQuestion.Clothes2 : all 
 {
-	if !reference0; silence++
 	"%(s.smile)\i[203]Ooh, I should make new %(clothes)!\w8\w8 You bunnies have just been making the most INTERESTING things lately, it makes me want to try them, too!"
 }
 //--11
@@ -240,8 +235,6 @@ OnQuestion.Fabrics : all
 }
 OnQuestion.Fabrics2 : all 
 {
-	if !reference0; silence++
-	
 	if reference0 == 2; "\s[0]\i[303]\i[401]Oh!\w8\w8 \s[2]\i[403]Yes, of course, that's my favorite!\w8\w8 You can never go wrong with a satin nightgown, can you?\w8\w8 \i[203]Ehehe, mortal, you're so smaarrtt!"
 	else; "\s[0]\i[202]\i[301]\i[403]Oh,\w8 I just don't knowwww...\w8\w8 \s[0]\i[403]You know what?\w8 %(s.smile)How about %(fabric) %(clothes)?\w8\w8 \![anim,stop,203]\i[202]Yes, I think that sounds nice..." //this makes some absolutely horrendous combinations
 }
@@ -257,7 +250,6 @@ OnQuestion.Messenger : all
 }
 OnQuestion.Messenger2 : all
 {
-	if !reference0; silence++ 
 	"\s[2]Ehehe--\w8\w8 \i[203]\i[403]No,\w8 no,\w8 that's so much fuss!\w8\w8 I like you much more as my favorite little mortal!\w8\w8 \s[2]\i[301]\i[404]It'd be such a waste for you to get paraded around as much as Fenr's little messenger does.\w8\w8 \s[2]\i[203]\i[401]You wouldn't have any time to talk to me!"
 }
 //--13
@@ -272,10 +264,9 @@ OnQuestion.MessyFood : all
 }
 OnQuestion.MessyFood2 : all 
 {
-	if !reference0; silence++
 	"\s[2]\i[301]\i[403]...Oh,\w8 I have to admit,\w8 it IS a little cute to watch.\w8\w8 \i[203]I think that's your charm, no?\w8\w8 %(s.smile)\i[202]The fact that you do such capricious, inconvenient little things..."
 }
-//--15
+//--14
 OnQuestion.Talkative : all 
 {
 	"\s[0]\i[303]\i[401]...Gosh,\w8 I'm not usually this talkative,\w8 truly!\w8\w8 \i[202]I like my silence, mortal.\w8 It's my time to think, after all.\w8\w8 \s[0]\i[301]\i[403]But,\w8 ah,\w8 it's been no fun, lately, crying all by myself...\w8\w8 %(s.smile)You should cry with me!\w8\w8 \i[203]I know you mortals are capable of it."
@@ -287,11 +278,10 @@ OnQuestion.Talkative : all
 }
 OnQuestion.Talkative2 : all 
 {
-	if !reference0; silence++
 	"\s[0]\i[202]\i[301]\i[401]%(tears)Sniffleeee...!\w8\w8\n\n"
 	"\s[2]\i[301]\i[403]%(tears)--Ehehe, see?\w8\w8 Isn't that fun?"
 }
-//--16
+//--15
 OnQuestion.Sylvie : all 
 {
 	"\s[0]\i[402]There's this other mortal that's caught my eye...\w8\w8 Sylvie, I think her name was.\w8\w8 \i[202]White hair,\w8 tall frame,\w8 almost my splitting image.\w8\w8 %(s.smile)It's like Alnoth all over again!\w8\w8 \i[202]She plays such nice, reverby music on that little guitar of hers all about safety in self and her little friends,\w8 and she always speaks her mind and flips a table over or two when she can--\w8\w8\n\n"
@@ -303,13 +293,12 @@ OnQuestion.Sylvie : all
 }
 OnQuestion.Sylvie2 : all 
 {
-	if !reference0; silence++ 
 	"%(s.smile)Well, if you're doing fine, then she must be doing fine, too!\w8\w8 \i[202]My mortals are far less brash than Fenr's,\w8 they have much more poise and sense!\w8\w8 "
 	
 	if silence >= anger1; "\s[0]\i[401]Of course, you're an...\w8\w8 \i[200]Exception,\w8 but no matter..."
 	else; "\s[2]\i[403]Just like you~!"
 }
-//--17 
+//--16
 OnQuestion.Alnoth : all 
 {
 	"\s[0]\i[202]\i[301]\i[403]Sigh...\w8 It's a pity there wont ever be another mortal like Alnoth again.\w8\w8 \![anim,stop,202]\i[201]The times have changed too much!\w8\w8 \s[2]\i[202]\i[404]He was the funnest to watch,\w8 you know,\w8 always appealing to us and showing us what those bunnies could do for us!\w8\w8 \![anim,stop,202]\i[201]Ehehe...\w8 Gosh,\w8 me talking about another mortal like this,\w8 are you jealous of him~?"
@@ -321,27 +310,25 @@ OnQuestion.Alnoth : all
 }
 OnQuestion.Alnoth2 : all 
 {
-	if !reference0; silence++
 	"\s[2]\i[203]\i[403]Ehehehe~!\w8\w8 No need to be jealous, mortal,\w8 YOU'RE my favorite, now!\w8\w8 "
 	if silence >= anger1; "\s[2]\i[301]\i[403]Well,\w8 you're being the same kind of annoying Alnoth was,\w8 with how much he kept talking about ""treating the bunnies fairly,""\w8 but that hardly matters now..."
 	else; "%(s.smile)You actually listen to me,\w8 for one!"
 }
-//--18
+//--17
 OnQuestion.CuteFood : all 
 {
 	"\s[0]\i[403]For how odd your mortal food is, those little macarons you make in the Valarian capitol...\w8\w8 %(s.smile)I've always wanted to try them!\w8\w8 They look so delicate,\w8 and neat,\w8 and cute,\w8 just like you...\w8\w8 Oh!\w8 You should get me some, mortal!"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.CuteFood2,1]I don't think food survives up here\_a\w8\n"
 	"\![*]\_a[OnQuestion.CuteFood2,1]I thought you couldn't eat mortal food\_a\w8\n"
-	"\![*]\_a[OnQuestion.CuteFood2,1]I... I can try!\_a\w8"
+	"\![*]\_a[OnQuestion.CuteFood2,1]I... I can try!\_a\w8\n"
 	"\![*]\_a[OnQuestion.CuteFood2,1]I'm not your errandboy\_a\w8"
 }
 OnQuestion.CuteFood2 : all 
 {
-	if !reference0; silence++
 	"\s[0]\i[301]\i[403]Those macarons just crumble so easily,\w8 it's so pitiful watching those chefs make them and look upset when they don't turn out right...\w8\w8 %(s.smile)That's what's special about you mortals.\w8\w8 You make mistakes!\w8\w8 \i[202]I'd like to try one of those flat macarons,\w8 I think..."
 }
-//--19
+//--18
 OnQuestion.Chess : all
 {
 	"\s[0]\i[403]It's both fun and frustrating to watch you mortals play chess...\w8\w8 \i[202]\i[301]It's hardly a solved game,\w8 at least until it gets down to the last few pieces,\w8 but you bunnies just--!\w8\w8 \s[0]\i[301]\i[407]%(tears)Keep making so many mistakes!\w8\w8 \i[202]It's only fun for a while,\w8 because after that I just get so sad..."
@@ -353,12 +340,11 @@ OnQuestion.Chess : all
 }
 OnQuestion.Chess2 : all 
 {
-	if !reference0; silence++
 	
 	if reference0 == 2; "\s[2]\i[403]Pfft--\w8\w8 \i[203]Oh, mortal, you're so CUTE!\w8\w8 That wouldn't be any fun, for me and for you.\w8\w8 \s[2]\i[301]\i[404]Why would I play a game with someone so pitiful?"
 	else; "\s[0]\i[301]\i[404]%(tears)It really is such a shame...\w8\w8 \i[202]There's no fun board games anymore at all,\w8 Linn just shuts the board in my face when I try to play with them, after all..."
 }
-//--20
+//--19
 OnQuestion.Gambling : all 
 {
 	"%(s.smile)Gambling is far more interesting than board games--\w8\w8 \i[203]There's a deceptive layer of control you can have, in a gamble.\w8\w8 \s[2]\i[403]And,\w8 well,\w8 the thrill of betting,\w8 of having something lost or gained,\w8 that's something too,\w8 isn't it?\w8\w8 \i[203]We should play sometime."
@@ -370,14 +356,53 @@ OnQuestion.Gambling : all
 }
 OnQuestion.Gambling2 : all 
 {
-	if !reference0; silence++
 	"\s[2]\i[402]Ehehe~\w8\w8 I'll set the bar!\w8\w8 \s[2]\i[203]\i[403]How about your Resonance gem?\w8\w8 It's always nice to have some of my Resonance back...\w8\w8\n\n"
 	"\s[2]\i[301]\i[403]...Hm.\w8\w8 Pont gets upset when I mess with my Resonance gem.\w8 Maybe not."
-	"%(qprep)\_q"
-	"(oh thank god)"
+}
+//--20
+OnQuestion.Slots : all 
+{
+	"\s[0]\i[404]You bunnies should leave slots up to plain odds, rather than doing all this payout-skewing nonsense...\w8\w8 \s[0]\i[301]\i[403]It's no fun!\w8\w8 What's the point of gambling if you're just gonna know the result anyway?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Slots2,1]The player doesn't know\_a\w8\n"
+	"\![*]\_a[OnQuestion.Slots2,1]The house wouldn't get any money\_a\w8\n"
+	"\![*]\_a[OnQuestion.Slots2,1]I just wouldn't gamble at all\_a\w8\n"
+	"\![*]\_a[OnQuestion.Slots2,1]What's so fun about chance anyway\_a\w8"
+}
+OnQuestion.Slots2 : all 
+{
+	"\s[0]\i[403]Hmmm...\w8\w8 You're odd little things, you know that?\w8\w8 \i[202]I suppose that's your charm...\w8\w8 %(s.smile)Oh,\w8 maybe I should make my own casino!"
+}
+//--21
+OnQuestion.Coin : all 
+{
+	"\s[2]\i[202]\i[403]The coin is such an efficient invention--\w8\w8 \![anim,stop,202]\i[203]Services and objects have no consistent value between mortals, and fluctuate more circumstantially than a coin can, and they're minted with my face on them!\w8\w8 \s[2]\i[403]Not that I have any use for it, but I imagine a clever little bunny like you has plenty of coin, no?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Coin2,1]The normal amount I think\_a\w8\n"
+	"\![*]\_a[OnQuestion.Coin2,1]It's NICE to be rich\_a\w8\n"
+	"\![*]\_a[OnQuestion.Coin2,1]I'm poor as hell\_a\w8\n"
+	"\![*]\_a[OnQuestion.Coin2,1]We should start bartering again\_a\w8"
+}
+OnQuestion.Coin2 : all 
+{
+	"%(s.smile)\i[203]Ehehe~\w8\w8 Maybe I could treat you with a little more allowance?\w8\w8 \s[2]\i[403]No,\w8 no,\w8 of course I wouldn't do that.\w8\w8 If your economy crashed, that wouldn't be any good for me, now would it?"
+}
+//--22
+OnQuestion.Tall : all
+{
+	"\s[0]\i[403]Gosh, you just look so funny craning your head up like that to look at me.\w8\w8 %(s.smile)I know I'm tall, but you mortals are just so teeny!\w8\w8 \s[0]\i[303]\i[401]You know, thinking of it, I don't think I've met anyone taller than me.\w8\w8 \s[0]\i[404]Have you met anyone else whose 7 feet tall?\w8\w8 220 centimeters?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.Tall2,1]SEVEN FEET??\_a\w8\n"
+	"\![*]\_a[OnQuestion.Tall2,1]That's not normal\_a\w8\n"
+	"\![*]\_a[OnQuestion.Tall2,1]I'm sure SOMEONE'S that tall\_a\w8\n"
+	"\![*]\_a[OnQuestion.Tall2,1]Yeah, ME\_a\w8"
+}
+OnQuestion.Tall2 : all 
+{
+	"\s[2]\i[203]\i[403]Ehehehe~!\w8\w8 You're the funniest little thing, mortal!\w8\w8 \s[2]\i[403]So stubborn and overconfident...\w8\w8 %(s.smile)You know that was a rhetorical question, right?\w8\w8 \i[203]There's no way anyone's taller than me~!"
 }
 
-//---caretaker talk
+//---caretaker talk (other than fenr)
 //--1
 OnQuestion.LinnBramble : all 
 {
@@ -390,8 +415,35 @@ OnQuestion.LinnBramble : all
 }
 OnQuestion.LinnBramble2 : all 
 {
-	if !reference0; silence++
 	"%(s.smile)See?\w8\w8 I knew you were smart, mortal!\w8\w8 \i[203]Now,\w8 if only Linn could get it!"
+}
+//--2
+OnQuestion.PontAnnoying : all 
+{
+	"\s[0]\i[302]\i[403]Hmph...\w8\w8 Whatever happened to Pont?\w8\w8 \s[0]\i[202]\i[301]\i[403]It used to be so cute, following me around whenever I'd make stars and planets, going \s[2]\i[404]\f[italic,1]Vala, Vala, what are you doing?\w8 Can I try?\f[italic,0]\w8\w8 \s[0]\i[301]\i[403]Now they're so rebellious!\w8\w8 \i[202]Always saying \f[italic,1]No, you can't do that\f[italic,0] and \f[italic,1]stop fighting with Fenr!\f[italic,0]\w8\w8 \![anim,stop,202]\i[201]Aren't little siblings just so spoiled?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.PontAnnoying2,1]You should listen to it\_a\w8\n"
+	"\![*]\_a[OnQuestion.PontAnnoying2,1]Stop fighting with Fenr\_a\w8\n"
+	"\![*]\_a[OnQuestion.PontAnnoying2,1]Why are you asking me\_a\w8\n"
+	"\![*]\_a[OnQuestion.PontAnnoying2,1]SO spoiled\_a\w8"
+}
+OnQuestion.PontAnnoying2 : all 
+{
+	"\s[0]\i[302]\i[407]Gosh...!\w8\w8 \i[202]Well, that's what makes it cute, I suppose, but it sure gets on my nerves...!\w8\w8 \s[0]\i[301]\i[403]Why doesn't it listen to me anymore?"
+}
+//--3
+OnQuestion.PontCold : all
+{
+	"Gosh, why do you bunnies blame me for the snow?\w8\w8 You know that's Pont's doing, right?\w8\w8 Well,\w8 yes,\w8 I made the rain,\w8 and I can make it snow, too,\w8 but I don't like it ALL the time!\w8\w8 Pont is just so stubborn, making the atmosphere as cold as it does...\w8\w8 Don't you hate how much it snows in Valaria, mortal?"
+	"%(qprep)"
+	"\![*]\_a[OnQuestion.PontCold2,1]I thought you liked snow\_a\w8\n"
+	"\![*]\_a[OnQuestion.PontCold2,1]I thought the snow was pretty\_a\w8\n"
+	"\![*]\_a[OnQuestion.PontCold2,1]It's way too cold\_a\w8\n"
+	"\![*]\_a[OnQuestion.PontCold2,1]Better than raining\_a\w8"
+}
+OnQuestion.PontCold2 : all 
+{
+	"\s[0]\i[403]Ah, well,\w8\w8 I suppose my little mortals like the snow, don't they.\w8\w8 %(s.smile)I'm a gracious caretaker.\w8\w8 If they like it, they can keep it, hm?\w8\w8 \i[202]Like giving them a little treat..."
 }
 
 //---flakes of fancy
@@ -417,7 +469,6 @@ OnQuestion.EventFenrOne1 : all
 }
 OnQuestion.EventFenrOne2 : all
 {
-	if !reference0; silence++
 	"\s[1]\i[202]\i[403]%(tears)He said to me--\w8\w8 \s[1]\i[200]\i[302]\i[407]\f[italic,1]Vala,\w8 you're STUPID for making those creatures out of membrane and tentacles and no BRAIN or CHORDS!\w8 THIS is why you're always ALONE on that QUIET, STUPID MOON OF YOURS!!\f[italic,0]\w8\w8\n\n%(s.angrytantrum)%(flail)%(tears)Does he ever SHUT UP!!\w8 I'M NOT LONELY!!\w8 IT'S HIS FAULT!!!"
 	"%(qprep)"
 	"\![*]\_a[OnQuestion.EventFenrOne3,1]Oh...! That's mean!\_a\w8\n"
@@ -428,7 +479,6 @@ OnQuestion.EventFenrOne2 : all
 OnQuestion.EventFenrOne3 : all
 {
 	if !Flag("event.fenrone"); flags ,= "event.fenrone"
-	if !reference0; silence++
 	if reference0 == 2
 	{
 		"\s[0]\i[301]\i[403]%(tears)...\w8You know...\w8\w8 \![anim,stop,301]\i[305]I \![italic,1]should!\f[italic,0]\w8\w8 %(s.smile)Oh, mortal, you GET me--\w8\w8 "
@@ -453,7 +503,6 @@ OnQuestion.EventFenrTwo1 : all
 OnQuestion.EventFenrTwo2 : all 
 {
 	if !Flag("event.fenrtwo"); flags ,= "event.fenrtwo"
-	if !reference0; silence++
 	"\s[1]\i[301]\i[403]%(tears)Mmmn...\w8\w8 I just don't get it..."
 }
 
@@ -472,7 +521,6 @@ OnQuestion.EventFenrThree2 : all
 	aitalkinterval = 60
 	if !reference0 
 	{
-		silence++
 		"\s[0]\i[302]...You're supposed to SAY something, mortal.\w8\w8 \s[0]\i[303]\i[401]...Oh!\w8\w8 I think I get it now!"
 	}
 	elseif reference0 == 2
@@ -502,7 +550,6 @@ OnQuestion.EventCaretakersOne1 : all
 }
 OnQuestion.EventCaretakersOne2 : all 
 {
-	if !reference0; silence++
 	if reference0 == 2; "\s[0]\i[303]\i[401]You--!\w8\w8 \s[0]\i[301]\i[403]You didn't know?\w8\w8 Gosh, what are they teaching you mortals nowadays?\w8\w8\w8 "
 	"%(s.smile)Well, you should!\w8\w8 \i[203]Visit everyone who isn't Fenr, I mean!\w8\w8 \![anim,stop,203]\i[202]All my other younger siblings,\w8 for all their disrespect,\w8 are very,\w8 very cute.\w8\w8 \s[2]\i[403]Pont's currently in it's rebellious phase, and Linlin is always so fun to have tea with!\w8\w8 \i[203]The way Linn tries to shoo me out of their workshop is so cute,\w8 they get so embarrassed around me!"
 	"%(qprep)"
@@ -514,7 +561,6 @@ OnQuestion.EventCaretakersOne2 : all
 OnQuestion.EventCaretakersOne3 : all 
 {
 	if !Flag("event.caretakersone"); flags ,= "event.caretakersone"
-	if !reference0; silence++
 	"%(s.smile)Ooh!\w8\w8 What if I talked about them more?\w8\w8 \i[203]You'll definitely like them too, mortal!"
 	"%(qprep)\_q"
 	"(...Looks like she's made up her mind about it.)"
@@ -555,6 +601,38 @@ OnDressupChanged
 	}
 }
 
+//-------
+
+OnWindowStateMinimize
+{
+	"\s[0]\i[301]\i[403]...Huh?\w8\w8 Mortal, where are you going?\w8\w8 Oh dear..."
+	"\s[0]\i[301]\i[403]...Huh?\w8\w8 Where are you wandering off to?"
+	--
+	"\w8\w8\w8"
+}
+
+OnFullScreenAppMinimize
+{
+	"\s[0]\i[301]\i[403]...Huh?\w8\w8 Mortal, what are you looking at?"
+	"\s[0]\i[301]\i[403]...Huh?\w8\w8 Mortal, what are you doing?\w8\w8 I want to see!"
+	"\s[0]\i[301]\i[403]...Huh?\w8\w8 My,\w8 that's certainly something to occupy yourself with..."
+}
+
+OnFullScreenAppRestore 
+{
+	"\s[0]...Are you back,\w8 now?\w8\w8 \s[0]\i[202]\i[301]\i[403]Gosh, aren't I enough to assuage your boredom,\w8 mortal?\w8\w8 So ungrateful!"
+	"%(s.smile)...Hello!\w8\w8 \i[203]Welcome back, mortal!\w8\w8 Miss me already?"
+}
+
+OnWindowStateRestore 
+{
+	OnSurfaceRestore
+	--
+	"%(s.smile)Ah!\w8\w8 There you are!\w8\w8 \s[0]\i[301]\i[403]Gosh, you mortals are just so small, I need to keep a better eye on you..."
+	"%(s.smile)Found you!\w8\w8 \i[203]Don't scurry off like that again, okay?"
+}
+
+
 //SHELL SHORTCUTS
 tears {"\![anim,stop,351]\i[352]"}
 flail {"\![anim,stop,405]\i[406]"}
@@ -586,6 +664,9 @@ clothes
 	"overalls"
 	"blouses"
 	"nightgowns"
+	"vests"
+	"polos"
+	"shawls"
 }
 fabric //excluding satin because thats her favorite
 {
@@ -653,6 +734,7 @@ OnNextFunc
 		
 		_num = TOINT(ExtractNumber(reference0))
 		_blank = REPLACE(reference0,"%(_num)","")
+		
 		if _num == 0; _num = 2
 		else; _num++
 		
@@ -660,6 +742,7 @@ OnNextFunc
 		
 		if ISFUNC("%(_final)")
 		{
+			silence++
 			OnUpdateTalkInterval
 			"\![raise,%(_final),%(_i)]" //lasttalk is set properly in ontranslate
 		}

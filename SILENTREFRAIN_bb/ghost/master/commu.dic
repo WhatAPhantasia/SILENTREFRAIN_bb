@@ -1,3 +1,90 @@
+//NEEEEEEEEEEEEEEEDDDDDDDDDLLLLLLLLLEEEEEEEEEEEEEE 
+//thank you zichqec youre awesome https://ukagaka.zichqec.com/ghost/needle
+//does this technically make vala a needlelike
+OnOtherOverlap : all
+{
+	_overlap = SPLIT(reference.raw[0],C_BYTE1)
+	_unoverlap = SPLIT(reference.raw[1],C_BYTE1)
+	//_newoverlap = IARRAY
+	_command = ""
+    _char = ""
+	_dressup = ""
+	foreach CurrentDressups; _dressup
+	{
+		if _dressups != ""; _dressups += C_BYTE1
+		_dressups += _dressup
+	}
+	
+	if RE_ASEARCH("Cloud",CurrentDressups) != -1
+	{
+		foreach _overlap; _inst
+		{
+			if "Vala/0" _in_ _inst && ASEARCH(_inst,_unoverlap) == -1 //If overlap AND not in the unoverlap array
+			{
+				//Figure out which side shes on and get the other side as the ghost name
+				_char = ""
+				if "-Phanta" _in_ _inst; _char = REPLACE(_inst,"-Phanta/0","")
+				else; _char = REPLACE(_inst,"Phanta/0-","")
+				
+				//Some ghost names may have slashes, so make _sure_ we've got the full ghost name. And also, grab the final number
+				//thank you needle team. ily for figuring this out x2
+				_char = SPLIT(_char,"/")
+				_num = ""
+				_final = ""
+				for _i = 0; _i < ARRAYSIZE(_char); _i++
+				{
+					if _i == (ARRAYSIZE(_char) - 1)
+					{
+						_num = _char[_i]
+						break
+					}
+					
+					if _i != 0; _final += "/"
+					_final += _char[_i]
+				}
+				
+				_command += "\![raiseother,%(_final),OnValaRained,%(_num)]"
+			}
+		}
+		if _command != ""
+		{
+			"%(_command)"
+			"\![raise,OnValaRainer,%(_char)]"
+		}
+	}
+}
+//also by zi
+OnNotifyDressupInfo
+{
+	CurrentDressups = IARRAY
+	
+	foreach reference; _ref //i didnt even know you could foreach references
+	{
+		if _ref[4,C_BYTE1] == "1"
+		{
+			CurrentDressups ,= "%(_ref[1,C_BYTE1])" + C_BYTE1 + "%(_ref[2,C_BYTE1])"
+		}
+	}
+}
+OnValaRainer 
+{
+	if RAND(2) == 1
+	{
+		"\s[0]\i[403]...?\w8\w8 %(s.smile)What?\w8\w8 \i[203]It's not like rain's a bad thing."
+		"%(s.snile)You know,\w8 without me,\w8 the Bramblebrush would be completely devoid of any rain...\w8\w8 \s[2]\i[301]\i[403]Think of all the poor plants that'd go unwatered!"
+		"%(s.smile)...\w8A little rain goes a long way,\w8 you know."
+		"%(s.smile)The Bramblebrush would be a lot nicer with a little more rain..."
+		"%(s.smile)...\w8Rain's good for your fur,\w8 you know."
+		"%(s.smile)You like the sound of rain, right?"
+		"\s[2]\i[403]""Getting caught in the rain"" is such a funny phrase you mortals have come up with.\w8\w8 \i[203]I'd love to be caught like that!"
+		"%(s.smile)\i[203]Rain has the most wonderful smell, doesn't it?"
+		"\s[0]\i[403]This world would be so boring without rain, right?"
+		"%(s.smile)...\w8You like rain,\w8 right,\w8 mortal?"
+		"\s[0]\i[202]\i[301]\i[403]...\w8When it rains,\w8 it feels like the sky's crying for me,\w8 too..."
+		"%(s.smile)\i[203]Get rained on get rained on get rained on ❤"
+	}
+}
+
 OnSpectrePlugin.ConfirmCalibration
 {
 	"\![raiseplugin,Spectre,OnCustomCalibrationConfirm]"
@@ -52,7 +139,7 @@ OnSpectrePlugin.Possession
 OnFlakesOfFancyStateNotify
 {
 	flakesdata[0] = reference0 //how hard its snowing
-	//ok nevermind zi said that the notifyother wasnt formatted properly and i check and it was that was 30 mins wasted OOPS
+	//to be done when this thang gets an update
 }
 
 OnNeedlePoke

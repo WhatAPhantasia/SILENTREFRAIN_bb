@@ -43,7 +43,6 @@ OnFirstBoot2 : all
 
 	if !reference0 
 	{
-		silence++
 		"\s[1]\i[202]\i[301]\i[401]%(tears)"
 		"Everyone is so, so, so MEAN!\w8\w8 Especially,\w8 especially—!\w8\w8\n\n"
 	}
@@ -64,7 +63,6 @@ OnFirstBoot3 : all
 	
 	if reference0 == 0
 	{
-		silence++
 		"\s[2]\i[404]There's no need to be afraid.\w8\w8 I know it's hard since you're so pitiful, but I promise I don't bite!\w8\w8 \i[203]Here, what if I introduced myself?\w8 Would that help?"
 	}
 	elseif reference0 == 1
@@ -93,7 +91,6 @@ OnFirstBoot4 : all
 
 	if !reference0
 	{
-		silence++
 		"\s[0]\i[302]\i[407]Oh...!\w8 See?!\w8 He's just like that!\w8 He has no conversational sense!\w8 He doesn't know when to talk when it's his time to talk, and always talks when it's not his time to talk!\w8\w8 "
 	}
 	"\s[1]\i[204]\i[302]\i[407]He...!\w8 \s[1]\i[204]\i[302]%(flail)He was SO mean to me!\w8\w8 He ALWAYS is!\w8 It's only natural when he's such a dullard, and it doesn't help when it's just so QUIET up here!\w8 The least he could do is have RESPECT for his older sibling, no?!\w8 It's not faiiirrrr!"
@@ -110,7 +107,6 @@ OnFirstBoot5 : all
 	
 	if !reference0
 	{
-		silence++
 		"\s[1]\i[302]\i[407]"
 		if silence >= 4
 		{"...And you know, \w8you've been TERRIBLY awful company!"}
@@ -256,14 +252,8 @@ OnKeyPress
 
 OnSurfaceRestore
 {
-	//TODO: make her grumpier based on silence variable
 	if silence >= anger1; "\1\s[-1]\0%(idleangry)%(windowinit)"
 	else; "\1\s[-1]\0%(idleneutral)%(windowinit)"
-}
-
-OnWindowStateRestore
-{
-	OnSurfaceRestore
 }
 
 idleneutral {"\s[0]%(ANY('\i[200]','\i[202]'))%(ANY('','\i[402]'))"}
@@ -359,7 +349,7 @@ OnClose : all
 		
 		"%(qprep)"
 		random:{
-		"(Oh. Okay.)"
+		"(Oh.\w8 Okay.)"
 		}
 		"\w8\w8\0\![set,alpha,100]\![set,alpha,0,500]\_w[500]\-"
 	}
@@ -426,12 +416,33 @@ OnUpdateComplete
 
 OnUpdateFailure : all
 {	
-	"\0\s[0]Could not update"
+	_file = SPLITPATH(reference1)[2] + SPLITPATH(reference1)[3] //For MD5 errors, this gets the name and extension of the offending file
+	_reason = reference0
 	case reference0
 	{
-		when "artificial"; ": canceled"
-		when "timeout"; ": connection timed out"
-		when "md5 miss"; ": MD5 error"
-		others; "."
+		when "timeout"; _reason = "connection timed out"
+		when "md5 miss"; _reason = "MD5 error on file %(_file)\n\nPlease contact the ghost author for assistance"
+		when "artificial"; _reason = "canceled by user"
 	}
+	"\0\s[0]\_q(Could not update: %(_reason).)"
+}
+
+OnVanishSelecting
+{
+	"\s[0]\i[403]...?"
+}
+
+OnVanishSelected
+{
+	"\s[0]\i[301]\i[403]...\w8Mortal?\w8\w8 You look frustrated with something...\w8\w8 Is there something you want to say?%(qprep)\_q(This has thoroughly been an experience,\w8 and you want off the ride.\w8\w8 It's not like she'll listen if you tell her that,\w8 though.\w8\w8 You turn, and leave.)\w8\w8\w8"
+}
+
+OnVanishCancel
+{
+	"\s[0]\i[403]...\w8My,\w8 that was such an odd look you shot me,\w8 just now.\w8\w8 %(s.smile)How cute...!"
+}
+
+OnVanishButtonHold 
+{
+	"\s[0]\i[404]\1(...You know what,\w8 nevermind.)\w8\w8\w8\0...\w8?\w8\w8 \s[2]\i[350]\i[401]Aww,\w8 were you having a little fit,\w8 mortal?\w8\w8 %(s.smile)\i[203]That's alright, I'll pay attention to you!"
 }
